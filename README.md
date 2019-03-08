@@ -26,8 +26,4 @@ python manage.py runserver
 
 Preprocessors
 ============
-Webpack - https://webpack.js.org/concepts
-
-PugJs - https://pugjs.org/api/getting-started.html
-
-SASS - https://sass-lang.com/documentation/file.SASS_REFERENCE.html
+Frond-end of the project is compiled via [Webpack](https://webpack.js.org/concepts) as a bundler, which uses template engine [PugJS](https://pugjs.org/language/attributes.html) and style sheet language [SASS](https://sass-lang.com/documentation/file.SASS_REFERENCE.html).
