@@ -23,3 +23,10 @@ After that create database and run the server
 python manage.py migrate
 python manage.py runserver
 ```
+
+Preprocessors
+============
+Webpack - https://webpack.js.org/concepts
+
+PugJs - https://pugjs.org/api/getting-started.html
+SASS - https://sass-lang.com/documentation/file.SASS_REFERENCE.html
