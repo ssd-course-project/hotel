@@ -35,3 +35,11 @@ venv.bak/
 
 # IDE
 .idea
+
+# Webpack
+node_modules/
+assets/
+webpack-stats.json
+
+# MacOS
+.DS_Store
