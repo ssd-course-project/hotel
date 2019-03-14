@@ -2,4 +2,4 @@ from django.shortcuts import render
 
 
 def index(request):
-    return render(request, 'static/index.pug')
+    return render(request, 'index.pug')
