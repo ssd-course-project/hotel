@@ -38,6 +38,7 @@ venv.bak/
 
 # Webpack
 webpack-stats.json
+node_modules/
 
 # MacOS
 .DS_Store

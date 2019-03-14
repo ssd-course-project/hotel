@@ -20,7 +20,7 @@ You have to create local_settings.py according to the template **local_settings.
 
 After that install required node modules
 ```bash
-npm install
+yarn
 ```
 
 And finally create database and run the server
