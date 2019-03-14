@@ -1,6 +1,5 @@
 const path = require('path');
 const BundleTracker = require('webpack-bundle-tracker');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const merge = require('webpack-merge');
 const devserver = require('./webpack/devserver');
@@ -10,6 +9,7 @@ const extractCSS = require('./webpack/extract.css');
 
 module.exports = merge ([
     {
+        mode: 'development',
         context: __dirname,
         entry: './assets/js/index',
         output: {
@@ -19,10 +19,6 @@ module.exports = merge ([
         plugins: [
             new BundleTracker({
                 filename: './webpack-stats.json',
-            }),
-            new HtmlWebpackPlugin({
-                template: './hotel/templates/pug/index.pug',
-                filename: "../templates/index.html",
             }),
             new MiniCssExtractPlugin({
                 filename: "./css/[name].css",
