@@ -27,3 +27,12 @@ python manage.py runserver
 Preprocessors
 ============
 Frond-end of the project is compiled via [Webpack](https://webpack.js.org/concepts) as a bundler, which uses template engine [PugJS](https://pugjs.org/language/attributes.html) and style sheet language [SASS](https://sass-lang.com/documentation/file.SASS_REFERENCE.html).
+
+### Webpack installation
+
+```
+yarn add webpack-bundle-tracker -D
+pip install django-webpack-loader
+```
+
+Django-webpack-loader [official documentation](https://github.com/owais/django-webpack-loader)
