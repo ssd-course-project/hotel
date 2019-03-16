@@ -18,8 +18,19 @@ pip install -r requirements.txt
 ```
 You have to create local_settings.py according to the template **local_settings.example.py**
 
-After that create database and run the server
+After that install required node modules
+```bash
+yarn
+```
+
+And finally create database and run the server
 ```bash
 python manage.py migrate
 python manage.py runserver
 ```
+
+Preprocessors
+============
+Frond-end of the project is compiled via [Webpack](https://webpack.js.org/concepts) as a bundler, which uses template engine [PugJS](https://pugjs.org/language/attributes.html) and style sheet language [SASS](https://sass-lang.com/documentation/file.SASS_REFERENCE.html).
+
+Django-webpack-loader [official documentation](https://github.com/owais/django-webpack-loader).
