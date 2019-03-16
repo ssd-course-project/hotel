@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Полное описание номера</h1>
+    <p>{{ room.description }}</p>
+    <img src="{{ room.main_picture.url }}" width="350"/>
+    <p>{{ room.room_status }}</p>
+    <p>{{ room.price }}</p>
+    <p>{{ room.room_size }}</p>
+    <p>{{ room.sleeps_number }}</p>
+
+    {% for image in room.room_pictures.all %}
+        <img src="{{ image.picture.url }}" width="350"/>
+    {% endfor %}
+</body>
+</html>
