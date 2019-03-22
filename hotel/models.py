@@ -70,3 +70,13 @@ class ExtraPictures(models.Model):
         related_name='room_pictures', blank=True, null=True
     )
 
+
+class AdditionalService(models.Model):
+    description = models.TextField(
+        verbose_name="Описание услуги",
+        blank=True
+    )
+    name = models.TextField(
+        verbose_name="Название услуги",
+        blank=True
+    )
