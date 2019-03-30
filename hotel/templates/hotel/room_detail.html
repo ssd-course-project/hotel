@@ -12,6 +12,8 @@
     <p>{{ room.price }}</p>
     <p>{{ room.room_size }}</p>
     <p>{{ room.sleeps_number }}</p>
+    <p>{{ additionalService.name }}</p>
+    <p>{{ additionalService.description }}</p>
 
     {% for image in room.room_pictures.all %}
         <img src="{{ image.picture.url }}" width="350"/>
