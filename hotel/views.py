@@ -12,6 +12,7 @@ class RoomList(generic.ListView):
 class RoomDetail(generic.DetailView):
     model = Room
     context_object_name = 'room'
+    context_object_name2 = 'extra_services'
 
 
 def index(request):

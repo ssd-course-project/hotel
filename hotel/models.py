@@ -49,7 +49,10 @@ class Room(models.Model):
     main_picture = models.ImageField(
         upload_to='rooms/%Y/%m/%d', blank=True, null=True
     )
-    additionalServices = models.ManyToManyField('AdditionalService', related_name='rooms', verbose_name="Дополнительные услуги")
+    extra_services = models.ManyToManyField(
+        'ExtraService',
+        related_name='rooms',
+        verbose_name="Дополнительные услуги")
 
     class Meta:
         verbose_name = 'Фонд номеров'
@@ -71,7 +74,7 @@ class ExtraPictures(models.Model):
     )
 
 
-class AdditionalService(models.Model):
+class ExtraService(models.Model):
     name = models.TextField(
         verbose_name="Название услуги",
         blank=True
