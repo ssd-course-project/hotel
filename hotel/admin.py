@@ -13,12 +13,9 @@ class RoomAdmin(admin.ModelAdmin):
     inlines = [ExtraPicturesInline]
 
 
-admin.site.register(Room, RoomAdmin)
-
-
 class ExtraServiceAdmin(admin.ModelAdmin):
     list_display = ('name', 'description')
 
 
+admin.site.register(Room, RoomAdmin)
 admin.site.register(ExtraService, ExtraServiceAdmin)
-

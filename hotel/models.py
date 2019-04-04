@@ -89,7 +89,4 @@ class ExtraService(models.Model):
         verbose_name_plural = 'Дополнительные услуги'
 
     def __str__(self):
-        return "Дополнительная услуга {name}".format(
-            name=self.name
-        )
-
+        return self.name
