@@ -5,7 +5,7 @@ from .models import Room
 
 class RoomList(generic.ListView):
     model = Room
-    template_name = "room_list.html"
+    template_name = "hotel/room_list.html"
     context_object_name = 'rooms'
 
 
