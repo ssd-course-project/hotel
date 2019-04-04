@@ -11,7 +11,6 @@ class Room(models.Model):
         (BOOKED_STATUS, 'Забронирован'),
         (TEMPORARILY_UNAVAILABLE_STATUS, 'Временно не доступен'),
     )
-
     price = models.IntegerField(
         verbose_name="Цена за ночь в рублях",
         null=False, blank=False,
@@ -50,6 +49,10 @@ class Room(models.Model):
     main_picture = models.ImageField(
         upload_to='rooms/%Y/%m/%d', blank=True, null=True
     )
+    extra_services = models.ManyToManyField(
+        'ExtraService',
+        related_name='rooms',
+        verbose_name="Дополнительные услуги")
 
     class Meta:
         verbose_name = 'Фонд номеров'
@@ -70,3 +73,20 @@ class ExtraPictures(models.Model):
         related_name='room_pictures', blank=True, null=True
     )
 
+
+class ExtraService(models.Model):
+    name = models.TextField(
+        verbose_name="Название услуги",
+        blank=True
+    )
+    description = models.TextField(
+        verbose_name="Описание услуги",
+        blank=True
+    )
+
+    class Meta:
+        verbose_name = 'Дополнительные услуги'
+        verbose_name_plural = 'Дополнительные услуги'
+
+    def __str__(self):
+        return self.name
