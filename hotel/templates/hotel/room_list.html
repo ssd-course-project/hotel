@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% block content %}
+    <h2>Список всех доступных номеров</h2>
+    <div>
+    <ul>
+
+        {% for room in rooms %}
+            <a href="{% url 'room_detail' room.id %}">
+                <img src="{{ room.main_picture.url }}" width="350"/>
+            </a>
+            <li>{{ room.description }}</li>
+            <li>{{ room.room_status }}</li>
+        {% endfor %}
+    </ul>
+    </div>
+{% endblock %}
+</body>
+</html>

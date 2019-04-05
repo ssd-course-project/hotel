@@ -35,6 +35,7 @@ venv.bak/
 
 # IDE
 .idea
+.vscode/
 
 # Webpack
 webpack-stats.json
@@ -42,3 +43,6 @@ node_modules/
 
 # MacOS
 .DS_Store
+
+
+media/
