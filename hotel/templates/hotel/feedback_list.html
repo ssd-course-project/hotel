@@ -13,7 +13,7 @@
         {% for feedback in feedbacks %}
             <p>{{ feedback.created_at }}</p>
             <p>{{ feedback.rating }}</p>
-            <p>{{ feedback.body }}</p>
+            <p>{{ feedback.text }}</p>
         {% endfor %}
     </div>
 {% endblock %}
