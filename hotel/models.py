@@ -1,5 +1,7 @@
 from django.db import models
 
+from clients.models import Client
+
 
 class Room(models.Model):
     AVAILABLE_STATUS = 'available'
@@ -94,12 +96,8 @@ class ExtraService(models.Model):
 
 class Feedback(models.Model):
     author = models.ForeignKey(
-        'auth.User',
+        Client,
         on_delete=models.CASCADE
-    )
-    name = models.CharField(
-        max_length=255,
-        verbose_name='Имя пользователя'
     )
     created_at = models.DateTimeField(
         auto_now_add=True,

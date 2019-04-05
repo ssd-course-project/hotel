@@ -11,8 +11,7 @@
     <h2>Список всех отзывов</h2>
     <div>
         {% for feedback in feedbacks %}
-            <p>{{ feedback.name }}</p>
-            <p>{{ feedback.born }}</p>
+            <p>{{ feedback.created_at }}</p>
             <p>{{ feedback.rating }}</p>
             <p>{{ feedback.body }}</p>
         {% endfor %}

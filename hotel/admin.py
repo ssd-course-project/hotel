@@ -18,7 +18,7 @@ class ExtraServiceAdmin(admin.ModelAdmin):
 
 
 class FeedbackAdmin(admin.ModelAdmin):
-    list_display = ('author', 'name', 'created_at', 'rating', 'text')
+    list_display = ('author', 'created_at', 'rating', 'text')
 
 
 admin.site.register(Room, RoomAdmin)
