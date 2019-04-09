@@ -25,7 +25,3 @@ class RegistrationForm(UserCreationForm):
         )
         return user
 
-
-def ValidationError(param):
-    return None
-

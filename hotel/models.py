@@ -95,6 +95,13 @@ class ExtraService(models.Model):
 
 
 class Feedback(models.Model):
+    RATING_CHOICES = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+    )
     author = models.ForeignKey(
         Client,
         on_delete=models.CASCADE
@@ -102,13 +109,6 @@ class Feedback(models.Model):
     created_at = models.DateTimeField(
         auto_now_add=True,
         verbose_name='Время создания'
-    )
-    RATING_CHOICES = (
-        (1, '1'),
-        (2, '2'),
-        (3, '3'),
-        (4, '4'),
-        (5, '5'),
     )
     rating = models.IntegerField(
         choices=RATING_CHOICES,
@@ -124,5 +124,5 @@ class Feedback(models.Model):
         verbose_name_plural = 'Отзывы'
 
     def __str__(self):
-        return self.text
+        return "Отзыв от {}".format(self.author)
 

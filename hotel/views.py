@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
-
-from clients import forms
+from django import forms
 from clients.models import Client
 from .models import Room, Feedback
 
@@ -21,15 +20,15 @@ class FeedbackNew(generic.CreateView):
     model = Feedback
     template_name = 'hotel/feedback_new.html'
     fields = ('rating', 'text')
-    template_name_suffix = '_new'
     success_url = '/'
 
     def form_valid(self, form):
         feedback = form.save(commit=False)
         user = self.request.user
-        client = Client.objects.get(user=user)
-        if not client:
-            raise forms.ValidationError("You are not our client.")
+        try:
+            client = Client.objects.get(user=user)
+        except Client.DoesNotExist:
+            raise forms.ValidationError("You are not our client!")
         feedback.author = client
         feedback.save()
         return super().form_valid(form)
