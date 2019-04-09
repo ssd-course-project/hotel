@@ -40,6 +40,8 @@ venv.bak/
 # Webpack
 webpack-stats.json
 node_modules/
+assets/
+pug/
 
 # MacOS
 .DS_Store

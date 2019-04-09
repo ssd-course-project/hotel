@@ -1,28 +1,45 @@
 const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleTracker = require('webpack-bundle-tracker');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const merge = require('webpack-merge');
 const devserver = require('./webpack/devserver');
 const pug = require('./webpack/pug');
 const sass = require('./webpack/sass');
 const extractCSS = require('./webpack/extract.css');
+const files = require('./webpack/files');
 
 module.exports = merge ([
     {
         mode: 'development',
         context: __dirname,
-        entry: './assets/js/index',
+        entry: {
+            main: [
+                './assets/js/index',
+                'jquery',
+            ]
+        },
         output: {
             path: path.resolve('./hotel/static'),
             filename: "./js/[name].js"
         },
         plugins: [
+            new HtmlWebpackPlugin({
+                template: 'hotel/templates/pug/index.pug',
+            }),
             new BundleTracker({
                 filename: './webpack-stats.json',
             }),
-            new MiniCssExtractPlugin({
-                filename: "./css/[name].css",
-                chunkFilename: "./css/[id].css"
+            new CopyWebpackPlugin([
+                { from: 'assets/images', to: 'assets/images' },
+                { from: 'assets/fonts', to: 'assets/fonts' },
+                { from: 'assets/jquery', to: 'assets/jquery' },
+            ]),
+            new webpack.ProvidePlugin({
+                $: "jquery",
+                jQuery: "jquery",
+                jquery: "jquery"
             })
         ]
     },
@@ -30,4 +47,5 @@ module.exports = merge ([
     pug(),
     sass(),
     extractCSS(),
+    files()
 ]);

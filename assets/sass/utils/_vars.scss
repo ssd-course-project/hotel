@@ -1,5 +1,30 @@
+// Fonts
+$black: 'Conv_Lato-Black', sans-serif;
+$bold: 'Conv_Lato-Bold', sans-serif;
+$light:'Conv_Lato-Light', sans-serif;
+$regular: 'Conv_Lato-Regular', sans-serif;
+$sans: 'Conv_sourcesanspro', sans-serif;
+$sans-light: 'Conv_sourcesansprolight', sans-serif;
+
 // Colors
-$black: #333;
+$white: #fff;
+$grey: #9d9d9d;
+$grey-dark: #4f4f4f;
+$grey-medium: #d1d1d1;
+$grey-light: #e5e5e5;
+$grey-ultra-light: #f2f2f2;
+$grey-tick: #c0c0c0;
+$grey-input-placeholder: #888;
+$grey-calendar: #868686;
+$grey-messenger-controls: #8e8d8d;
+$grey-messenger-text: #777;
 $green: #4eb7a8;
+$green-dark: #28a290;
 $red: #e75735;
-$grey: #e5e5e5;
+$red-dark: #bf3e1f;
+
+// Border
+$border-circle: 50%;
+$border-button: 0.1875rem;
+$border-toggle: 1.5rem;
+$border-user-card: 0.5rem;
