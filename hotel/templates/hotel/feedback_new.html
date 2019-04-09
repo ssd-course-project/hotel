@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% block content %}
+    <h2>Добавление отзыва</h2>
+    <div>
+    <form method="POST">
+    {% csrf_token %}
+        {{ form.rating }}<br>
+        {{ form.text }}<br>
+        <button type="submit">Add</button>
+    </form>
+    </div>
+{% endblock %}
+</body>
+</html>
