@@ -24,4 +24,3 @@ class RegistrationForm(UserCreationForm):
             email=self.cleaned_data["email"]
         )
         return user
-

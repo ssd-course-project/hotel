@@ -102,6 +102,7 @@ class Feedback(models.Model):
         (4, '4'),
         (5, '5'),
     )
+
     author = models.ForeignKey(
         Client,
         on_delete=models.CASCADE
