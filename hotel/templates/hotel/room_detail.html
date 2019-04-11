@@ -7,7 +7,7 @@
 <body>
     <h1>Полное описание номера</h1>
     <p>{{ room.description }}</p>
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated and room.room_status == room.AVAILABLE_STATUS %}
         <a href="{% url 'room_booking' room.id %}">Забронировать номер</a>
     {% endif %}
     <img src="{{ room.main_picture.url }}" width="350"/>
