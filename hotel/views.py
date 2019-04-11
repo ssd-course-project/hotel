@@ -41,6 +41,9 @@ class FeedbackList(generic.ListView):
     context_object_name = 'feedbacks'
 
 
-def index(request):
-    return render(request, 'index.pug')
+def components(request):
+    return render(request, 'general/components.html')
 
+
+def pug(request):
+    return render(request, 'pug/index.pug')

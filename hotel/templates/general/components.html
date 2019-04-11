@@ -1,0 +1,130 @@
+{% extends 'general/base.html' %}
+
+{% block title %}Компоненты{% endblock %}
+
+{% block content %}
+    <div class="components">
+		<div class="components__title">
+			<h3>ui-kit</h3>
+		</div>
+		<div class="components__content">
+			<div class="row buttons">
+				<a class="btn btn-green btn-sm enable-ripple">button</a>
+				<a class="btn btn-green enable-ripple">button</a>
+				<a class="btn btn-red enable-ripple">button</a>
+				<a class="btn btn-red btn-sm enable-ripple">button</a>
+			</div>
+			<div class="row arrow-buttons">
+				<a class="arw-btn enable-ripple"><i class="fas fa-angle-left"></i></a>
+				<a class="arw-btn enable-ripple"><i class="fas fa-angle-right"></i></a>
+			</div>
+            <div class="row inputs">
+                <div class="text-inputs">
+                    <input id="name" name="name" placeholder="Your Name" type="text" value="">
+                    <input id="email" name="email" placeholder="Your Email" type="email" value="">
+                </div>
+                <textarea id="message" name="message" placeholder="Your Message" rows="4"></textarea>
+            </div>
+            <div class="row toggles">
+                <label class="toggle-switch"><input type="checkbox"><span class="toggle-switch__handle"><span class="toggle-switch__text-on">ON</span><span class="toggle-switch__text-off">OFF</span></span></label> <label class="toggle-switch"><input checked type="checkbox"><span class="toggle-switch__handle"><span class="toggle-switch__text-on">ON</span><span class="toggle-switch__text-off">OFF</span></span></label>
+            </div>
+            <div class="row checkboxes">
+                <label class="checkbox"><input type="checkbox"><span class="checkbox__tick"></span></label> <label class="checkbox"><input checked type="checkbox"><span class="checkbox__tick"></span></label>
+            </div>
+            <div class="row buttoned-inputs">
+                <div class="input__search">
+                    <input id="search" name="search" onfocus="this.placeholder = ''" placeholder="Search" type="search" value=""> <button class="enable-ripple" type="submit"><i class="fas fa-search"></i></button>
+                </div>
+                <select class="select">
+                    <option value=""></option>
+                    <option value="JAN">January</option>
+                    <option value="FEB">February</option>
+                    <option value="MAR">March</option>
+                    <option value="APR">April</option>
+                    <option value="MAY">May</option>
+                    <option value="JUN">June</option>
+                    <option value="JUL">July</option>
+                    <option value="AUG">August</option>
+                    <option value="SEP">September</option>
+                    <option value="OCT">October</option>
+                    <option value="NOV">November</option>
+                    <option value="DEC">December</option>
+                </select>
+            </div>
+            <div class="row user-cards">
+                <div class="user-card">
+                    <img class="user-card__photo" src="../../static/vendors/images/user-profile/user-1.png">
+                    <div class="user-card__body">
+                        <h3>John Smith</h3>
+                        <h6>ux designer</h6>
+                        <div class="user-card__icons">
+                            <a href=""><i class="fab fa-fw fa-facebook-f"></i></a><a href=""><i class="fab fa-fw fa-twitter user-card__icons-red"></i></a><a href=""><i class="fab fa-fw fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-card user-card-green">
+                    <img class="user-card__photo" src="../../static/vendors/images/user-profile/user-2.png">
+                    <div class="user-card__body user-card__body-green">
+                        <h3>Sara Brown</h3>
+                        <h6>developer</h6>
+                        <div class="user-card__icons">
+                            <a href=""><i class="fab fa-fw fa-facebook-f"></i></a><a href=""><i class="fab fa-fw fa-twitter"></i></a><a href=""><i class="fab fa-fw fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row cards">
+                <div class="news-card">
+                    <img class="news-card__photo" src="../../static/vendors/images/news-events/news.png">
+                    <div class="news-card__body">
+                        <h2 class="news-card__title">It’s all going downhill</h2>
+                        <h6 class="news-card__date">24 august 2013</h6>
+                        <p class="news-card__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed condimentum aliquet venenatis. Etiam a nisi nunc, a tincidunt eros.</p>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <img class="event-card__photo" src="../../static/vendors/images/news-events/event.png">
+                    <div class="event-card__body">
+                        <h1 class="event-card__date"><span class="event-card__date-capital">24</span>Aug</h1>
+                        <h6 class="event-card__title">this is the title</h6>
+                        <p class="event-card__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <div class="event-card__button">
+                            <button class="btn btn-white-green btn-sm enable-ripple" type="submit">add to calendar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row widgets">
+                <div class="datepicker-bundle">
+                    <div class="datepicker-day"></div>
+                    <div class="datepicker"></div>
+                </div>
+                <form action="/" class="messenger" method="post">
+                    <div class="messenger__header">
+                        <div class="messenger__name">
+                            Sarah Brown
+                        </div>
+                        <div class="messenger__photo-container"><img class="messenger__photo-image" src="../../static/vendors/images/user-profile/user-2.png"></div>
+                    </div>
+                    <div class="messenger__body">
+                        <div class="messenger__controls">
+                            <div class="messenger__controls-left">
+                                <a href=""><i class="fas fa-fw fa-comment-alt"></i></a>
+                            </div>
+                            <div class="messenger__controls-right">
+                                <a href=""><i class="fas fa-fw fa-camera"></i></a>
+                            </div>
+                        </div>
+                        <div class="messenger__form">
+                            <div class="messenger__form-income">
+                                <p>Hey! So are we cool to meet at the art gallery? Say 8pm</p>
+                            </div>
+                            <textarea class="messenger__form-outcome" name="message" rows="3">Yeah that sounds great. See you then.</textarea>
+                            <button class="btn btn-green messenger__form-button enable-ripple">reply</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+		</div>
+	</div>
+{% endblock %}
