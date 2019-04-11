@@ -13,6 +13,14 @@ class Room(models.Model):
         (BOOKED_STATUS, 'Забронирован'),
         (TEMPORARILY_UNAVAILABLE_STATUS, 'Временно не доступен'),
     )
+    renter = models.ForeignKey(
+        Client,
+        on_delete=models.CASCADE,
+        verbose_name='Арендатор',
+        null=True,
+        blank=True,
+        related_name='rooms',
+    )
     price = models.IntegerField(
         verbose_name="Цена за ночь в рублях",
         null=False, blank=False,
