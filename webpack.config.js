@@ -32,9 +32,8 @@ module.exports = merge ([
                 filename: './webpack-stats.json',
             }),
             new CopyWebpackPlugin([
-                { from: 'assets/images', to: 'assets/images' },
-                { from: 'assets/fonts', to: 'assets/fonts' },
-                { from: 'assets/jquery', to: 'assets/jquery' },
+                { from: 'assets/images', to: 'vendors/images' },
+                { from: 'assets/jquery', to: 'vendors/jquery' },
             ]),
             new webpack.ProvidePlugin({
                 $: "jquery",

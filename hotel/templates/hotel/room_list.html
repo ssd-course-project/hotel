@@ -12,7 +12,7 @@
     <div>
     <ul>
 
-        {% for room in rooms %}
+        {% for room in rooms|slice:":3" %}
             <a href="{% url 'room_detail' room.id %}">
                 <img src="{{ room.main_picture.url }}" width="350"/>
             </a>
