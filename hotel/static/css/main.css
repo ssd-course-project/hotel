@@ -1,4 +1,3 @@
-@charset "UTF-8";
 .components {
   margin: 80px auto;
   width: 650px; }
@@ -55,56 +54,14 @@
       grid-column-gap: 30px;
       text-align: left; }
 
-@font-face {
-  font-family: "Conv_Lato-Black";
-  font-weight: normal;
-  font-style: normal;
-  src: url(assets/fonts/lato-black/Lato-Black.eot);
-  src: local("☺"), url(assets/fonts/lato-black/Lato-Black.woff) format("woff"), url(assets/fonts/lato-black/Lato-Black.ttf) format("truetype"), url(assets/fonts/lato-black/Lato-Black.svg) format("svg"); }
-
-@font-face {
-  font-family: "Conv_Lato-Bold";
-  font-weight: normal;
-  font-style: normal;
-  src: url(assets/fonts/lato-bold/Lato-Bold.eot);
-  src: local("☺"), url(assets/fonts/lato-bold/Lato-Bold.woff) format("woff"), url(assets/fonts/lato-bold/Lato-Bold.ttf) format("truetype"), url(assets/fonts/lato-bold/Lato-Bold.svg) format("svg"); }
-
-@font-face {
-  font-family: "Conv_Lato-Light";
-  font-weight: normal;
-  font-style: normal;
-  src: url(assets/fonts/lato-light/Lato-Light.eot);
-  src: local("☺"), url(assets/fonts/lato-light/Lato-Light.woff) format("woff"), url(assets/fonts/lato-light/Lato-Light.ttf) format("truetype"), url(assets/fonts/lato-light/Lato-Light.svg) format("svg"); }
-
-@font-face {
-  font-family: "Conv_Lato-Regular";
-  font-weight: normal;
-  font-style: normal;
-  src: url(assets/fonts/lato-regular/Lato-Regular.eot);
-  src: local("☺"), url(assets/fonts/lato-regular/Lato-Regular.woff) format("woff"), url(assets/fonts/lato-regular/Lato-Regular.ttf) format("truetype"), url(assets/fonts/lato-regular/Lato-Regular.svg) format("svg"); }
-
-@font-face {
-  font-family: "Conv_sourcesanspro";
-  font-weight: normal;
-  font-style: normal;
-  src: url(assets/fonts/source-sans-pro/sourcesanspro.eot);
-  src: local("☺"), url(assets/fonts/source-sans-pro/sourcesanspro.woff) format("woff"), url(assets/fonts/source-sans-pro/sourcesanspro.ttf) format("truetype"), url(assets/fonts/source-sans-pro/sourcesanspro.svg) format("svg"); }
-
-@font-face {
-  font-family: "Conv_sourcesansprolight";
-  font-weight: normal;
-  font-style: normal;
-  src: url(assets/fonts/source-sans-pro-light/sourcesansprolight.eot);
-  src: local("☺"), url(assets/fonts/source-sans-pro-light/sourcesansprolight.woff) format("woff"), url(assets/fonts/source-sans-pro-light/sourcesansprolight.ttf) format("truetype"), url(assets/fonts/source-sans-pro-light/sourcesansprolight.svg) format("svg"); }
-
 * {
   margin: 0;
   padding: 0; }
 
 body {
   color: #4f4f4f;
-  font-family: "Conv_Lato-Black", sans-serif;
-  letter-spacing: 0.1rem;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
   line-height: 1.4; }
 
 h1, h2, h3, h4, h5, h6 {
@@ -137,8 +94,7 @@ h6 {
   -webkit-border-radius: 0.1875rem;
   -moz-border-radius: 0.1875rem;
   border-radius: 0.1875rem;
-  letter-spacing: 0.1rem;
-  font-family: "Conv_Lato-Black", sans-serif;
+  font-weight: 900;
   font-size: 0.75rem;
   overflow: hidden;
   outline: 0;
@@ -218,7 +174,6 @@ h6 {
 
 .btn-sm {
   font-size: 0.625rem;
-  letter-spacing: 0.05rem;
   padding: 0.18rem 0.8rem; }
 
 .btn-green.btn-sm:active,
@@ -296,7 +251,7 @@ input[type='text'],
 input[type='time'],
 input[type='url'], textarea {
   background-color: #e5e5e5;
-  font-family: "Conv_sourcesanspro", sans-serif;
+  font-weight: 400;
   font-size: 0.875rem;
   color: #4f4f4f;
   box-sizing: border-box;
@@ -520,9 +475,8 @@ input[type='url'], textarea {
   margin: 0;
   position: relative;
   vertical-align: middle;
-  font-family: "Conv_sourcesanspro", sans-serif;
+  font-weight: 400;
   font-size: 0.875rem;
-  letter-spacing: normal;
   text-align: left; }
   .select2-container .select2-selection--single {
     box-sizing: border-box;
@@ -724,9 +678,8 @@ input[type='url'], textarea {
     width: 100%;
     height: 5.875rem;
     background-color: #e5e5e5;
-    font-family: "Conv_Lato-Black", sans-serif;
+    font-weight: 900;
     color: #4f4f4f;
-    letter-spacing: 0.05rem;
     text-align: center;
     padding: 0.375rem 0.75rem;
     -webkit-border-radius: 0.5rem;
@@ -746,8 +699,7 @@ input[type='url'], textarea {
     .user-card__body h3 {
       text-transform: capitalize;
       color: #e75735;
-      font-family: "Conv_Lato-Regular", sans-serif;
-      font-weight: normal; }
+      font-weight: 400; }
     .user-card__body .user-card__icons {
       padding: 0.375rem 0.75rem;
       font-size: 1.375rem; }
@@ -812,18 +764,17 @@ input[type='url'], textarea {
   width: 100%;
   padding: 1.25rem 1.5rem;
   color: #fff;
-  letter-spacing: normal;
   border-top-right-radius: 0.1875rem;
   border-bottom-right-radius: 0.1875rem; }
 
 .news-card__body .news-card__title, .event-card__body .event-card__date {
-  font-family: "Conv_Lato-Light", sans-serif;
+  font-weight: 300;
   line-height: 1;
   text-transform: none;
   margin-bottom: 0.5rem; }
 
 .news-card__body .news-card__text, .event-card__body .event-card__text {
-  font-family: "Conv_Lato-Regular", sans-serif;
+  font-weight: 400;
   font-size: 0.6875rem; }
 
 .datepicker-bundle {
@@ -836,7 +787,7 @@ input[type='url'], textarea {
   border-radius: 0.1875rem; }
 
 .datepicker-day {
-  font-family: "Conv_Lato-Light", sans-serif;
+  font-weight: 300;
   font-size: 5rem;
   text-align: center; }
 
@@ -874,9 +825,8 @@ input[type='url'], textarea {
         transform: rotate(-45deg);
         right: 1rem; }
     .ui-datepicker .ui-datepicker-header .ui-datepicker-title {
-      font-family: "Conv_Lato-Light", sans-serif;
+      font-weight: 300;
       font-size: 1.5rem;
-      letter-spacing: normal;
       line-height: 1;
       text-align: center;
       padding: 0.5rem 0; }
@@ -885,8 +835,7 @@ input[type='url'], textarea {
   .ui-datepicker table {
     width: 100%;
     border-collapse: collapse;
-    line-height: 1;
-    letter-spacing: normal; }
+    line-height: 1; }
     .ui-datepicker table thead {
       font-size: 0.5625rem;
       text-transform: uppercase; }
@@ -906,7 +855,7 @@ input[type='url'], textarea {
         .ui-datepicker table tbody td a {
           display: block;
           color: #868686;
-          font-family: "Conv_sourcesanspro", sans-serif;
+          font-weight: 400;
           font-size: 1.25rem;
           text-align: center;
           text-decoration: none;
@@ -934,9 +883,8 @@ input[type='url'], textarea {
       background: none;
       border: none;
       font-size: 0.8125rem;
-      font-family: "Conv_Lato-Black", sans-serif;
+      font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: 0.05rem;
       color: #868686;
       text-align: left;
       cursor: pointer;
@@ -978,11 +926,10 @@ input[type='url'], textarea {
     border-top-left-radius: 0.1875rem;
     border-top-right-radius: 0.1875rem; }
     .messenger .messenger__header .messenger__name {
-      font-family: "Conv_sourcesansprolight", sans-serif;
+      font-weight: 300;
       font-size: 2.125rem;
       color: #fff;
       text-align: center;
-      letter-spacing: normal;
       padding: 1.125rem; }
     .messenger .messenger__header .messenger__photo-container {
       background-color: #28a290;
@@ -1055,9 +1002,8 @@ input[type='url'], textarea {
   border-radius: 0.5rem; }
 
 .messenger .messenger__body .messenger__form-income p, .messenger .messenger__body .messenger__form-outcome {
-  font-family: "Conv_Lato-Bold", sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.05rem; }
+  font-weight: 400;
+  font-size: 0.75rem; }
 
 .ripple-effect {
   display: block;

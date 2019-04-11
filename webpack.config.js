@@ -33,7 +33,6 @@ module.exports = merge ([
             }),
             new CopyWebpackPlugin([
                 { from: 'assets/images', to: 'vendors/images' },
-                { from: 'assets/fonts', to: 'vendors/fonts' },
                 { from: 'assets/jquery', to: 'vendors/jquery' },
             ]),
             new webpack.ProvidePlugin({
