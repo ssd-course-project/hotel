@@ -23,7 +23,6 @@ class Room(models.Model):
         null=False, blank=False,
         default=1000
     )
-
     description = models.TextField(
         verbose_name="Описание номера",
         blank=True

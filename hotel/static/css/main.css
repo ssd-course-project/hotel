@@ -251,6 +251,9 @@ h6 {
         margin-bottom: 2rem;
         font-size: 0.875rem;
         font-weight: 300; }
+  .rooms-button {
+    margin: 2rem 0;
+    text-align: center; }
 
 .map {
   height: 31.5rem; }
