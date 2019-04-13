@@ -34,6 +34,9 @@ h6 {
   margin: 2rem auto;
   max-width: 73rem; }
 
+.fadein {
+  opacity: 0; }
+
 .header {
   width: 100%; }
   .header:after {
@@ -182,6 +185,83 @@ h6 {
       grid-template-columns: repeat(2, calc((100% - 30px) / 2));
       grid-column-gap: 30px;
       text-align: left; }
+
+.photo {
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  min-width: 100vw; }
+  .photo__container {
+    text-align: center;
+    height: inherit; }
+  .photo__title {
+    position: relative;
+    top: 25%;
+    color: #fff; }
+    .photo__title h1 {
+      font-size: 4rem; }
+    .photo__title h3 {
+      font-size: 1.5rem;
+      font-weight: 300; }
+  .photo__search {
+    position: relative;
+    top: 65%; }
+    .photo__search [class^='photo__search-'] {
+      display: inline-block; }
+    .photo__search-visitors, .photo__search-input {
+      width: 17.5rem;
+      margin-right: 1rem; }
+    .photo__search-button {
+      margin-left: 1rem; }
+
+.select2-container {
+  top: -0.625rem; }
+  .select2-container .select2-selection--single {
+    height: 29px !important; }
+
+.description {
+  background-color: #e5e5e5; }
+  .description__container {
+    padding: 2rem;
+    text-align: center; }
+    .description__container p {
+      color: #4f4f4f;
+      font-size: 1rem;
+      font-weight: 300;
+      margin-bottom: 1rem; }
+      .description__container p:last-child {
+        margin-bottom: 0; }
+
+.rooms {
+  padding: 2rem; }
+  .rooms .news-card {
+    width: 100%;
+    height: 31.5rem;
+    margin-bottom: 2rem; }
+    .rooms .news-card__photo {
+      width: 65%;
+      background-size: cover;
+      background-position: 50% 50%; }
+    .rooms .news-card__body {
+      padding: 2rem; }
+      .rooms .news-card__body h2 {
+        margin-bottom: 2rem;
+        font-weight: 700; }
+      .rooms .news-card__body p {
+        margin-bottom: 2rem;
+        font-size: 0.875rem;
+        font-weight: 300; }
+
+.map {
+  height: 31.5rem; }
+  .map #map {
+    height: 100%; }
+    .map #map .map-balloon__title {
+      padding-right: 3rem; }
+
+.photo__container, .description__container, .rooms, .map #map .map-balloon__container {
+  margin: 0 auto;
+  max-width: 73rem; }
 
 .btn {
   -webkit-border-radius: 0.1875rem;
@@ -344,12 +424,13 @@ input[type='text'],
 input[type='time'],
 input[type='url'], textarea {
   background-color: #e5e5e5;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 0.875rem;
   color: #4f4f4f;
   box-sizing: border-box;
   outline: none;
-  padding: 0.3125rem 0.75rem;
+  padding: 0.25rem 0.75rem;
   border: 0.0625rem solid #e5e5e5;
   -webkit-border-radius: 0.1875rem;
   -moz-border-radius: 0.1875rem;
@@ -422,39 +503,54 @@ input[type='url'], textarea {
       .input__validate .input__alert-valid.input__alert:after, .input__validate .input__alert-valid.input__alert::after {
         border-right: 0.25rem solid #4eb7a8; }
 
-.input__search {
+.input__search button {
+  padding: 0.28125rem 0.5rem;
+  background-color: #e75735;
+  border-color: #e75735;
+  font-size: 0.875rem; }
+  .input__search button:hover {
+    background-color: #bf3e1f;
+    transition: 1.5s; }
+
+.input__search-empty {
+  background-color: #e75735 !important;
+  transition: 0.5s;
+  border-color: #e75735 !important; }
+  .input__search-empty::placeholder {
+    color: #fff !important; }
+
+.datepicker__input button {
+  height: 100%;
+  width: 2rem;
+  padding: 0.28125rem;
+  background-color: #4eb7a8;
+  border-color: #4eb7a8;
+  font-size: 1rem; }
+  .datepicker__input button:hover {
+    background-color: #28a290;
+    transition: 1.5s; }
+
+.input__search, .datepicker__input {
   display: inline-block;
   position: relative; }
-  .input__search input {
+  .input__search input, .datepicker__input input {
     float: left;
     width: 100%; }
-  .input__search button {
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: 0.28125rem 0.5rem;
-    background-color: #e75735;
-    color: #fff;
-    border-color: #e75735;
-    cursor: pointer;
-    font-size: 0.875rem;
-    outline: 0;
-    overflow: hidden;
-    -webkit-border-top-right-radius: 0.1875rem;
-    -webkit-border-bottom-right-radius: 0.1875rem;
-    -moz-border-radius-topright: 0.1875rem;
-    -moz-border-radius-bottomright: 0.1875rem;
-    border-top-right-radius: 0.1875rem;
-    border-bottom-right-radius: 0.1875rem; }
-    .input__search button:hover {
-      background-color: #bf3e1f;
-      transition: 1.5s; }
-  .input__search-empty {
-    background-color: #e75735 !important;
-    transition: 0.5s;
-    border-color: #e75735 !important; }
-    .input__search-empty::placeholder {
-      color: #fff !important; }
+
+.input__search button, .datepicker__input button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #fff;
+  cursor: pointer;
+  outline: 0;
+  overflow: hidden;
+  -webkit-border-top-right-radius: 0.1875rem;
+  -webkit-border-bottom-right-radius: 0.1875rem;
+  -moz-border-radius-topright: 0.1875rem;
+  -moz-border-radius-bottomright: 0.1875rem;
+  border-top-right-radius: 0.1875rem;
+  border-bottom-right-radius: 0.1875rem; }
 
 .toggle-switch {
   position: relative;
@@ -693,6 +789,7 @@ input[type='url'], textarea {
     top: 0;
     right: 0;
     width: 2rem;
+    overflow: hidden;
     background-color: #4eb7a8;
     -webkit-border-top-right-radius: 0.1875rem;
     -webkit-border-bottom-right-radius: 0.1875rem;
@@ -919,6 +1016,7 @@ input[type='url'], textarea {
         right: 1rem; }
     .ui-datepicker .ui-datepicker-header .ui-datepicker-title {
       font-weight: 300;
+      color: #fff;
       font-size: 1.5rem;
       line-height: 1;
       text-align: center;
@@ -995,6 +1093,25 @@ input[type='url'], textarea {
       border-bottom-right-radius: 0.1875rem;
       color: #fff;
       transition: 1s; }
+
+#ui-datepicker-div {
+  width: 17.5rem;
+  background-color: #fff;
+  -webkit-border-radius: 0.1875rem;
+  -moz-border-radius: 0.1875rem;
+  border-radius: 0.1875rem; }
+  #ui-datepicker-div th {
+    background-color: #e75735;
+    color: #fff; }
+  #ui-datepicker-div .ui-datepicker-header {
+    -webkit-border-top-left-radius: 0.1875rem;
+    -webkit-border-top-right-radius: 0.1875rem;
+    -moz-border-radius-topleft: 0.1875rem;
+    -moz-border-radius-topright: 0.1875rem;
+    border-top-left-radius: 0.1875rem;
+    border-top-right-radius: 0.1875rem; }
+  #ui-datepicker-div .ui-datepicker-close {
+    display: none; }
 
 .ui-datepicker .ui-datepicker-header .ui-datepicker-prev, .ui-datepicker .ui-datepicker-header .ui-datepicker-next {
   position: absolute;
@@ -1097,6 +1214,51 @@ input[type='url'], textarea {
 .messenger .messenger__body .messenger__form-income p, .messenger .messenger__body .messenger__form-outcome {
   font-weight: 400;
   font-size: 0.75rem; }
+
+#map {
+  width: 100%;
+  height: 17em;
+  overflow: hidden;
+  position: relative;
+  -webkit-border-radius: 0.1875rem;
+  -moz-border-radius: 0.1875rem;
+  border-radius: 0.1875rem; }
+
+.map-balloon {
+  background-color: #e75735;
+  color: #fff;
+  padding: 0.875rem 1.625rem; }
+  .map-balloon__title {
+    position: relative;
+    top: -0.375rem;
+    display: inline-block;
+    font-weight: 300;
+    font-size: 1.875rem;
+    margin-right: 1.5rem; }
+  .map-balloon__address {
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 0.75rem; }
+  .map-balloon__controls {
+    position: relative;
+    top: 0.5rem;
+    display: inline-block;
+    float: right;
+    font-size: 1.5rem; }
+    .map-balloon__controls a {
+      color: inherit;
+      margin-right: 1.25rem; }
+      .map-balloon__controls a:last-child {
+        margin-right: 0; }
+      .map-balloon__controls a:hover {
+        color: #4f4f4f;
+        transition: 0.5s; }
+
+ymaps .ymaps-2-1-73-balloon {
+  padding: 0 !important; }
+  ymaps .ymaps-2-1-73-balloon .ymaps-2-1-73-balloon__content {
+    padding: 0 !important; }
 
 .ripple-effect {
   display: block;

@@ -20,7 +20,9 @@ $(document).ready(function() {
         showOtherMonths: true,
         selectOtherMonths: true,
         showButtonPanel: true,
-        dayNamesMin: [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ],
+        dayNamesMin: [ "вск", "пнд", "втр", "срд", "чтв", "птн", "сбт" ],
+        currentText: "Сегодня",
+	    monthNames: [ "Январь","Февраль","Март","Апрель","Май","Июнь", "Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь" ],
         beforeShow: function(){
             setTimeout(function(){
                 var d = new Date();
@@ -52,5 +54,13 @@ $(document).ready(function() {
         }
         this._notifyChange(inst);
         this._adjustDate(target);
-    }
+    };
+
+    $('#search-check-in').click(function () {
+        $('.photo__search-check-in').datepicker("show");
+    });
+
+    $('#search-check-out').click(function () {
+        $('.photo__search-check-out').datepicker("show");
+    });
 });

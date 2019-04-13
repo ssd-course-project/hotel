@@ -4,18 +4,20 @@
 <html lang="ru">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}{% endblock %}</title>
+        <title>Eden Hotel Amsterdam</title>
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900&amp;subset=cyrillic">
         <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
         <script type='text/javascript' src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="https://api-maps.yandex.ru/2.1/?apikey=8ecf7e9e-8626-4ecc-9b79-88bc86d88819&lang=ru_RU" type="text/javascript"></script>
         <script type="text/javascript" src="{% static "vendors/jquery/index.js" %}"></script>
         <script type="text/javascript" src="{% static "vendors/jquery/menu/menu.js" %}"></script>
         <script type="text/javascript" src="{% static "vendors/jquery/calendar/calendar.js" %}"></script>
         <script type="text/javascript" src="{% static "vendors/jquery/calendar/jquery-ui.js" %}"></script>
         <script type="text/javascript" src="{% static "vendors/jquery/checkboxes/checkboxes.js" %}"></script>
         <script type="text/javascript" src="{% static "vendors/jquery/checkboxes/savage.checkbox.js" %}"></script>
+        <script type="text/javascript" src="{% static "vendors/jquery/map/map.js" %}"></script>
         <script type="text/javascript" src="{% static "vendors/jquery/ripple/ripple.js" %}"></script>
         <script type="text/javascript" src="{% static "vendors/jquery/select/select.js" %}"></script>
     </head>
@@ -23,10 +25,8 @@
         <div class="header {% block header-class %}{% endblock %}">
             {% include 'general/header.html' %}
         </div>
-        <div class="container">
-            {% block content %}
-            {% endblock %}
-        </div>
+        {% block content %}
+        {% endblock %}
         <script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
         <script type="text/javascript" src="{% static "js/main.js" %}"></script>

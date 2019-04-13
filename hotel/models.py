@@ -13,11 +13,17 @@ class Room(models.Model):
         (BOOKED_STATUS, 'Забронирован'),
         (TEMPORARILY_UNAVAILABLE_STATUS, 'Временно не доступен'),
     )
+    title = models.CharField(
+        verbose_name="Название номера",
+        blank=True,
+        max_length=255
+    )
     price = models.IntegerField(
         verbose_name="Цена за ночь в рублях",
         null=False, blank=False,
         default=1000
     )
+
     description = models.TextField(
         verbose_name="Описание номера",
         blank=True
@@ -77,9 +83,10 @@ class ExtraPictures(models.Model):
 
 
 class ExtraService(models.Model):
-    name = models.TextField(
+    name = models.CharField(
         verbose_name="Название услуги",
-        blank=True
+        blank=True,
+        max_length=255
     )
     description = models.TextField(
         verbose_name="Описание услуги",
