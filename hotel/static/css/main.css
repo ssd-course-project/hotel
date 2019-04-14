@@ -240,9 +240,19 @@ h6 {
     margin-bottom: 2rem; }
     .rooms .news-card__photo {
       width: 65%;
-      background-size: cover;
-      background-position: 50% 50%; }
+      overflow: hidden; }
+      .rooms .news-card__photo img {
+        height: 100%;
+        background-size: cover;
+        background-position: 50% 50%;
+        transition: .5s ease-in-out;
+        -webkit-border-radius: inherit;
+        -moz-border-radius: inherit;
+        border-radius: inherit; }
+        .rooms .news-card__photo img:hover {
+          transform: scale(1.2); }
     .rooms .news-card__body {
+      width: 35%;
       padding: 2rem; }
       .rooms .news-card__body h2 {
         margin-bottom: 2rem;

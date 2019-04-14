@@ -1,0 +1,84 @@
+
+{% load static %}
+{% load render_bundle from webpack_loader %}<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">{% render_bundle "main" %}
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script><script src="{% static "assets/jquery/scripts.js" %}"></script>
+  <link href="./css/main.css" rel="stylesheet"></head>
+  <body>
+    <div class="header header-red">
+<ul class="header__list">
+  <li class="header__logo"><a class="header__logo-link" href="{% url 'room_list' %}"><img src="assets/images/general/logo.svg"></a></li>
+  <li class="header__item"><a class="header__item-link" href="{% url 'room_list' %}">поиск</a></li>
+  <li class="header__item"><a class="header__item-link" href="{% url 'feedback_list' %}">отзывы</a></li>
+  <li class="header__item"><a class="header__item-link" href="{% url 'contacts' %}">контакты</a></li>
+</ul>
+<ul class="header__list menu" id="menu">{% if user.is_authenticated %}
+  <li class="menu__container">
+    <p class="menu__container-text">{{ user.get_username }}</p>
+    <ul class="menu__list">
+      <li class="menu__item"><a class="menu__item-link" href="{% url 'logout' %}">выйти</a></li>
+    </ul>
+  </li>{% else %}
+  <li class="header__item"><a class="header__item-link" href="{% url 'login' %}">войти</a></li>
+  <li class="header__item"><a class="header__item-link" href="{% url 'register' %}">зарегистрироваться</a></li>{% endif %}
+</ul>
+    </div>
+    <div class="container" style="display:none;">
+      <!--include pug/pages/index-->
+<div class="photo">
+  <div class="photo__container">
+    <div class="photo__title">
+      <h1>eden hotel</h1>
+      <h3>amsterdam</h3>
+    </div>
+    <form class="photo__search" method="post" action="/">
+      <div class="photo__search-input datepicker__input">
+        <input class="photo__search-check-in datepicker" type="text" id="check-in" placeholder="Укажите дату въезда">
+        <button class="datepicker__button enable-ripple" id="search-check-in" type="button"><i class="far fa-fw fa-calendar-alt"></i></button>
+      </div>
+      <div class="photo__search-input datepicker__input">
+        <input class="photo__search-check-out datepicker" type="text" id="check-out" placeholder="Укажите дату выезда">
+        <button class="datepicker__button enable-ripple" id="search-check-out" type="button"><i class="far fa-fw fa-calendar-alt"></i></button>
+      </div>
+      <select class="photo__search-visitors">
+        <option value=""></option>
+        <option value="1">1 гость</option>
+        <option value="2">2 гостя</option>
+        <option value="3">3 гостя</option>
+        <option value="4">4 гостя</option>
+      </select><a class="photo__search-button btn btn-green enable-ripple" href="/">найти</a>
+    </form>
+  </div>
+</div>
+<div class="description">
+  <div class="description__container">
+    <p>
+      Вид на реку, который заставит Вас удивиться, и комнаты настолько красивые, что Вы долго не захотите уехать.
+      В непосредственной близости от отеля Вы найдете все основные достопримечательности Амстердама, а также скрытые
+      жемчужины, о которых мы бы хотели Вам рассказать. Eden Hotel Amsterdam поможет Вам открыть город глазами местных жителей.
+    </p>
+    <p>1 января 2019 года Eden Hotel Amsterdam и Eden Rembrandt Square Hotel Amsterdam объединились в один 4-звездочный отель.</p>
+    <p>385 современных номеров отеля Eden Hotel Amsterdam обеспечат Вас приятным пребыванием.</p>
+  </div>
+</div>
+<div class="rooms">{% for room in rooms|slice:":3" %}
+  <div class="news-card">
+    <div class="news-card__photo"><img src="{{ room.main_picture.url }}"></div>
+    <div class="news-card__body">
+      <h2 class="news-card__title">{{ room.title }}</h2>
+      <p class="news-card__text">{{ room.description }}</p><a class="news-card__button btn btn-white-red enable-ripple" href="{% url 'room_detail' room.id %}">подробнее</a>
+    </div>
+  </div>{% endfor %}
+</div>
+<div class="map">
+  <div id="map"></div>
+</div>
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+  <script type="text/javascript" src="./js/main.js"></script></body>
+</html>

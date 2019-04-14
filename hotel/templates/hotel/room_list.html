@@ -40,7 +40,11 @@
 <div class="rooms">
     {% for room in rooms|slice:":3" %}
     <div class="news-card fadein">
-        <img class="news-card__photo" src="{{ room.main_picture.url }}">
+        <div class="news-card__photo">
+            <a href="{% url 'room_detail' room.id %}">
+                <img src="{{ room.main_picture.url }}">
+            </a>
+        </div>
         <div class="news-card__body">
             <h2 class="news-card__title">{{ room.title }}</h2>
             <p class="news-card__text">{{ room.description }}</p>
