@@ -1,27 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>Полное описание номера</h1>
-    <p>{{ room.description }}</p>
-    <img src="{{ room.main_picture.url }}" width="350"/>
-    <p>{{ room.room_status }}</p>
-    <p>{{ room.price }}</p>
-    <p>{{ room.room_size }}</p>
-    <p>{{ room.sleeps_number }}</p>
+{% extends 'general/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="room">
+        <div class="room__photo">
+            <div><img src="{{ room.main_picture.url }}"></div>
+            {% for image in room.room_pictures.all %}
+            <div><img src="{{ image.picture.url }}"></div>
+            {% endfor %}
+        </div>
+        <div class="room__body">
+            {% if room.room_status == 'Доступный для проживания' %}
+            <h2 class="title-green">{{ room.title }}</h2>
+            {% else %}
+            <h2 class="title-red">{{ room.title }}</h2>
+            {% endif %}
+            <div class="room__list">
+                <p class="label">Описание</p>
+                <p class="value">{{ room.description }}</p>
+                <p class="label">Статус</p>
+                <p class="value">{{ room.room_status }}</p>
+                <p class="label">Цена</p>
+                <p class="value">{{ room.price }}</p>
+                <p class="label">Размер номера</p>
+                <p class="value">{{ room.room_size }}</p>
+                <p class="label">Количество мест</p>
+                <p class="value">{{ room.sleeps_number }}</p>
+            </div>
+            <h3>Дополнительные услуги</h3>
+            <div class="room__list">
+                {% for extra_service in room.extra_services.all %}
+                <p class="label">{{ extra_service.name }}</p>
+                <p class="value">{{ extra_service.description }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
 
 
-    {% for extra_service in room.extra_services.all %}
-        <p>{{ extra_service.name }}</p>
-        <p>{{ extra_service.description }}</p>
-    {% endfor %}
 
 
-    {% for image in room.room_pictures.all %}
-        <img src="{{ image.picture.url }}" width="350"/>
-    {% endfor %}
-</body>
-</html>
+
+{#    <p>{{ room.description }}</p>#}
+{#    <img src="{{ room.main_picture.url }}" width="350"/>#}
+{#    <p>{{ room.room_status }}</p>#}
+{#    <p>{{ room.price }}</p>#}
+{#    <p>{{ room.room_size }}</p>#}
+{#    <p>{{ room.sleeps_number }}</p>#}
+{##}
+{##}
+{#    {% for extra_service in room.extra_services.all %}#}
+{#        <p>{{ extra_service.name }}</p>#}
+{#        <p>{{ extra_service.description }}</p>#}
+{#    {% endfor %}#}
+{##}
+{##}
+{#    {% for image in room.room_pictures.all %}#}
+{#        <img src="{{ image.picture.url }}" width="350"/>#}
+{#    {% endfor %}#}
+{% endblock %}

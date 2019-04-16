@@ -4,9 +4,9 @@ from clients.models import Client
 
 
 class Room(models.Model):
-    AVAILABLE_STATUS = 'available'
-    BOOKED_STATUS = 'booked'
-    TEMPORARILY_UNAVAILABLE_STATUS = 'unavailable'
+    AVAILABLE_STATUS = 'Доступный для проживания'
+    BOOKED_STATUS = 'Забронирован'
+    TEMPORARILY_UNAVAILABLE_STATUS = 'Временно недоступен'
 
     _ROOM_STATUSES = (
         (AVAILABLE_STATUS, 'Доступный для проживания'),
