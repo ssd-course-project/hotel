@@ -1,3 +1,142 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+body {
+  color: #4f4f4f;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  line-height: 1.4;
+  display: none; }
+
+h1, h2, h3, h4, h5, h6 {
+  text-transform: uppercase; }
+
+h1 {
+  font-size: 2rem; }
+
+h2 {
+  font-size: 1.5rem; }
+
+h3 {
+  font-size: 1.125rem; }
+
+h4 {
+  font-size: 1rem; }
+
+h5 {
+  font-size: 0.875rem; }
+
+h6 {
+  font-size: 0.75rem; }
+
+.container {
+  margin: 2rem auto;
+  max-width: 73rem; }
+
+.fadein {
+  opacity: 0; }
+
+p.label {
+  font-weight: 900;
+  text-align: right; }
+
+p.value {
+  font-weight: 300; }
+
+.header {
+  width: 100%; }
+  .header:after {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 3.375rem;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to bottom, #f8f8f8, transparent) no-repeat;
+    z-index: -99999; }
+  .header__list {
+    display: inline-block;
+    font-weight: 900; }
+  .header__logo {
+    display: inline-block;
+    background-color: #4f4f4f; }
+    .header__logo img {
+      height: 1rem;
+      padding: 0 1.125rem; }
+  .header__item {
+    display: inline-block;
+    padding: 1rem 0;
+    position: relative;
+    left: -0.25rem; }
+    .header__item:first-child {
+      left: 0; }
+    .header__item:hover {
+      background-color: #e75735;
+      transition: 1s; }
+      .header__item:hover a {
+        color: #fff; }
+    .header__item-link {
+      color: #9d9d9d; }
+  .header .menu {
+    float: right;
+    text-align: right; }
+    .header .menu__container {
+      list-style: none; }
+      .header .menu__container-text {
+        color: #9d9d9d; }
+    .header .menu__list {
+      display: none;
+      position: relative;
+      right: 0; }
+    .header .menu__item {
+      list-style: none;
+      padding: 1rem 0;
+      background-color: #e75735; }
+      .header .menu__item:last-child {
+        -webkit-border-bottom-left-radius: 0.1875rem;
+        -webkit-border-bottom-right-radius: 0.1875rem;
+        -moz-border-radius-bottomleft: 0.1875rem;
+        -moz-border-radius-bottomright: 0.1875rem;
+        border-bottom-left-radius: 0.1875rem;
+        border-bottom-right-radius: 0.1875rem; }
+      .header .menu__item:hover {
+        background-color: #fff;
+        transition: 1s; }
+        .header .menu__item:hover a {
+          color: #e75735; }
+      .header .menu__item-link {
+        color: #fff; }
+  .header-green {
+    background-color: #4eb7a8; }
+    .header-green .header__item-link {
+      color: #fff; }
+    .header-green .header__item:hover {
+      background-color: #fff;
+      transition: 1s; }
+      .header-green .header__item:hover a {
+        color: #4eb7a8; }
+    .header-green .header__item:active {
+      background-color: #28a290;
+      transition: 1s; }
+    .header-green .header__logo {
+      background-color: #fff; }
+    .header-green .menu__container-text {
+      color: #fff; }
+    .header-green .menu__container:hover {
+      background-color: #fff; }
+      .header-green .menu__container:hover p {
+        color: #4eb7a8; }
+    .header-green .menu__item {
+      background-color: #4eb7a8; }
+      .header-green .menu__item:hover a {
+        color: #4eb7a8; }
+
+.header__item-link, .header .menu__container-text, .header .menu__item-link {
+  padding: 1rem;
+  text-decoration: none;
+  text-transform: uppercase; }
+
 .components {
   margin: 80px auto;
   width: 650px; }
@@ -54,41 +193,100 @@
       grid-column-gap: 30px;
       text-align: left; }
 
-* {
-  margin: 0;
-  padding: 0; }
+.photo {
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  min-width: 100vw; }
+  .photo__container {
+    text-align: center;
+    height: inherit; }
+  .photo__title {
+    position: relative;
+    top: 25%;
+    color: #fff; }
+    .photo__title h1 {
+      font-size: 4rem; }
+    .photo__title h3 {
+      font-size: 1.5rem;
+      font-weight: 300; }
+  .photo__search {
+    position: relative;
+    top: 65%; }
+    .photo__search [class^='photo__search-'] {
+      display: inline-block; }
+    .photo__search-visitors, .photo__search-input {
+      width: 17.5rem;
+      margin-right: 1rem; }
+    .photo__search-button {
+      margin-left: 1rem; }
 
-body {
-  color: #4f4f4f;
-  font-family: "Roboto", sans-serif;
-  font-weight: 900;
-  line-height: 1.4; }
+.select2-container {
+  top: -0.625rem; }
+  .select2-container .select2-selection--single {
+    height: 29px !important; }
 
-h1, h2, h3, h4, h5, h6 {
-  text-transform: uppercase; }
+.description {
+  background-color: #e5e5e5; }
+  .description__container {
+    padding: 2rem;
+    text-align: center; }
+    .description__container p {
+      color: #4f4f4f;
+      font-size: 1rem;
+      font-weight: 300;
+      margin-bottom: 1rem; }
+      .description__container p:last-child {
+        margin-bottom: 0; }
 
-h1 {
-  font-size: 2rem; }
+.rooms {
+  padding: 2rem; }
+  .rooms .news-card {
+    width: 100%;
+    height: 31.5rem;
+    margin-bottom: 2rem; }
+    .rooms .news-card__photo {
+      width: 65%;
+      overflow: hidden; }
+      .rooms .news-card__photo img {
+        height: 100%;
+        background-size: cover;
+        background-position: 50% 50%;
+        transition: .5s ease-in-out;
+        -webkit-border-radius: inherit;
+        -moz-border-radius: inherit;
+        border-radius: inherit; }
+        .rooms .news-card__photo img:hover {
+          transform: scale(1.2); }
+    .rooms .news-card__body {
+      width: 35%;
+      padding: 2rem; }
+      .rooms .news-card__body h2 {
+        margin-bottom: 2rem;
+        font-weight: 700; }
+      .rooms .news-card__body p {
+        margin-bottom: 2rem;
+        font-size: 0.875rem;
+        font-weight: 300; }
+  .rooms-button {
+    margin: 2rem 0 1rem;
+    text-align: center; }
 
-h2 {
-  font-size: 1.5rem; }
+.map {
+  height: 31.5rem; }
+  .map #map {
+    height: 100%; }
+    .map #map .map-balloon__title {
+      padding-right: 3rem; }
 
-h3 {
-  font-size: 1.125rem; }
-
-h4 {
-  font-size: 1rem; }
-
-h5 {
-  font-size: 0.875rem; }
-
-h6 {
-  font-size: 0.75rem; }
-
-.container {
-  display: none;
-  margin: 2rem auto;
+.photo__container, .description__container, .rooms, .map #map .map-balloon__container {
+  margin: 0 auto;
   max-width: 73rem; }
+
+.rooms__title, .map__title {
+  color: #4f4f4f;
+  text-align: center;
+  margin: 1rem 0; }
 
 .btn {
   -webkit-border-radius: 0.1875rem;
@@ -201,6 +399,7 @@ h6 {
   width: 2.75rem;
   overflow: hidden;
   position: relative;
+  text-align: center;
   text-decoration: none;
   text-transform: uppercase;
   transform: translate3d(0, 0, 0); }
@@ -251,12 +450,13 @@ input[type='text'],
 input[type='time'],
 input[type='url'], textarea {
   background-color: #e5e5e5;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 0.875rem;
   color: #4f4f4f;
   box-sizing: border-box;
   outline: none;
-  padding: 0.3125rem 0.75rem;
+  padding: 0.25rem 0.75rem;
   border: 0.0625rem solid #e5e5e5;
   -webkit-border-radius: 0.1875rem;
   -moz-border-radius: 0.1875rem;
@@ -329,39 +529,54 @@ input[type='url'], textarea {
       .input__validate .input__alert-valid.input__alert:after, .input__validate .input__alert-valid.input__alert::after {
         border-right: 0.25rem solid #4eb7a8; }
 
-.input__search {
+.input__search button {
+  padding: 0.28125rem 0.5rem;
+  background-color: #e75735;
+  border-color: #e75735;
+  font-size: 0.875rem; }
+  .input__search button:hover {
+    background-color: #bf3e1f;
+    transition: 1.5s; }
+
+.input__search-empty {
+  background-color: #e75735 !important;
+  transition: 0.5s;
+  border-color: #e75735 !important; }
+  .input__search-empty::placeholder {
+    color: #fff !important; }
+
+.datepicker__input button {
+  height: 100%;
+  width: 2rem;
+  padding: 0.28125rem;
+  background-color: #4eb7a8;
+  border-color: #4eb7a8;
+  font-size: 1rem; }
+  .datepicker__input button:hover {
+    background-color: #28a290;
+    transition: 1.5s; }
+
+.input__search, .datepicker__input {
   display: inline-block;
   position: relative; }
-  .input__search input {
+  .input__search input, .datepicker__input input {
     float: left;
     width: 100%; }
-  .input__search button {
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: 0.28125rem 0.5rem;
-    background-color: #e75735;
-    color: #fff;
-    border-color: #e75735;
-    cursor: pointer;
-    font-size: 0.875rem;
-    outline: 0;
-    overflow: hidden;
-    -webkit-border-top-right-radius: 0.1875rem;
-    -webkit-border-bottom-right-radius: 0.1875rem;
-    -moz-border-radius-topright: 0.1875rem;
-    -moz-border-radius-bottomright: 0.1875rem;
-    border-top-right-radius: 0.1875rem;
-    border-bottom-right-radius: 0.1875rem; }
-    .input__search button:hover {
-      background-color: #bf3e1f;
-      transition: 1.5s; }
-  .input__search-empty {
-    background-color: #e75735 !important;
-    transition: 0.5s;
-    border-color: #e75735 !important; }
-    .input__search-empty::placeholder {
-      color: #fff !important; }
+
+.input__search button, .datepicker__input button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #fff;
+  cursor: pointer;
+  outline: 0;
+  overflow: hidden;
+  -webkit-border-top-right-radius: 0.1875rem;
+  -webkit-border-bottom-right-radius: 0.1875rem;
+  -moz-border-radius-topright: 0.1875rem;
+  -moz-border-radius-bottomright: 0.1875rem;
+  border-top-right-radius: 0.1875rem;
+  border-bottom-right-radius: 0.1875rem; }
 
 .toggle-switch {
   position: relative;
@@ -376,7 +591,9 @@ input[type='url'], textarea {
       background-color: #4eb7a8; }
       .toggle-switch input:checked + .toggle-switch__handle:before {
         -webkit-transform: translateX(2.25rem);
+        -moz-transform: translateX(2.25rem);
         -ms-transform: translateX(2.25rem);
+        -o-transform: translateX(2.25rem);
         transform: translateX(2.25rem); }
     .toggle-switch input:checked ~ .toggle-switch__handle .toggle-switch__text-on {
       display: block; }
@@ -466,7 +683,9 @@ input[type='url'], textarea {
       border: solid #c0c0c0;
       border-width: 0 0.125rem 0.125rem 0;
       -webkit-transform: rotate(45deg);
+      -moz-transform: rotate(45deg);
       -ms-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
       transform: rotate(45deg); }
 
 .select2-container {
@@ -600,6 +819,7 @@ input[type='url'], textarea {
     top: 0;
     right: 0;
     width: 2rem;
+    overflow: hidden;
     background-color: #4eb7a8;
     -webkit-border-top-right-radius: 0.1875rem;
     -webkit-border-bottom-right-radius: 0.1875rem;
@@ -617,7 +837,9 @@ input[type='url'], textarea {
       border: solid #fff;
       border-width: 0 0.125rem 0.125rem 0;
       -webkit-transform: rotate(45deg);
+      -moz-transform: rotate(45deg);
       -ms-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
       transform: rotate(45deg); }
     .select2-container--default .select2-selection--single .select2-selection__arrow:hover {
       background-color: #28a290;
@@ -649,7 +871,9 @@ input[type='url'], textarea {
 .select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {
   top: 0.675rem;
   -webkit-transform: rotate(225deg);
+  -moz-transform: rotate(225deg);
   -ms-transform: rotate(225deg);
+  -o-transform: rotate(225deg);
   transform: rotate(225deg); }
 
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
@@ -777,6 +1001,51 @@ input[type='url'], textarea {
   font-weight: 400;
   font-size: 0.6875rem; }
 
+#map {
+  width: 100%;
+  height: 17em;
+  overflow: hidden;
+  position: relative;
+  -webkit-border-radius: 0.1875rem;
+  -moz-border-radius: 0.1875rem;
+  border-radius: 0.1875rem; }
+
+.map-balloon {
+  background-color: #e75735;
+  color: #fff;
+  padding: 0.875rem 1.625rem; }
+  .map-balloon__title {
+    position: relative;
+    top: -0.375rem;
+    display: inline-block;
+    font-weight: 300;
+    font-size: 1.875rem;
+    margin-right: 1.5rem; }
+  .map-balloon__address {
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 0.75rem; }
+  .map-balloon__controls {
+    position: relative;
+    top: 0.5rem;
+    display: inline-block;
+    float: right;
+    font-size: 1.5rem; }
+    .map-balloon__controls a {
+      color: inherit;
+      margin-right: 1.25rem; }
+      .map-balloon__controls a:last-child {
+        margin-right: 0; }
+      .map-balloon__controls a:hover {
+        color: #4f4f4f;
+        transition: 0.5s; }
+
+ymaps .ymaps-2-1-73-balloon {
+  padding: 0 !important; }
+  ymaps .ymaps-2-1-73-balloon .ymaps-2-1-73-balloon__content {
+    padding: 0 !important; }
+
 .datepicker-bundle {
   background-color: #e75735;
   color: #fff;
@@ -816,16 +1085,21 @@ input[type='url'], textarea {
       border-width: 0 0.125rem 0.125rem 0; }
       .ui-datepicker .ui-datepicker-header .ui-icon.ui-icon-circle-triangle-w {
         -webkit-transform: rotate(135deg);
+        -moz-transform: rotate(135deg);
         -ms-transform: rotate(135deg);
+        -o-transform: rotate(135deg);
         transform: rotate(135deg);
         left: 1rem; }
       .ui-datepicker .ui-datepicker-header .ui-icon.ui-icon-circle-triangle-e {
         -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
         -ms-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
         transform: rotate(-45deg);
         right: 1rem; }
     .ui-datepicker .ui-datepicker-header .ui-datepicker-title {
       font-weight: 300;
+      color: #fff;
       font-size: 1.5rem;
       line-height: 1;
       text-align: center;
@@ -902,6 +1176,25 @@ input[type='url'], textarea {
       border-bottom-right-radius: 0.1875rem;
       color: #fff;
       transition: 1s; }
+
+#ui-datepicker-div {
+  width: 17.5rem;
+  background-color: #fff;
+  -webkit-border-radius: 0.1875rem;
+  -moz-border-radius: 0.1875rem;
+  border-radius: 0.1875rem; }
+  #ui-datepicker-div th {
+    background-color: #e75735;
+    color: #fff; }
+  #ui-datepicker-div .ui-datepicker-header {
+    -webkit-border-top-left-radius: 0.1875rem;
+    -webkit-border-top-right-radius: 0.1875rem;
+    -moz-border-radius-topleft: 0.1875rem;
+    -moz-border-radius-topright: 0.1875rem;
+    border-top-left-radius: 0.1875rem;
+    border-top-right-radius: 0.1875rem; }
+  #ui-datepicker-div .ui-datepicker-close {
+    display: none; }
 
 .ui-datepicker .ui-datepicker-header .ui-datepicker-prev, .ui-datepicker .ui-datepicker-header .ui-datepicker-next {
   position: absolute;

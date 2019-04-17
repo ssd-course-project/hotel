@@ -68,7 +68,3 @@ class FeedbackList(generic.ListView):
 
 def components(request):
     return render(request, 'general/components.html')
-
-
-def pug(request):
-    return render(request, 'pug/index.pug')

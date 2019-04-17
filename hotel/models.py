@@ -21,6 +21,11 @@ class Room(models.Model):
         blank=True,
         related_name='rooms',
     )
+    title = models.CharField(
+        verbose_name="Название номера",
+        blank=True,
+        max_length=255
+    )
     price = models.IntegerField(
         verbose_name="Цена за ночь в рублях",
         null=False, blank=False,
@@ -85,9 +90,10 @@ class ExtraPictures(models.Model):
 
 
 class ExtraService(models.Model):
-    name = models.TextField(
+    name = models.CharField(
         verbose_name="Название услуги",
-        blank=True
+        blank=True,
+        max_length=255
     )
     description = models.TextField(
         verbose_name="Описание услуги",
