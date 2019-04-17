@@ -140,4 +140,3 @@ class Feedback(models.Model):
 
     def __str__(self):
         return "Отзыв от {}".format(self.author)
-
