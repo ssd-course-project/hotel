@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        Вы залогинены как {{ user }}.
+        <a href="/accounts/logout/">Нажмите здесь, чтобы выйти.</a>
+        {% if client %}
+            <p>Ваше имя: {{ client.name }}</p>
+            <p>Ваш телефон: {{ client.phone }}</p>
+            <p>Ваш емэйл: {{ client.email }}</p>
+        {% else %}
+            <p>Вы администратор</p>
+        {% endif %}
+    {% else %}
+        Вы не вошли в свой аккаунт.
+        <a href="/accounts/login/">Нажмите здесь, чтобы войти.</a>
+    {% endif %}
+</body>
+</html>
