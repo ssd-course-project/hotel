@@ -10,7 +10,7 @@
             {% endfor %}
         </div>
         <div class="room__body">
-            {% if room.room_status == 'available' %}
+            {% if room.room_status == room.AVAILABLE_STATUS %}
             <h2 class="title-green">{{ room.title }}</h2>
             {% else %}
             <h2 class="title-red">{{ room.title }}</h2>
