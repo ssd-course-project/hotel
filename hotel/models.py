@@ -4,14 +4,22 @@ from clients.models import Client
 
 
 class Room(models.Model):
-    AVAILABLE_STATUS = 'Доступный для проживания'
-    BOOKED_STATUS = 'Забронирован'
-    TEMPORARILY_UNAVAILABLE_STATUS = 'Временно недоступен'
+    AVAILABLE_STATUS = 'available'
+    BOOKED_STATUS = 'booked'
+    TEMPORARILY_UNAVAILABLE_STATUS = 'unavailable'
 
     _ROOM_STATUSES = (
         (AVAILABLE_STATUS, 'Доступный для проживания'),
         (BOOKED_STATUS, 'Забронирован'),
         (TEMPORARILY_UNAVAILABLE_STATUS, 'Временно не доступен'),
+    )
+    renter = models.ForeignKey(
+        Client,
+        on_delete=models.CASCADE,
+        verbose_name='Арендатор',
+        null=True,
+        blank=True,
+        related_name='rooms',
     )
     title = models.CharField(
         verbose_name="Название номера",
@@ -132,4 +140,3 @@ class Feedback(models.Model):
 
     def __str__(self):
         return "Отзыв от {}".format(self.author)
-

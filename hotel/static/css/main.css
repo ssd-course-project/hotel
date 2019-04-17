@@ -269,7 +269,7 @@ p.value {
         font-size: 0.875rem;
         font-weight: 300; }
   .rooms-button {
-    margin: 2rem 0;
+    margin: 2rem 0 1rem;
     text-align: center; }
 
 .map {
@@ -282,6 +282,11 @@ p.value {
 .photo__container, .description__container, .rooms, .map #map .map-balloon__container {
   margin: 0 auto;
   max-width: 73rem; }
+
+.rooms__title, .map__title {
+  color: #4f4f4f;
+  text-align: center;
+  margin: 1rem 0; }
 
 .room {
   background-color: #f2f2f2;
@@ -315,6 +320,9 @@ p.value {
     grid-row-gap: 1rem; }
     .room__list p {
       font-size: 1rem; }
+  .room__button {
+    margin: 2rem 0 4rem;
+    text-align: center; }
 
 .btn {
   -webkit-border-radius: 0.1875rem;
@@ -1029,6 +1037,51 @@ input[type='url'], textarea {
   font-weight: 400;
   font-size: 0.6875rem; }
 
+#map {
+  width: 100%;
+  height: 17em;
+  overflow: hidden;
+  position: relative;
+  -webkit-border-radius: 0.1875rem;
+  -moz-border-radius: 0.1875rem;
+  border-radius: 0.1875rem; }
+
+.map-balloon {
+  background-color: #e75735;
+  color: #fff;
+  padding: 0.875rem 1.625rem; }
+  .map-balloon__title {
+    position: relative;
+    top: -0.375rem;
+    display: inline-block;
+    font-weight: 300;
+    font-size: 1.875rem;
+    margin-right: 1.5rem; }
+  .map-balloon__address {
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 0.75rem; }
+  .map-balloon__controls {
+    position: relative;
+    top: 0.5rem;
+    display: inline-block;
+    float: right;
+    font-size: 1.5rem; }
+    .map-balloon__controls a {
+      color: inherit;
+      margin-right: 1.25rem; }
+      .map-balloon__controls a:last-child {
+        margin-right: 0; }
+      .map-balloon__controls a:hover {
+        color: #4f4f4f;
+        transition: 0.5s; }
+
+ymaps .ymaps-2-1-73-balloon {
+  padding: 0 !important; }
+  ymaps .ymaps-2-1-73-balloon .ymaps-2-1-73-balloon__content {
+    padding: 0 !important; }
+
 .datepicker-bundle {
   background-color: #e75735;
   color: #fff;
@@ -1280,51 +1333,6 @@ input[type='url'], textarea {
 .messenger .messenger__body .messenger__form-income p, .messenger .messenger__body .messenger__form-outcome {
   font-weight: 400;
   font-size: 0.75rem; }
-
-#map {
-  width: 100%;
-  height: 17em;
-  overflow: hidden;
-  position: relative;
-  -webkit-border-radius: 0.1875rem;
-  -moz-border-radius: 0.1875rem;
-  border-radius: 0.1875rem; }
-
-.map-balloon {
-  background-color: #e75735;
-  color: #fff;
-  padding: 0.875rem 1.625rem; }
-  .map-balloon__title {
-    position: relative;
-    top: -0.375rem;
-    display: inline-block;
-    font-weight: 300;
-    font-size: 1.875rem;
-    margin-right: 1.5rem; }
-  .map-balloon__address {
-    display: inline-block;
-    text-transform: uppercase;
-    font-weight: 900;
-    font-size: 0.75rem; }
-  .map-balloon__controls {
-    position: relative;
-    top: 0.5rem;
-    display: inline-block;
-    float: right;
-    font-size: 1.5rem; }
-    .map-balloon__controls a {
-      color: inherit;
-      margin-right: 1.25rem; }
-      .map-balloon__controls a:last-child {
-        margin-right: 0; }
-      .map-balloon__controls a:hover {
-        color: #4f4f4f;
-        transition: 0.5s; }
-
-ymaps .ymaps-2-1-73-balloon {
-  padding: 0 !important; }
-  ymaps .ymaps-2-1-73-balloon .ymaps-2-1-73-balloon__content {
-    padding: 0 !important; }
 
 .slick-slider {
   position: relative;

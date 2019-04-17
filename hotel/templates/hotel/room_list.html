@@ -1,7 +1,6 @@
 {% extends 'general/base.html' %}
 
 {% block content %}
-
 <div class="photo" style="background: url('../static/vendors/images/general/background.png') 50% 50% no-repeat;">
     <div class="photo__container">
         <div class="photo__title">
@@ -38,6 +37,7 @@
     </div>
 </div>
 <div class="rooms">
+    <h2 class="rooms__title fadein">наши номера</h2>
     {% for room in rooms|slice:":3" %}
     <div class="news-card fadein">
         <div class="news-card__photo">
@@ -52,10 +52,11 @@
         </div>
     </div>{% endfor %}
     <div class="rooms-button">
-        <a class="btn btn-green" href="/">смотреть все номеры</a>
+        <a class="btn btn-green" href="/">смотреть все номера</a>
     </div>
 </div>
 <div class="map">
+    <h2 class="map__title">найти путь</h2>
     <div id="map"></div>
 </div>
 {% endblock %}

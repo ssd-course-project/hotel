@@ -1,8 +1,10 @@
 from django import forms
+from django.forms.models import modelform_factory
 from django.shortcuts import render
 from django.views import generic
 
 from clients.models import Client
+from hotel.forms import RoomBookingForm
 from .models import Room, Feedback
 
 
@@ -15,6 +17,29 @@ class RoomList(generic.ListView):
 class RoomDetail(generic.DetailView):
     model = Room
     context_object_name = 'room'
+
+
+class RoomBooking(generic.UpdateView):
+    model = Room
+    form_class = modelform_factory(
+        Room,
+        form=RoomBookingForm
+    )
+    template_name = 'hotel/room_booking.html'
+    context_object_name = 'room'
+    success_url = '/'
+
+    def form_valid(self, form):
+        room = form.save(commit=False)
+        user = self.request.user
+        try:
+            client = Client.objects.get(user=user)
+        except Client.DoesNotExist:
+            raise forms.ValidationError("You are not our client!")
+        room.renter = client
+        room.room_status = room.BOOKED_STATUS
+        room.save(update_fields=["renter", "room_status"])
+        return super().form_valid(form)
 
 
 class FeedbackNew(generic.CreateView):
@@ -43,7 +68,3 @@ class FeedbackList(generic.ListView):
 
 def components(request):
     return render(request, 'general/components.html')
-
-
-def pug(request):
-    return render(request, 'pug/index.pug')
