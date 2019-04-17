@@ -19,12 +19,18 @@
                 <p class="label">Описание</p>
                 <p class="value">{{ room.description }}</p>
                 <p class="label">Статус</p>
-                <p class="value">{{ room.room_status }}</p>
-                <p class="label">Цена</p>
+                {% if room.room_status == room.AVAILABLE_STATUS %}
+                    <p class="value">Доступен для проживания</p>
+                {% elif room.room_status == room.BOOKED_STATUS %}
+                    <p class="value">Забронирован</p>
+                {% elif room.room_status == room.TEMPORARILY_UNAVAILABLE_STATUS %}
+                    <p class="value">Временно недоступен</p>
+                {% endif %}
+                <p class="label">Цена за сутки, рублей</p>
                 <p class="value">{{ room.price }}</p>
-                <p class="label">Размер номера</p>
+                <p class="label">Размер номера, м<sup>2</sup></p>
                 <p class="value">{{ room.room_size }}</p>
-                <p class="label">Количество мест</p>
+                <p class="label">Количество мест, гостей</p>
                 <p class="value">{{ room.sleeps_number }}</p>
             </div>
             <h3>Дополнительные услуги</h3>
@@ -36,10 +42,10 @@
             </div>
         </div>
     </div>
+    {% if user.is_authenticated and room.room_status == room.AVAILABLE_STATUS %}
     <div class="room__button">
-        {% if user.is_authenticated and room.room_status == room.AVAILABLE_STATUS %}
         <a class="btn btn-green" href="{% url 'room_booking' room.id %}">Забронировать номер</a>
-        {% endif %}
     </div>
+    {% endif %}
 </div>
 {% endblock %}
