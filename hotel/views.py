@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.views import generic
 
 from clients.models import Client
-from hotel.forms import RoomBookingForm
+from hotel.forms import RoomBookingForm, FeedbackForm
 from .models import Room, Feedback
 
 
@@ -42,10 +42,9 @@ class RoomBooking(generic.UpdateView):
         return super().form_valid(form)
 
 
-class FeedbackNew(generic.CreateView):
-    model = Feedback
+class FeedbackNew(generic.FormView):
+    form_class = FeedbackForm
     template_name = 'hotel/feedback_new.html'
-    fields = ('rating', 'text')
     success_url = '/'
 
     def form_valid(self, form):
