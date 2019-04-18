@@ -4,8 +4,8 @@ from django.shortcuts import render
 from django.views import generic
 
 from clients.models import Client
-from hotel.forms import RoomBookingForm, FeedbackForm
-from .models import Room, Feedback
+from hotel.forms import RoomBookingForm
+from .models import Room
 
 
 class RoomList(generic.ListView):
