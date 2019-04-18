@@ -13,6 +13,4 @@ urlpatterns = [
         )(views.RoomBooking.as_view()),
         name='room_booking'
     ),
-    path('feedback/new/', views.FeedbackNew.as_view(), name='feedback_new'),
-    path('feedback/', views.FeedbackList.as_view(), name='feedback_list'),
 ]

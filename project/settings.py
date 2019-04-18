@@ -36,8 +36,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'hotel',
-    'webpack_loader',
-    'clients'
+    'clients',
+    'analytics',
+    'webpack_loader'
 ]
 
 MIDDLEWARE = [
