@@ -110,11 +110,11 @@ class ExtraService(models.Model):
 
 class Feedback(models.Model):
     RATING_CHOICES = (
-        (1, 'Ужасно'),
-        (2, 'Плохо'),
-        (3, 'Средне'),
-        (4, 'Хорошо'),
-        (5, 'Отлично'),
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
     )
 
     author = models.ForeignKey(

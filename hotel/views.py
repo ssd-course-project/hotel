@@ -42,9 +42,10 @@ class RoomBooking(generic.UpdateView):
         return super().form_valid(form)
 
 
-class FeedbackNew(generic.FormView):
-    form_class = FeedbackForm
+class FeedbackNew(generic.CreateView):
+    model = Feedback
     template_name = 'hotel/feedback_new.html'
+    fields = ('rating', 'text')
     success_url = '/'
 
     def form_valid(self, form):

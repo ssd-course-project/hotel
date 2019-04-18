@@ -19,13 +19,7 @@
                 <p class="label">Описание</p>
                 <p class="value">{{ room.description }}</p>
                 <p class="label">Статус</p>
-                {% if room.room_status == room.AVAILABLE_STATUS %}
-                    <p class="value">Доступен для проживания</p>
-                {% elif room.room_status == room.BOOKED_STATUS %}
-                    <p class="value">Забронирован</p>
-                {% elif room.room_status == room.TEMPORARILY_UNAVAILABLE_STATUS %}
-                    <p class="value">Временно недоступен</p>
-                {% endif %}
+                <p class="value">{{ room.get_room_status_display }}</p>
                 <p class="label">Цена за сутки, рублей</p>
                 <p class="value">{{ room.price }}</p>
                 <p class="label">Размер номера, м<sup>2</sup></p>

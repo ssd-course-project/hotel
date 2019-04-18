@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
-from .models import Room, Feedback
+from .models import Room
 
 
 class RoomBookingForm(forms.ModelForm):
@@ -40,25 +40,3 @@ class RoomBookingForm(forms.ModelForm):
                 empty_label=("Год", "Месяц", "День"),
             ),
         }
-
-
-class FeedbackForm(forms.ModelForm):
-
-    def clean(self):
-        cleaned_data = super().clean()
-        rating = cleaned_data.get('rating')
-        text = cleaned_data.get('text')
-
-        if not rating:
-            raise ValidationError(
-                "Вы должны выбрать оценку!"
-            )
-
-        if not text:
-            raise ValidationError(
-                "Вы должны заполнить поле отзыва!"
-            )
-
-    class Meta:
-        model = Feedback
-        fields = ['rating', 'text']
