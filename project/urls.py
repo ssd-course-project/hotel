@@ -10,5 +10,6 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include('hotel.urls')),
     path('', include('clients.urls')),
+    path('', include('analytics.urls')),
     path('components/', components, name='index'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

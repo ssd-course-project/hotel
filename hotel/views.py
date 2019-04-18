@@ -5,7 +5,7 @@ from django.views import generic
 
 from clients.models import Client
 from hotel.forms import RoomBookingForm
-from .models import Room, Feedback
+from .models import Room
 
 
 class RoomList(generic.ListView):
@@ -40,30 +40,6 @@ class RoomBooking(generic.UpdateView):
         room.room_status = room.BOOKED_STATUS
         room.save(update_fields=["renter", "room_status"])
         return super().form_valid(form)
-
-
-class FeedbackNew(generic.CreateView):
-    model = Feedback
-    template_name = 'hotel/feedback_new.html'
-    fields = ('rating', 'text')
-    success_url = '/'
-
-    def form_valid(self, form):
-        feedback = form.save(commit=False)
-        user = self.request.user
-        try:
-            client = Client.objects.get(user=user)
-        except Client.DoesNotExist:
-            raise forms.ValidationError("You are not our client!")
-        feedback.author = client
-        feedback.save()
-        return super().form_valid(form)
-
-
-class FeedbackList(generic.ListView):
-    model = Feedback
-    template_name = "hotel/feedback_list.html"
-    context_object_name = 'feedbacks'
 
 
 def components(request):

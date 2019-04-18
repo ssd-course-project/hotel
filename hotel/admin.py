@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Room, ExtraPictures, ExtraService, Feedback
+from .models import Room, ExtraPictures, ExtraService
 
 
 class ExtraPicturesInline(admin.TabularInline):
@@ -17,10 +17,5 @@ class ExtraServiceAdmin(admin.ModelAdmin):
     list_display = ('name', 'description')
 
 
-class FeedbackAdmin(admin.ModelAdmin):
-    list_display = ('author', 'created_at', 'rating', 'text')
-
-
 admin.site.register(Room, RoomAdmin)
 admin.site.register(ExtraService, ExtraServiceAdmin)
-admin.site.register(Feedback, FeedbackAdmin)
