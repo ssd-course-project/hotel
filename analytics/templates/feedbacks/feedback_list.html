@@ -1,22 +1,33 @@
-<!DOCTYPE html>
-{% load staticfiles %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'general/base.html' %}
 
 {% block content %}
-    <h2>Список всех отзывов</h2>
-    <div>
-        {% for feedback in feedbacks %}
-            <p>{{ feedback.created_at }}</p>
-            <p>{{ feedback.author }}</p>
-            <p>{{ feedback.rating }}</p>
-            <p>{{ feedback.text }}</p>
-        {% endfor %}
+<div class="container">
+    <h2 class="container__title">отзывы</h2>
+    {% for feedback in feedbacks %}
+        {% if feedback.rating == 1 or feedback.rating == 2 %}
+         <div class="user-feedback user-feedback-red">
+            <div class="user-card__photo user-feedback__icon"><i class="fas fa-user-secret fa-red"></i></div>
+        {% elif feedback.rating == 3 %}
+        <div class="user-feedback">
+            <div class="user-card__photo user-feedback__icon"><i class="fas fa-user-secret"></i></div>
+        {% elif feedback.rating == 4 or feedback.rating == 5 %}
+        <div class="user-feedback user-feedback-green">
+            <div class="user-card__photo user-feedback__icon"><i class="fas fa-user-secret fa-green"></i></div>
+        {% endif %}
+        <div class="user-card__body user-feedback__body">
+            <h3 class="user-feedback__rating">{{ feedback.get_rating_display }}</h3>
+            <p class="user-feedback__text">{{ feedback.text }}</p>
+            <h6>
+                <span class="user-feedback__author">{{ feedback.author }}</span>
+                <span class="user-feedback__date">{{ feedback.created_at|date:"SHORT_DATETIME_FORMAT" }}</span>
+            </h6>
+        </div>
     </div>
+    {% endfor %}
+    {% if user.is_authenticated and not user.is_superuser and not user.is_staff %}
+    <div class="user-feedback__button">
+        <a class="btn btn-green" href="{% url 'feedback_new' %}">добавить отзыв</a>
+    </div>
+    {% endif %}
+</div>
 {% endblock %}
-</body>
-</html>
