@@ -1,16 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <div class="field">
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-</body>
-</html>
+{% extends 'general/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 class="container__title">Регистрация</h2>
+    <form class="register" method="POST">
+        {% csrf_token %}
+        <div class="register__list">
+            {% for field in form %}
+            <div class="register__label" >{{ field.label_tag }}</div>
+            {{ field }}
+            {% if field.help_text %}<ul class="register__help" >{{ field.help_text }}</ul>  {% endif %}
+            {% if field.errors %}<div class="register__error" >{{ field.errors }}</div> {% endif %}
+            {% endfor %}
+        </div>
+        <div class="register__button">
+            <button class="btn btn-green" type="submit">Зарегистрироваться</button>
+        </div>
+    </form>
+</div>
+{% endblock %}}
