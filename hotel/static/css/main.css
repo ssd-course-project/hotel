@@ -399,6 +399,35 @@ p.value {
   .user-feedback-red .user-feedback__body h3.user-feedback__rating, .user-feedback-green .user-feedback__body h3.user-feedback__rating {
     color: #fff; }
 
+.register {
+  background-color: #f2f2f2;
+  color: #4f4f4f;
+  -webkit-border-radius: 0.1875rem;
+  -moz-border-radius: 0.1875rem;
+  border-radius: 0.1875rem;
+  padding: 2rem; }
+  .register__list {
+    display: grid;
+    grid-template-columns: calc(35% - 1rem) calc(65% - 1rem);
+    grid-column-gap: 2rem;
+    grid-row-gap: 1rem; }
+    .register__list p.label {
+      grid-column: 1 / 2; }
+    .register__list input, .register__list .register__help, .register__list .register__error {
+      grid-column: 2 / 3; }
+  .register__button {
+    margin: 2rem 0 0 calc(35% + 1rem); }
+  .register__help {
+    font-size: 0.75rem;
+    font-weight: 300; }
+  .register__error {
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: #e75735; }
+  .register__label {
+    font-weight: 900;
+    text-align: right; }
+
 .btn {
   -webkit-border-radius: 0.1875rem;
   -moz-border-radius: 0.1875rem;
@@ -1516,3 +1545,4 @@ ymaps .ymaps-2-1-73-balloon {
   to {
     opacity: 0;
     transform: scale(2.5); } }
+
