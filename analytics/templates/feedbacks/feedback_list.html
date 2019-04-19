@@ -10,7 +10,7 @@
         {% elif feedback.rating == 3 %}
         <div class="user-feedback">
             <div class="user-card__photo user-feedback__icon"><i class="fas fa-user-secret"></i></div>
-        {% elif feedback.rating >= 4 %}
+        {% else %}
         <div class="user-feedback user-feedback-green">
             <div class="user-card__photo user-feedback__icon"><i class="fas fa-user-secret fa-green"></i></div>
         {% endif %}
