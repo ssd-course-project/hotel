@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.decorators import login_required
 from django.urls import path
 
 from . import views
@@ -8,9 +8,7 @@ urlpatterns = [
     path('room/<int:pk>/', views.RoomDetail.as_view(), name='room_detail'),
     path(
         'room/<int:pk>/booking',
-        permission_required(
-            'users.is_authenticated', raise_exception=True
-        )(views.RoomBooking.as_view()),
+        login_required(views.RoomBooking.as_view()),
         name='room_booking'
     ),
 ]
