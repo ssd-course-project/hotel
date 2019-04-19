@@ -3,23 +3,24 @@ from django.forms.models import modelform_factory
 from django.shortcuts import render
 from django.views import generic
 
+from analytics.models import RoomBooking
 from clients.models import Client
 from hotel.forms import RoomBookingForm
 from .models import Room
 
 
-class RoomList(generic.ListView):
+class RoomListView(generic.ListView):
     model = Room
     template_name = "hotel/room_list.html"
     context_object_name = 'rooms'
 
 
-class RoomDetail(generic.DetailView):
+class RoomDetailView(generic.DetailView):
     model = Room
     context_object_name = 'room'
 
 
-class RoomBooking(generic.UpdateView):
+class RoomBookingView(generic.UpdateView):
     model = Room
     form_class = modelform_factory(
         Room,
@@ -38,6 +39,14 @@ class RoomBooking(generic.UpdateView):
             raise forms.ValidationError("You are not our client!")
         room.renter = client
         room.room_status = room.BOOKED_STATUS
+
+        RoomBooking.objects.create(
+            room=room,
+            renter=client,
+            check_in_date=room.check_in_date,
+            check_out_date=room.check_out_date
+        )
+
         room.save(update_fields=["renter", "room_status"])
         return super().form_valid(form)
 
