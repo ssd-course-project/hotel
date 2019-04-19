@@ -4,13 +4,13 @@
 <div class="container">
     <h2 class="container__title">отзывы</h2>
     {% for feedback in feedbacks %}
-        {% if feedback.rating == 1 or feedback.rating == 2 %}
+        {% if feedback.rating <= 2 %}
          <div class="user-feedback user-feedback-red">
             <div class="user-card__photo user-feedback__icon"><i class="fas fa-user-secret fa-red"></i></div>
         {% elif feedback.rating == 3 %}
         <div class="user-feedback">
             <div class="user-card__photo user-feedback__icon"><i class="fas fa-user-secret"></i></div>
-        {% elif feedback.rating == 4 or feedback.rating == 5 %}
+        {% elif feedback.rating >= 4 %}
         <div class="user-feedback user-feedback-green">
             <div class="user-card__photo user-feedback__icon"><i class="fas fa-user-secret fa-green"></i></div>
         {% endif %}
