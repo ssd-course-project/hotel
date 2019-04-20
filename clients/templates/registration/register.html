@@ -9,7 +9,7 @@
             {% for field in form %}
             <div class="register__label" >{{ field.label_tag }}</div>
             {{ field }}
-            {% if field.help_text %}<ul class="register__help" >{{ field.help_text }}</ul>  {% endif %}
+            {% if field.help_text %}<div class="register__help" >{{ field.help_text|safe }}</div>{% endif %}
             {% if field.errors %}<div class="register__error" >{{ field.errors }}</div> {% endif %}
             {% endfor %}
         </div>
@@ -18,4 +18,4 @@
         </div>
     </form>
 </div>
-{% endblock %}}
+{% endblock %}

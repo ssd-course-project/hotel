@@ -420,13 +420,17 @@ p.value {
   .register__help {
     font-size: 0.75rem;
     font-weight: 300; }
+    .register__help ul {
+      list-style: none; }
   .register__error {
     font-size: 0.75rem;
     font-weight: 300;
     color: #e75735; }
-  .register__label {
-    font-weight: 900;
-    text-align: right; }
+    .register__error ul {
+      list-style: none; }
+    .register__error__label {
+      font-weight: 900;
+      text-align: right; }
 
 .btn {
   -webkit-border-radius: 0.1875rem;
