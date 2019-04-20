@@ -7,23 +7,23 @@
             <h1>eden hotel</h1>
             <h3>amsterdam</h3>
         </div>
-        <form class="photo__search" method="post" action="/">
+        <form class="photo__search" action="{% url "room_search" %}">
             <div class="photo__search-input datepicker__input">
-                <input class="photo__search-check-in datepicker" type="text" id="check-in" placeholder="Укажите дату въезда">
+                <input class="photo__search-check-in datepicker" type="text" id="check-in" name="check_in" placeholder="Укажите дату въезда">
                 <button class="datepicker__button enable-ripple" id="search-check-in" type="button"><i class="far fa-fw fa-calendar-alt"></i></button>
             </div>
             <div class="photo__search-input datepicker__input">
-                <input class="photo__search-check-out datepicker" type="text" id="check-out" placeholder="Укажите дату выезда">
+                <input class="photo__search-check-out datepicker" type="text" id="check-out" name="check_out" placeholder="Укажите дату выезда">
                 <button class="datepicker__button enable-ripple" id="search-check-out" type="button"><i class="far fa-fw fa-calendar-alt"></i></button>
             </div>
-            <select class="photo__search-visitors">
+            <select class="photo__search-visitors" name="visitors">
                 <option value=""></option>
                 <option value="1">1 гость</option>
                 <option value="2">2 гостя</option>
                 <option value="3">3 гостя</option>
                 <option value="4">4 гостя</option>
             </select>
-            <a class="photo__search-button btn btn-green enable-ripple" href="/">найти</a>
+            <button class="photo__search-button btn btn-green enable-ripple" type="submit">найти</button>
         </form>
     </div>
 </div>
