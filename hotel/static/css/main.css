@@ -38,7 +38,8 @@ p.value {
   font-weight: 300; }
 
 .header {
-  width: 100%; }
+  width: 100%;
+  z-index: 99999; }
   .header:after {
     content: "";
     position: absolute;
@@ -1534,6 +1535,42 @@ ymaps .ymaps-2-1-73-balloon {
 
 .slick-next {
   right: 25px; }
+
+.tabs {
+  display: inline-block;
+  width: 100%; }
+  .tabs ul {
+    margin: 0;
+    padding: 0; }
+    .tabs ul:after {
+      content: "";
+      display: block;
+      clear: both;
+      height: 0.25rem;
+      background: #4eb7a8; }
+    .tabs ul li {
+      margin: 0;
+      cursor: pointer;
+      display: block;
+      float: left;
+      padding: 0.75rem 1.8rem 0.5rem 1.8rem;
+      color: #4f4f4f;
+      text-transform: uppercase; }
+      .tabs ul li.active {
+        background: #4eb7a8;
+        color: #fff;
+        -webkit-border-top-left-radius: 0.1875rem;
+        -webkit-border-top-right-radius: 0.1875rem;
+        -moz-border-radius-topleft: 0.1875rem;
+        -moz-border-radius-topright: 0.1875rem;
+        border-top-left-radius: 0.1875rem;
+        border-top-right-radius: 0.1875rem; }
+        .tabs ul li.active:hover {
+          background: #28a290;
+          color: #fff; }
+      .tabs ul li:hover {
+        color: #28a290;
+        transition: 0.5s; }
 
 .ripple-effect {
   display: block;
