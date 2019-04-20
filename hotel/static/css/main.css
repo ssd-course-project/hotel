@@ -30,15 +30,6 @@ h5 {
 h6 {
   font-size: 0.75rem; }
 
-.container {
-  margin: 2rem auto;
-  max-width: 73rem; }
-  .container__title {
-    margin-bottom: 2rem; }
-
-.fadein {
-  opacity: 0; }
-
 p.label {
   font-weight: 900;
   text-align: right; }
@@ -323,23 +314,32 @@ p.value {
     margin: 2rem 0 4rem;
     text-align: center; }
 
-.feedback {
+.container {
+  margin: 2rem auto;
+  max-width: 73rem; }
+  .container__title {
+    margin-bottom: 2rem; }
+
+.fadein {
+  opacity: 0; }
+
+.content {
   background-color: #f2f2f2;
   color: #4f4f4f;
   -webkit-border-radius: 0.1875rem;
   -moz-border-radius: 0.1875rem;
   border-radius: 0.1875rem;
   padding: 2rem; }
-  .feedback__list {
+  .content__list {
     display: grid;
     grid-template-columns: calc(35% - 1rem) calc(65% - 1rem);
     grid-column-gap: 2rem;
     grid-row-gap: 1rem; }
-    .feedback__list p {
+    .content__list p.label {
       grid-column: 1 / 2; }
-    .feedback__list input, .feedback__list textarea {
+    .content__list input, .content__list textarea, .content__list p.value, .content__list .register__help, .content__list .register__error {
       grid-column: 2 / 3; }
-  .feedback__button {
+  .content__button {
     margin: 2rem 0 0 calc(35% + 1rem); }
 
 .user-feedback {
@@ -398,6 +398,39 @@ p.value {
   color: #fff; }
   .user-feedback-red .user-feedback__body h3.user-feedback__rating, .user-feedback-green .user-feedback__body h3.user-feedback__rating {
     color: #fff; }
+
+.register {
+  background-color: #f2f2f2;
+  color: #4f4f4f;
+  -webkit-border-radius: 0.1875rem;
+  -moz-border-radius: 0.1875rem;
+  border-radius: 0.1875rem;
+  padding: 2rem; }
+  .register__list {
+    display: grid;
+    grid-template-columns: calc(35% - 1rem) calc(65% - 1rem);
+    grid-column-gap: 2rem;
+    grid-row-gap: 1rem; }
+    .register__list p.label {
+      grid-column: 1 / 2; }
+    .register__list input, .register__list .register__help, .register__list .register__error {
+      grid-column: 2 / 3; }
+  .register__button {
+    margin: 2rem 0 0 calc(35% + 1rem); }
+  .register__help {
+    font-size: 0.75rem;
+    font-weight: 300; }
+    .register__help ul {
+      list-style: none; }
+  .register__error {
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: #e75735; }
+    .register__error ul {
+      list-style: none; }
+  .register__label {
+    font-weight: 900;
+    text-align: right; }
 
 .btn {
   -webkit-border-radius: 0.1875rem;
