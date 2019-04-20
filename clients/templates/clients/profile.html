@@ -1,23 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    {% if user.is_authenticated %}
-        Вы залогинены как {{ user }}.
-        <a href="/accounts/logout/">Нажмите здесь, чтобы выйти.</a>
-        {% if client %}
-            <p>Ваше имя: {{ client.name }}</p>
-            <p>Ваш телефон: {{ client.phone }}</p>
-            <p>Ваш емэйл: {{ client.email }}</p>
-        {% else %}
-            <p>Вы администратор</p>
-        {% endif %}
-    {% else %}
-        Вы не вошли в свой аккаунт.
-        <a href="/accounts/login/">Нажмите здесь, чтобы войти.</a>
-    {% endif %}
-</body>
-</html>
+{% extends 'general/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 class="container__title">личный кабинет</h2>
+    <div class="tabs">
+        <ul class="tabs__head">
+            <li>личные данные</li>
+            <li>бронирования</li>
+        </ul>
+        <div class="content tabs__body">
+            {% if client %}
+            <div class="content__list">
+                <p class="label">Имя</p>
+                <p class="value">{{ client.name }}</p>
+                <p class="label">Телефон</p>
+                <p class="value">{{ client.phone }}</p>
+                <p class="label">Email</p>
+                <p class="value">{{ client.email }}</p>
+            </div>
+            {% else %}
+            <div class="content__block">
+                <p class="value">Вы администратор</p>
+            </div>
+            {% endif %}
+            <div class="content__list"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
