@@ -428,9 +428,9 @@ p.value {
     color: #e75735; }
     .register__error ul {
       list-style: none; }
-    .register__error__label {
-      font-weight: 900;
-      text-align: right; }
+  .register__label {
+    font-weight: 900;
+    text-align: right; }
 
 .btn {
   -webkit-border-radius: 0.1875rem;
