@@ -90,8 +90,8 @@ class RoomBookingView(generic.FormView):
         room_status = room.room_status(check_in_date, check_out_date)
         if room_status != room.AVAILABLE_STATUS:
             error_message = "" \
-                            "К сожалению, в выбранный период все номера этого типа " \
-                            "забронированы. Попробуйте поменять даты "
+                "К сожалению, в выбранный период все номера этого типа " \
+                "забронированы. Попробуйте поменять даты "
             data = {"error_message": error_message}
             return render(
                 self.request,
