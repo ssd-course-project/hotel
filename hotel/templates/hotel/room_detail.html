@@ -10,16 +10,10 @@
             {% endfor %}
         </div>
         <div class="room__body">
-            {% if room.room_status == room.AVAILABLE_STATUS %}
-            <h2 class="title-green">{{ room.title }}</h2>
-            {% else %}
             <h2 class="title-red">{{ room.title }}</h2>
-            {% endif %}
             <div class="room__list">
                 <p class="label">Описание</p>
                 <p class="value">{{ room.description }}</p>
-                <p class="label">Статус</p>
-                <p class="value">{{ room.get_room_status_display }}</p>
                 <p class="label">Цена за сутки, рублей</p>
                 <p class="value">{{ room.price }}</p>
                 <p class="label">Размер номера, м<sup>2</sup></p>
@@ -36,7 +30,7 @@
             </div>
         </div>
     </div>
-    {% if user.is_authenticated and room.room_status == room.AVAILABLE_STATUS %}
+    {% if user.is_authenticated %}
     <div class="room__button">
         <a class="btn btn-green" href="{% url 'room_booking' room.id %}">Забронировать номер</a>
     </div>
