@@ -43,13 +43,13 @@ class RoomBooking(models.Model):
         Client,
         on_delete=models.CASCADE,
         verbose_name='Арендатор',
-        related_name='renter',
+        related_name='booking',
     )
     room = models.ForeignKey(
         Room,
         on_delete=models.CASCADE,
         verbose_name='Номер',
-        related_name='rooms'
+        related_name='booking'
     )
     check_in_date = models.DateField(verbose_name='Дата начала бронирования')
     check_out_date = models.DateField(verbose_name='Дата конца бронирования')

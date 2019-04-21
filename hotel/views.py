@@ -1,5 +1,5 @@
 from django import forms
-from django.forms.models import modelform_factory
+from django.http import Http404
 from django.shortcuts import render
 from django.views import generic
 
@@ -20,35 +20,53 @@ class RoomDetailView(generic.DetailView):
     context_object_name = 'room'
 
 
-class RoomBookingView(generic.UpdateView):
-    model = Room
-    form_class = modelform_factory(
-        Room,
-        form=RoomBookingForm
-    )
+class RoomBookingView(generic.FormView):
     template_name = 'hotel/room_booking.html'
-    context_object_name = 'room'
     success_url = '/'
+    form_class = RoomBookingForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['room'] = self._get_room()
+        return context
 
     def form_valid(self, form):
-        room = form.save(commit=False)
+        room = self._get_room()
+        check_in_date = form.cleaned_data.get('check_in_date')
+        check_out_date = form.cleaned_data.get('check_out_date')
+
+        room_status = room.room_status(check_in_date, check_out_date)
+        if room_status != room.AVAILABLE_STATUS:
+            error_message = "" \
+                "К сожалению, в выбранный период все номера этого типа " \
+                "забронированы. Попробуйте поменять даты "
+            data = {"error_message": error_message}
+            return render(
+                self.request,
+                self.template_name,
+                context={**self.get_context_data(), **data}
+            )
+
         user = self.request.user
         try:
             client = Client.objects.get(user=user)
         except Client.DoesNotExist:
             raise forms.ValidationError("You are not our client!")
-        room.renter = client
-        room.room_status = room.BOOKED_STATUS
 
         RoomBooking.objects.create(
             room=room,
             renter=client,
-            check_in_date=room.check_in_date,
-            check_out_date=room.check_out_date
+            check_in_date=check_in_date,
+            check_out_date=check_out_date
         )
 
-        room.save(update_fields=["renter", "room_status"])
         return super().form_valid(form)
+
+    def _get_room(self):
+        try:
+            return Room.objects.get(id=self.kwargs.get('pk'))
+        except Room.DoesNotExist:
+            raise Http404("Room does not exist")
 
 
 def components(request):

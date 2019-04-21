@@ -8,7 +8,7 @@ class ExtraPicturesInline(admin.TabularInline):
 
 
 class RoomAdmin(admin.ModelAdmin):
-    list_display = ('room_status', 'check_in_date', 'check_out_date', 'price')
+    list_display = ('title', 'sleeps_number', 'rooms_number', 'price')
 
     inlines = [ExtraPicturesInline]
 

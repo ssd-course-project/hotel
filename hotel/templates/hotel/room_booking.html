@@ -7,6 +7,9 @@
 </head>
 <body>
     <div>
+        {% if error_message %}
+            {{ error_message }}
+        {% endif %}
         <p>Вы бронируете номер</p>
         <p>{{ room.description }}</p>
         <img src="{{ room.main_picture.url }}" width="350"/>
