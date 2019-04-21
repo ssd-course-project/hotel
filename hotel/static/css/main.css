@@ -30,15 +30,6 @@ h5 {
 h6 {
   font-size: 0.75rem; }
 
-.container {
-  margin: 2rem auto;
-  max-width: 73rem; }
-  .container__title {
-    margin-bottom: 2rem; }
-
-.fadein {
-  opacity: 0; }
-
 p.label {
   font-weight: 900;
   text-align: right; }
@@ -47,7 +38,8 @@ p.value {
   font-weight: 300; }
 
 .header {
-  width: 100%; }
+  width: 100%;
+  z-index: 99999; }
   .header:after {
     content: "";
     position: absolute;
@@ -323,23 +315,32 @@ p.value {
     margin: 2rem 0 4rem;
     text-align: center; }
 
-.feedback {
+.container {
+  margin: 2rem auto;
+  max-width: 73rem; }
+  .container__title {
+    margin-bottom: 2rem; }
+
+.fadein {
+  opacity: 0; }
+
+.content {
   background-color: #f2f2f2;
   color: #4f4f4f;
   -webkit-border-radius: 0.1875rem;
   -moz-border-radius: 0.1875rem;
   border-radius: 0.1875rem;
   padding: 2rem; }
-  .feedback__list {
+  .content__list {
     display: grid;
     grid-template-columns: calc(35% - 1rem) calc(65% - 1rem);
     grid-column-gap: 2rem;
     grid-row-gap: 1rem; }
-    .feedback__list p {
+    .content__list p.label {
       grid-column: 1 / 2; }
-    .feedback__list input, .feedback__list textarea {
+    .content__list input, .content__list textarea, .content__list p.value, .content__list .register__help, .content__list .register__error {
       grid-column: 2 / 3; }
-  .feedback__button {
+  .content__button {
     margin: 2rem 0 0 calc(35% + 1rem); }
 
 .user-feedback {
@@ -398,6 +399,39 @@ p.value {
   color: #fff; }
   .user-feedback-red .user-feedback__body h3.user-feedback__rating, .user-feedback-green .user-feedback__body h3.user-feedback__rating {
     color: #fff; }
+
+.register {
+  background-color: #f2f2f2;
+  color: #4f4f4f;
+  -webkit-border-radius: 0.1875rem;
+  -moz-border-radius: 0.1875rem;
+  border-radius: 0.1875rem;
+  padding: 2rem; }
+  .register__list {
+    display: grid;
+    grid-template-columns: calc(35% - 1rem) calc(65% - 1rem);
+    grid-column-gap: 2rem;
+    grid-row-gap: 1rem; }
+    .register__list p.label {
+      grid-column: 1 / 2; }
+    .register__list input, .register__list .register__help, .register__list .register__error {
+      grid-column: 2 / 3; }
+  .register__button {
+    margin: 2rem 0 0 calc(35% + 1rem); }
+  .register__help {
+    font-size: 0.75rem;
+    font-weight: 300; }
+    .register__help ul {
+      list-style: none; }
+  .register__error {
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: #e75735; }
+    .register__error ul {
+      list-style: none; }
+  .register__label {
+    font-weight: 900;
+    text-align: right; }
 
 .btn {
   -webkit-border-radius: 0.1875rem;
@@ -1501,6 +1535,42 @@ ymaps .ymaps-2-1-73-balloon {
 
 .slick-next {
   right: 25px; }
+
+.tabs {
+  display: inline-block;
+  width: 100%; }
+  .tabs ul {
+    margin: 0;
+    padding: 0; }
+    .tabs ul:after {
+      content: "";
+      display: block;
+      clear: both;
+      height: 0.25rem;
+      background: #4eb7a8; }
+    .tabs ul li {
+      margin: 0;
+      cursor: pointer;
+      display: block;
+      float: left;
+      padding: 0.75rem 1.8rem 0.5rem 1.8rem;
+      color: #4f4f4f;
+      text-transform: uppercase; }
+      .tabs ul li.active {
+        background: #4eb7a8;
+        color: #fff;
+        -webkit-border-top-left-radius: 0.1875rem;
+        -webkit-border-top-right-radius: 0.1875rem;
+        -moz-border-radius-topleft: 0.1875rem;
+        -moz-border-radius-topright: 0.1875rem;
+        border-top-left-radius: 0.1875rem;
+        border-top-right-radius: 0.1875rem; }
+        .tabs ul li.active:hover {
+          background: #28a290;
+          color: #fff; }
+      .tabs ul li:hover {
+        color: #28a290;
+        transition: 0.5s; }
 
 .ripple-effect {
   display: block;
