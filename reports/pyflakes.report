@@ -1,9 +1,0 @@
-.env/lib/python3.6/site-packages/django/contrib/messages/__init__.py:1: [E] PYFLAKES:'from django.contrib.messages.api import *' used; unable to detect undefined names
-.env/lib/python3.6/site-packages/django/contrib/messages/__init__.py:1: [E] PYFLAKES:'django.contrib.messages.api.*' imported but unused
-.env/lib/python3.6/site-packages/django/contrib/messages/__init__.py:2: [E] PYFLAKES:'from django.contrib.messages.constants import *' used; unable to detect undefined names
-.env/lib/python3.6/site-packages/django/contrib/messages/__init__.py:2: [E] PYFLAKES:'django.contrib.messages.constants.*' imported but unused
-hotel/tests.py:1: [E] PYFLAKES:'django.test.TestCase' imported but unused
-hotel/models.py:5: [E] PYFLAKES:'clients.models.Client' imported but unused
-clients/tests.py:1: [E] PYFLAKES:'django.test.TestCase' imported but unused
-analytics/tests.py:1: [E] PYFLAKES:'django.test.TestCase' imported but unused
-.env/lib/python3.6/site-packages/webpack_loader/templatetags/webpack_loader.py:2: [E] PYFLAKES:'django.conf.settings' imported but unused
