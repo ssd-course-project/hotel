@@ -1,6 +1,6 @@
+from datetime import datetime
+
 from django import forms
-from django.db.models import Q
-from django.forms.models import modelform_factory
 from django.http import Http404
 from django.shortcuts import render
 from django.views import generic
@@ -9,8 +9,6 @@ from analytics.models import RoomBooking
 from clients.models import Client
 from hotel.forms import RoomBookingForm
 from .models import Room
-
-from datetime import datetime
 
 
 class RoomListView(generic.ListView):
@@ -24,28 +22,47 @@ class RoomSearchView(generic.ListView):
     template_name = "hotel/room_search.html"
     context_object_name = 'rooms'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        check_in = self.request.GET.get('check_in')
+        check_out = self.request.GET.get('check_out')
+        if not all((check_in, check_out)):
+            error_message = "" \
+                "Введите дату заезда и выезда, чтобы мы могли показать вам " \
+                "доступные в это время номера"
+            context['error_message'] = error_message
+        return context
+
     def get_queryset(self):
         queryset = super().get_queryset()
 
+        if not self.request.GET:
+            return queryset
+
+        # TODO: validate check_in/checkout date
         check_in = self.request.GET.get('check_in')
         check_out = self.request.GET.get('check_out')
         visitors = self.request.GET.get('visitors')
         price = self.request.GET.get('price')
 
-        if check_in:
+        if all((check_in, check_out)):
             check_in = datetime.strptime(check_in, "%d.%m.%Y").date()
-            queryset = queryset.filter(
-                Q(check_out_date__lte=check_in) |
-                Q(check_out_date__isnull=True)
-            )
+            check_out = datetime.strptime(check_out, "%d.%m.%Y").date()
 
-        if check_out:
-            check_out = datetime.strptime(check_in, "%d.%m.%Y").date()
-            queryset = queryset.filter( 
-                Q(check_in_date__lte=check_out) |
-                Q(check_in_date__isnull=True)
-            )
+            available_rooms = [
+                room.id for room in queryset
+                if room.room_status(check_in, check_out) ==
+                   room.AVAILABLE_STATUS
+            ]
 
+            queryset = queryset.filter(id__in=available_rooms)
+
+        if visitors:
+            queryset = queryset.filter(sleeps_number=visitors)
+
+        if price:
+            queryset = queryset.filter(price__lte=price)
 
         return queryset
 
@@ -73,8 +90,8 @@ class RoomBookingView(generic.FormView):
         room_status = room.room_status(check_in_date, check_out_date)
         if room_status != room.AVAILABLE_STATUS:
             error_message = "" \
-                "К сожалению, в выбранный период все номера этого типа " \
-                "забронированы. Попробуйте поменять даты "
+                            "К сожалению, в выбранный период все номера этого типа " \
+                            "забронированы. Попробуйте поменять даты "
             data = {"error_message": error_message}
             return render(
                 self.request,
