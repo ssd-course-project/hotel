@@ -1,20 +1,31 @@
-<!DOCTYPE html>
-{% load staticfiles %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <div>
-        <p>Вы бронируете номер</p>
-        <p>{{ room.description }}</p>
-        <img src="{{ room.main_picture.url }}" width="350"/>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-</body>
-</html>
+{% extends 'general/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 class="container__title">бронирование номера
+        <a href="{% url 'room_detail' room.id %}">{{ room.title }}</a>
+    </h2>
+    <form class="booking" method="POST">
+        {% csrf_token %}
+        <div class="content">
+            <div class="content__list">
+                <p class="label">Дата заезда</p>
+                <div class="value datepicker__input">
+                    <input class="photo__search-check-in datepicker" {{ form.check_in_date }}
+                    <button class="datepicker__button enable-ripple" id="search-check-in" type="button"><i class="far fa-fw fa-calendar-alt"></i></button>
+                </div>
+                <p class="label">Дата выезда</p>
+                <div class="value datepicker__input">
+                    <input class="photo__search-check-out datepicker" {{ form.check_out_date }}
+                    <button class="datepicker__button enable-ripple" id="search-check-out" type="button"><i class="far fa-fw fa-calendar-alt"></i></button>
+                </div>
+                {% if form.errors %}<div class="content__error" >{{ form.non_field_errors }}</div> {% endif %}
+                {% if error_message %}<div class="content__error" >{{ error_message }}</div> {% endif %}
+            </div>
+            <div class="content__button">
+                <button type="submit" class="btn btn-green">Забронировать номер</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

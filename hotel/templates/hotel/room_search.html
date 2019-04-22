@@ -23,22 +23,21 @@
                 <option value="3">3 гостя</option>
                 <option value="4">4 гостя</option>
             </select>
+            <div class="photo__search-input datepicker__input">
+                <input type="text" id="price" name="price" placeholder="Укажите максимумальную цену за ночь">
+            </div>
             <button class="photo__search-button btn btn-green enable-ripple" type="submit">найти</button>
         </form>
     </div>
-</div>
-<div class="description fadein">
-    <div class="description__container">
-        <p>Вид на реку, который заставит Вас удивиться, и комнаты настолько красивые, что Вы долго не захотите уехать.
-            В непосредственной близости от отеля Вы найдете все основные достопримечательности Амстердама, а также скрытые
-            жемчужины, о которых мы бы хотели Вам рассказать. Eden Hotel Amsterdam поможет Вам открыть город глазами местных жителей.</p>
-        <p>1 января 2019 года Eden Hotel Amsterdam и Eden Rembrandt Square Hotel Amsterdam объединились в один 4-звездочный отель.</p>
-        <p>385 современных номеров отеля Eden Hotel Amsterdam обеспечат Вас приятным пребыванием.</p>
+    <div>
+        {% if error_message %}
+            {{ error_message }}
+        {% endif %}
     </div>
 </div>
 <div class="rooms">
     <h2 class="rooms__title fadein">наши номера</h2>
-    {% for room in rooms|slice:":3" %}
+    {% for room in rooms %}
     <div class="news-card fadein">
         <div class="news-card__photo">
             <a href="{% url 'room_detail' room.id %}">
@@ -50,13 +49,10 @@
             <p class="news-card__text">{{ room.description }}</p>
             <a class="news-card__button btn btn-white-red" href="{% url 'room_detail' room.id %}">подробнее</a>
         </div>
-    </div>{% endfor %}
-    <div class="rooms-button">
-        <a class="btn btn-green" href="{% url "room_search" %}">смотреть все номера</a>
     </div>
-</div>
-<div class="map">
-    <h2 class="map__title">найти путь</h2>
-    <div id="map"></div>
+    {% empty %}
+        <p> К сожалению, на данный момент нет номеров удовлетворяющих вашему поиску. Попробуйте изменить параметры поиска </p>
+    {% endfor %}
+
 </div>
 {% endblock %}

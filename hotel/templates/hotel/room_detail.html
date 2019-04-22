@@ -2,6 +2,7 @@
 
 {% block content %}
 <div class="container">
+    <h2 class="container__title">{{ room.title }}</h2>
     <div class="room">
         <div class="room__photo">
             <div><img src="{{ room.main_picture.url }}"></div>
@@ -10,16 +11,10 @@
             {% endfor %}
         </div>
         <div class="room__body">
-            {% if room.room_status == room.AVAILABLE_STATUS %}
-            <h2 class="title-green">{{ room.title }}</h2>
-            {% else %}
-            <h2 class="title-red">{{ room.title }}</h2>
-            {% endif %}
+            <h3 class="room__title">О номере</h3>
             <div class="room__list">
                 <p class="label">Описание</p>
                 <p class="value">{{ room.description }}</p>
-                <p class="label">Статус</p>
-                <p class="value">{{ room.get_room_status_display }}</p>
                 <p class="label">Цена за сутки, рублей</p>
                 <p class="value">{{ room.price }}</p>
                 <p class="label">Размер номера, м<sup>2</sup></p>
@@ -27,7 +22,7 @@
                 <p class="label">Количество мест, гостей</p>
                 <p class="value">{{ room.sleeps_number }}</p>
             </div>
-            <h3>Дополнительные услуги</h3>
+            <h3 class="room__title">Дополнительные услуги</h3>
             <div class="room__list">
                 {% for extra_service in room.extra_services.all %}
                 <p class="label">{{ extra_service.name }}</p>
@@ -36,7 +31,7 @@
             </div>
         </div>
     </div>
-    {% if user.is_authenticated and room.room_status == room.AVAILABLE_STATUS %}
+    {% if user.is_authenticated %}
     <div class="room__button">
         <a class="btn btn-green" href="{% url 'room_booking' room.id %}">Забронировать номер</a>
     </div>
