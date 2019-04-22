@@ -2,6 +2,7 @@
 
 {% block content %}
 <div class="container">
+    <h2 class="container__title">{{ room.title }}</h2>
     <div class="room">
         <div class="room__photo">
             <div><img src="{{ room.main_picture.url }}"></div>
@@ -10,7 +11,7 @@
             {% endfor %}
         </div>
         <div class="room__body">
-            <h2 class="title-red">{{ room.title }}</h2>
+            <h3 class="room__title">О номере</h3>
             <div class="room__list">
                 <p class="label">Описание</p>
                 <p class="value">{{ room.description }}</p>
@@ -21,7 +22,7 @@
                 <p class="label">Количество мест, гостей</p>
                 <p class="value">{{ room.sleeps_number }}</p>
             </div>
-            <h3>Дополнительные услуги</h3>
+            <h3 class="room__title">Дополнительные услуги</h3>
             <div class="room__list">
                 {% for extra_service in room.extra_services.all %}
                 <p class="label">{{ extra_service.name }}</p>

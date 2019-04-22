@@ -3,16 +3,16 @@
 {% block content %}
 <div class="container">
     <h2 class="container__title">Авторизация</h2>
-    <form class="register" method="POST" action="{% url 'login' %}">
+    <form class="register content" method="POST" action="{% url 'login' %}">
         {% csrf_token %}
-        <div class="register__list">
+        <div class="content__list">
             <div class="register__label" >{{ form.username.label_tag }}</div>
             {{ form.username }}
             <div class="register__label" >{{ form.password.label_tag }}</div>
             {{ form.password }}
-            {% if form.errors %}<div class="register__error" >{{ form.non_field_errors }}</div> {% endif %}
+            {% if form.errors %}<div class="content__error" >{{ form.non_field_errors }}</div> {% endif %}
         </div>
-        <div class="register__button">
+        <div class="content__button">
             <button class="btn btn-green" type="submit">Войти</button>
         </div>
     </form>

@@ -3,15 +3,15 @@
 {% block content %}
 <div class="container">
     <h2 class="container__title">добавление отзыва</h2>
-    <form class="feedback" method="POST">
+    <form class="feedback content" method="POST">
         {% csrf_token %}
-        <div class="feedback__list">
+        <div class="content__list">
             <p class="label">Оценка</p>
             <select class="select" {{ form.rating }}
             <p class="label">Отзыв</p>
             {{ form.text }}
         </div>
-        <div class="feedback__button">
+        <div class="content__button">
             <button class="btn btn-green" type="submit">добавить отзыв</button>
         </div>
     </form>
