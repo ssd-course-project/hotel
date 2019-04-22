@@ -122,11 +122,11 @@ class RoomBookingView(generic.FormView):
 
 
 def about(request):
-    return render(request, 'hotel/about_list.html')
+    return render(request, 'general/about.html')
 
 
 def contacts(request):
-    return render(request, 'hotel/contacts_list.html')
+    return render(request, 'general/contacts.html')
 
 
 def components(request):
