@@ -1,3 +1,5 @@
+from idlelib.idle_test.test_help_about import About
+
 from django import forms
 from django.forms.models import modelform_factory
 from django.shortcuts import render
@@ -53,3 +55,13 @@ class RoomBookingView(generic.UpdateView):
 
 def components(request):
     return render(request, 'general/components.html')
+
+
+def about(request):
+    return render(request, 'hotel/about_list.html')
+
+
+def contacts(request):
+    return render(request, 'hotel/contacts_list.html')
+
+

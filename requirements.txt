@@ -1,3 +1,4 @@
+about
 chardet==3.0.4
 Django==2.0.13
 django-webpack-loader==0.6.0

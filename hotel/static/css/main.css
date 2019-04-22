@@ -30,6 +30,12 @@ h5 {
 h6 {
   font-size: 0.75rem; }
 
+a {
+  color: #4eb7a8;
+  text-decoration: none; }
+  a:hover, a:active {
+    color: #28a290; }
+
 p.label {
   font-weight: 900;
   text-align: right; }
@@ -38,8 +44,7 @@ p.value {
   font-weight: 300; }
 
 .header {
-  width: 100%;
-  z-index: 99999; }
+  width: 100%; }
   .header:after {
     content: "";
     position: absolute;
@@ -298,19 +303,19 @@ p.value {
   .room__body {
     display: block;
     padding: 2rem; }
-    .room__body h2 {
-      margin-bottom: 2rem; }
-    .room__body h3 {
-      margin: 3rem 0 2rem; }
-    .room__body .title-red {
-      color: #e75735; }
-    .room__body .title-green {
-      color: #4eb7a8; }
+  .room__title {
+    margin: 3rem 0 2rem; }
+    .room__title:first-child {
+      margin-top: 0; }
   .room__list {
     display: grid;
     grid-template-columns: calc(35% - 1rem) calc(65% - 1rem);
     grid-column-gap: 2rem;
     grid-row-gap: 1rem; }
+    .room__list .label {
+      grid-column: 1 / 2; }
+    .room__list input, .room__list textarea, .room__list .value, .room__list .content__help, .room__list .content__error {
+      grid-column: 2 / 3; }
   .room__button {
     margin: 2rem 0 4rem;
     text-align: center; }
@@ -319,7 +324,8 @@ p.value {
   margin: 2rem auto;
   max-width: 73rem; }
   .container__title {
-    margin-bottom: 2rem; }
+    margin-bottom: 2rem;
+    text-transform: uppercase; }
 
 .fadein {
   opacity: 0; }
@@ -336,12 +342,23 @@ p.value {
     grid-template-columns: calc(35% - 1rem) calc(65% - 1rem);
     grid-column-gap: 2rem;
     grid-row-gap: 1rem; }
-    .content__list p.label {
+    .content__list .label {
       grid-column: 1 / 2; }
-    .content__list input, .content__list textarea, .content__list p.value, .content__list .register__help, .content__list .register__error {
+    .content__list .value, .content__list .content__error {
       grid-column: 2 / 3; }
   .content__button {
     margin: 2rem 0 0 calc(35% + 1rem); }
+  .content__help {
+    font-size: 0.75rem;
+    font-weight: 300; }
+    .content__help ul {
+      list-style: none; }
+  .content__error {
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: #e75735; }
+    .content__error ul {
+      list-style: none; }
 
 .user-feedback {
   display: flex;
@@ -400,38 +417,19 @@ p.value {
   .user-feedback-red .user-feedback__body h3.user-feedback__rating, .user-feedback-green .user-feedback__body h3.user-feedback__rating {
     color: #fff; }
 
-.register {
-  background-color: #f2f2f2;
-  color: #4f4f4f;
-  -webkit-border-radius: 0.1875rem;
-  -moz-border-radius: 0.1875rem;
-  border-radius: 0.1875rem;
-  padding: 2rem; }
-  .register__list {
-    display: grid;
-    grid-template-columns: calc(35% - 1rem) calc(65% - 1rem);
-    grid-column-gap: 2rem;
-    grid-row-gap: 1rem; }
-    .register__list p.label {
-      grid-column: 1 / 2; }
-    .register__list input, .register__list .register__help, .register__list .register__error {
-      grid-column: 2 / 3; }
-  .register__button {
-    margin: 2rem 0 0 calc(35% + 1rem); }
-  .register__help {
-    font-size: 0.75rem;
-    font-weight: 300; }
-    .register__help ul {
-      list-style: none; }
-  .register__error {
-    font-size: 0.75rem;
-    font-weight: 300;
-    color: #e75735; }
-    .register__error ul {
-      list-style: none; }
-  .register__label {
-    font-weight: 900;
-    text-align: right; }
+.register__label {
+  font-weight: 900;
+  text-align: right; }
+
+.booking .datepicker__input {
+  width: 10rem; }
+
+.contacts {
+  display: grid;
+  grid-template-columns: repeat(3, calc(100% / 3 - 6rem / 3));
+  grid-column-gap: 3rem; }
+  .contacts .user-card {
+    max-width: none; }
 
 .btn {
   -webkit-border-radius: 0.1875rem;
