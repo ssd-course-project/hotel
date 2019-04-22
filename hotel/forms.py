@@ -7,17 +7,11 @@ from django.core.exceptions import ValidationError
 class RoomBookingForm(forms.Form):
     check_in_date = forms.DateField(
         label="Начало бронирования:",
-        help_text="Выберите дату заезда",
-        widget=forms.SelectDateWidget(
-            empty_label=("Год", "Месяц", "День"),
-        )
+        help_text="Выберите дату заезда"
     )
     check_out_date = forms.DateField(
         label="Конец бронирования:",
         help_text="Выберите дату отъезда",
-        widget=forms.SelectDateWidget(
-            empty_label=("Год", "Месяц", "День"),
-        )
     )
 
     def clean(self):
