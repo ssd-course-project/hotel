@@ -65,3 +65,35 @@ class RoomBookingFormTest(TestCase):
         with freeze_time("2019-04-21"):
             self.assertFalse(form.is_valid())
             assert error_message == form.errors['__all__'][0]
+
+
+class RoomSearchViewTest(TestCase):
+
+    def test_general_get_request(self):
+        response = self.client.get("/rooms/")
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "hotel/room_search.html")
+
+    def test_get_request_without_date(self):
+        response = self.client.get("/rooms/", {"check_in_date": "2019-04-21"})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "hotel/room_search.html")
+        self.assertFalse(False, "Введите дату заезда и выезда")
+
+    def test_get_request_with_dates(self):
+        response = self.client.get("/rooms/", {"check_in_date": "2019-04-21", "check_out_date": "2019-04-25"})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "hotel/room_search.html")
+        self.assertTrue(True, response.content)
+
+    def test_get_request_with_visitors(self):
+        response = self.client.get('/rooms/', {"visitors": "2"})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'hotel/room_search.html')
+        self.assertTrue(True, response.content)
+
+    def test_get_request_with_price(self):
+        response = self.client.get('/rooms/', {"price": "10000"})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'hotel/room_search.html')
+        self.assertTrue(True, response.content)
