@@ -431,6 +431,14 @@ p.value {
   .contacts .user-card {
     max-width: none; }
 
+.about.rooms {
+  padding: 0; }
+
+.about .news-card__text {
+  margin-bottom: 1rem; }
+  .about .news-card__text:last-child {
+    margin-bottom: 0; }
+
 .btn {
   -webkit-border-radius: 0.1875rem;
   -moz-border-radius: 0.1875rem;

@@ -12,4 +12,6 @@ urlpatterns = [
         login_required(views.RoomBookingView.as_view()),
         name='room_booking'
     ),
+    path('about/', views.about, name='about'),
+    path('contacts/', views.contacts, name='contacts'),
 ]
