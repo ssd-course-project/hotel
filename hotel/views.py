@@ -121,5 +121,13 @@ class RoomBookingView(generic.FormView):
             raise Http404("Room does not exist")
 
 
+def about(request):
+    return render(request, 'general/about.html')
+
+
+def contacts(request):
+    return render(request, 'general/contacts.html')
+
+
 def components(request):
     return render(request, 'general/components.html')
