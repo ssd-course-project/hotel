@@ -1,11 +1,15 @@
 import datetime
 
+from django.contrib.auth.models import User
 from django.test import TestCase, Client
 from django.urls import reverse
+from django.utils import timezone
 from freezegun import freeze_time
 
+from analytics.models import RoomBooking
 from hotel.forms import RoomBookingForm
 from hotel.models import Room
+from clients.models import Client
 
 
 class RoomBookingFormTest(TestCase):
@@ -74,6 +78,18 @@ class RoomSearchViewTest(TestCase):
     def setUp(self):
         self.client = Client()
         self.url = reverse('room_search')
+        self.user = User.objects.create(
+            username='testuser',
+            email='test@test.com',
+            password='qwerty123',
+        )
+        self.renter = Client.objects.create(
+            user=self.user,
+            name='test',
+            phone=88005553535,
+            email='test@test.com'
+        )
+        self.renter.save()
         self.room1 = Room.objects.create(
             title='testRoom1',
             price=20000,
@@ -86,19 +102,17 @@ class RoomSearchViewTest(TestCase):
             sleeps_number=3,
             main_picture='../hotel/static/vendors/images/general/background.png'
         )
-        self.booking1 = RoomBookingForm(
-            data={
-                "room": self.room1,
-                "check_in_date": datetime.date(2019, 4, 21),
-                "check_out_date": datetime.date(2019, 4, 25)
-            }
+        self.booking1 = RoomBooking.objects.create(
+            room=self.room1,
+            renter=self.renter,
+            check_in_date=datetime.date(2019, 4, 21),
+            check_out_date=datetime.date(2019, 4, 25)
         )
-        self.booking1 = RoomBookingForm(
-            data={
-                "room": self.room2,
-                "check_in_date": datetime.date(2019, 5, 21),
-                "check_out_date": datetime.date(2019, 5, 25)
-            }
+        self.booking2 = RoomBooking.objects.create(
+            room=self.room2,
+            renter=self.client,
+            check_in_date=datetime.date(2019, 5, 21),
+            check_out_date=datetime.date(2019, 5, 25)
         )
 
     def test_general_get_request(self):
