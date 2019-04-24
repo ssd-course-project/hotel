@@ -89,7 +89,6 @@ class RoomSearchViewTest(TestCase):
             phone=88005553535,
             email='test@test.com'
         )
-        self.renter.save()
         self.room1 = Room.objects.create(
             title='testRoom1',
             price=20000,
