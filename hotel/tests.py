@@ -133,11 +133,12 @@ class RoomSearchViewTest(TestCase):
                 "check_out": "24.04.2019"
             }
         )
-        self.assertEqual(response.status_code, 200)
-        self.assertQuerysetEqual(
-            response.context.get('object_list'),
-            map(repr, [self.room2])
-        )
+        with freeze_time("2019-04-21"):
+            self.assertEqual(response.status_code, 200)
+            self.assertQuerysetEqual(
+                response.context.get('object_list'),
+                map(repr, [self.room2])
+            )
 
     def test_get_request_with_visitors(self):
         response = self.client.get(
