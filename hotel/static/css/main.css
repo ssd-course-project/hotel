@@ -422,7 +422,57 @@ p.value {
   text-align: right; }
 
 .booking .datepicker__input {
-  width: 10rem; }
+  width: 17.5rem; }
+
+.search__price input {
+  width: 100%; }
+
+.search .datepicker__input {
+  width: 17.5rem; }
+
+.search .content {
+  margin-bottom: 2rem; }
+
+.search-result .news-card {
+  width: 100%;
+  height: 14rem;
+  margin-bottom: 2rem; }
+  .search-result .news-card__photo {
+    width: 25%;
+    overflow: hidden; }
+    .search-result .news-card__photo img {
+      height: 100%;
+      background-size: cover;
+      background-position: 50% 50%;
+      transition: .5s ease-in-out;
+      -webkit-border-radius: inherit;
+      -moz-border-radius: inherit;
+      border-radius: inherit; }
+      .search-result .news-card__photo img:hover {
+        transform: scale(1.2); }
+  .search-result .news-card__body {
+    width: 75%;
+    padding: 2rem;
+    color: #fff; }
+    .search-result .news-card__body:hover {
+      color: #bf3e1f;
+      background-color: #f2f2f2;
+      transition: 0.5s; }
+    .search-result .news-card__body .news-card__text {
+      margin-bottom: 2rem;
+      font-size: 0.875rem;
+      font-weight: 300; }
+  .search-result .news-card__title {
+    margin-bottom: 2rem; }
+
+.search-result .news-card__body .news-card__text-price, .search-result .news-card__body .news-card__text-room-size, .search-result .news-card__body .news-card__text-sleeps-number {
+  display: inline-block;
+  font-weight: 400;
+  margin-right: 2rem; }
+  .search-result .news-card__body .news-card__text-price:last-child, .search-result .news-card__body .news-card__text-room-size:last-child, .search-result .news-card__body .news-card__text-sleeps-number:last-child {
+    margin-right: 0; }
+  .search-result .news-card__body .news-card__text-price i, .search-result .news-card__body .news-card__text-room-size i, .search-result .news-card__body .news-card__text-sleeps-number i {
+    margin-right: 0.25rem; }
 
 .contacts {
   display: grid;
