@@ -110,11 +110,15 @@ class RoomSearchViewTest(TestCase):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "hotel/room_search.html")
-        self.assertEquals([self.room1, self.room2], list(response.context['object_list']))
+        self.assertQuerysetEqual(
+            response.context.get('object_list'),
+            map(repr, [self.room1, self.room2]),
+            ordered=False
+        )
 
     def test_get_request_without_date(self):
         error_message = "" \
-                        "Введите дату заезда и выезда, чтобы мы могли показать вам " \
+                        "Введите дату заезда и выезда, чтобы мы могли показать Вам " \
                         "доступные в это время номера"
         response = self.client.get(
             self.url,
@@ -130,7 +134,10 @@ class RoomSearchViewTest(TestCase):
             }
         )
         self.assertEqual(response.status_code, 200)
-        self.assertEquals([self.room2], list(response.context['object_list']))
+        self.assertQuerysetEqual(
+            response.context.get('object_list'),
+            map(repr, [self.room2])
+        )
 
     def test_get_request_with_visitors(self):
         response = self.client.get(
@@ -138,7 +145,10 @@ class RoomSearchViewTest(TestCase):
             {"visitors": "2"}
         )
         self.assertEqual(response.status_code, 200)
-        self.assertEquals([self.room1], list(response.context['object_list']))
+        self.assertQuerysetEqual(
+            response.context.get('object_list'),
+            map(repr, [self.room1])
+        )
 
     def test_get_request_with_price(self):
         response = self.client.get(
@@ -146,4 +156,7 @@ class RoomSearchViewTest(TestCase):
             {"price": "10000"}
         )
         self.assertEqual(response.status_code, 200)
-        self.assertEquals([self.room2], list(response.context['object_list']))
+        self.assertQuerysetEqual(
+            response.context.get('object_list'),
+            map(repr, [self.room2])
+        )
