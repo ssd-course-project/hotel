@@ -3,7 +3,6 @@ import datetime
 from django.contrib.auth.models import User
 from django.test import TestCase, Client
 from django.urls import reverse
-from django.utils import timezone
 from freezegun import freeze_time
 
 from analytics.models import RoomBooking
@@ -76,7 +75,6 @@ class RoomBookingFormTest(TestCase):
 class RoomSearchViewTest(TestCase):
 
     def setUp(self):
-        self.client = Client()
         self.url = reverse('room_search')
         self.user = User.objects.create(
             username='testuser',
@@ -101,28 +99,18 @@ class RoomSearchViewTest(TestCase):
             sleeps_number=3,
             main_picture='../hotel/static/vendors/images/general/background.png'
         )
-        self.booking1 = RoomBooking.objects.create(
+        self.booking = RoomBooking.objects.create(
             room=self.room1,
             renter=self.renter,
             check_in_date=datetime.date(2019, 4, 21),
             check_out_date=datetime.date(2019, 4, 25)
-        )
-        self.booking2 = RoomBooking.objects.create(
-            room=self.room2,
-            renter=self.client,
-            check_in_date=datetime.date(2019, 5, 21),
-            check_out_date=datetime.date(2019, 5, 25)
         )
 
     def test_general_get_request(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "hotel/room_search.html")
-        self.assertQuerysetEqual(
-            response.context['rooms'],
-            ['<Room: Номер 20м2 на 2 человек>', '<Room: Номер 20м2 на 3 человек>'],
-            ordered=False
-        )
+        self.assertEquals([self.room1, self.room2], list(response.context['object_list']))
 
     def test_get_request_without_date(self):
         error_message = "" \
@@ -130,23 +118,19 @@ class RoomSearchViewTest(TestCase):
                         "доступные в это время номера"
         response = self.client.get(
             self.url,
-            {"check_in_date": "2019-04-21"}
+            {"check_in_date": datetime.date(2019, 4, 21)}
         )
         self.assertEqual(error_message, response.context_data.get('error_message'))
-        # self.assertQuerysetEqual(response.context['rooms'], [])
 
     def test_get_request_with_dates(self):
         response = self.client.get(
             self.url, {
-                "check_in_date": "2019-04-21",
-                "check_out_date": "2019-04-25"
+                "check_in": "22.04.2019",
+                "check_out": "24.04.2019"
             }
         )
         self.assertEqual(response.status_code, 200)
-        # self.assertQuerysetEqual(
-        #     response.context['rooms'],
-        #     ['<Room: Номер 20м2 на 2 человек>']
-        # )
+        self.assertEquals([self.room2], list(response.context['object_list']))
 
     def test_get_request_with_visitors(self):
         response = self.client.get(
@@ -154,10 +138,7 @@ class RoomSearchViewTest(TestCase):
             {"visitors": "2"}
         )
         self.assertEqual(response.status_code, 200)
-        self.assertQuerysetEqual(
-            response.context['rooms'],
-            ['<Room: Номер 20м2 на 2 человек>']
-        )
+        self.assertEquals([self.room1], list(response.context['object_list']))
 
     def test_get_request_with_price(self):
         response = self.client.get(
@@ -165,7 +146,4 @@ class RoomSearchViewTest(TestCase):
             {"price": "10000"}
         )
         self.assertEqual(response.status_code, 200)
-        self.assertQuerysetEqual(
-            response.context['rooms'],
-            ['<Room: Номер 20м2 на 3 человек>']
-        )
+        self.assertEquals([self.room2], list(response.context['object_list']))
