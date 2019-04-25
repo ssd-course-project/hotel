@@ -118,7 +118,7 @@ class RoomSearchViewTest(TestCase):
                         "доступные в это время номера"
         response = self.client.get(
             self.url,
-            {"check_in_date": datetime.date(2019, 4, 21)}
+            {"check_in": "22.04.2019"}
         )
         self.assertEqual(error_message, response.context_data.get('error_message'))
 
