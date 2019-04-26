@@ -1,7 +1,7 @@
 import datetime
 
 from django.contrib.auth.models import User
-from django.test import TestCase, Client
+from django.test import TestCase
 from django.urls import reverse
 from freezegun import freeze_time
 
