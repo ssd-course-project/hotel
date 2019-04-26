@@ -129,5 +129,12 @@ def contacts(request):
     return render(request, 'general/contacts.html')
 
 
+def error(request):
+    error_message = "" \
+        "Вы не являетесь клиентом отеля. Пожалуйста, " \
+        "авторизируйтесь или зарегистрируйтесь как клиент"
+    return render(request, 'general/error.html', {'error_message': error_message})
+
+
 def components(request):
     return render(request, 'general/components.html')

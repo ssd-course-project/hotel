@@ -489,6 +489,12 @@ p.value {
   .about .news-card__text:last-child {
     margin-bottom: 0; }
 
+.error__content {
+  background-color: #e75735;
+  color: #fff; }
+  .error__content .validation-error {
+    font-weight: 400; }
+
 .btn {
   -webkit-border-radius: 0.1875rem;
   -moz-border-radius: 0.1875rem;
