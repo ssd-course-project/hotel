@@ -63,4 +63,12 @@ $(document).ready(function() {
     $('#search-check-out').click(function () {
         $('.photo__search-check-out').datepicker("show");
     });
+
+    $('#search-check-in').click(function () {
+        $('.search__check-in').datepicker("show");
+    });
+
+    $('#search-check-out').click(function () {
+        $('.search__check-out').datepicker("show");
+    });
 });

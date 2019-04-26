@@ -29,7 +29,7 @@ class RoomSearchView(generic.ListView):
         check_out = self.request.GET.get('check_out')
         if not all((check_in, check_out)):
             error_message = "" \
-                "Введите дату заезда и выезда, чтобы мы могли показать вам " \
+                "Введите дату заезда и выезда, чтобы мы могли показать Вам " \
                 "доступные в это время номера"
             context['error_message'] = error_message
         return context
