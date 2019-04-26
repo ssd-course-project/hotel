@@ -118,27 +118,36 @@ class RoomSearchViewTest(TestCase):
 
     def test_get_request_without_date(self):
         error_message = "" \
-                        "Введите дату заезда и выезда, чтобы мы могли показать Вам " \
-                        "доступные в это время номера"
-        response = self.client.get(
-            self.url,
-            {"check_in": "22.04.2019"}
+                        "Введите дату заезда и выезда, чтобы мы могли " \
+                        "показать Вам доступные в это время номера"
+        with freeze_time("2019-04-21"):
+            response = self.client.get(
+                self.url,
+                {"check_in": "22.04.2019"}
+            )
+        self.assertEqual(
+            error_message,
+            response.context_data.get('error_message')
         )
-        self.assertEqual(error_message, response.context_data.get('error_message'))
+        self.assertQuerysetEqual(
+            response.context.get('object_list'),
+            map(repr, [self.room1, self.room2]),
+            ordered=False
+        )
 
     def test_get_request_with_dates(self):
-        response = self.client.get(
-            self.url, {
-                "check_in": "22.04.2019",
-                "check_out": "24.04.2019"
-            }
-        )
         with freeze_time("2019-04-21"):
-            self.assertEqual(response.status_code, 200)
-            self.assertQuerysetEqual(
-                response.context.get('object_list'),
-                map(repr, [self.room2])
+            response = self.client.get(
+                self.url, {
+                    "check_in": "22.04.2019",
+                    "check_out": "24.04.2019"
+                }
             )
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(
+            response.context.get('object_list'),
+            map(repr, [self.room2])
+        )
 
     def test_get_request_with_visitors(self):
         response = self.client.get(
