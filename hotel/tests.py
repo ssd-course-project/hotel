@@ -170,3 +170,48 @@ class RoomSearchViewTest(TestCase):
             response.context.get('object_list'),
             map(repr, [self.room2])
         )
+
+
+class RoomBookingViewTest(TestCase):
+
+    def setUp(self):
+        self.user = User.objects.create(
+            username='usertest',
+            email='test1@test.com',
+            password='ABC123',
+        )
+        self.renter = Client.objects.create(
+            user=self.user,
+            name='test1',
+            phone=89882445511,
+            email='test1@test.com'
+        )
+        self.room = Room.objects.create(
+            title='testRoom',
+            price=1000,
+            sleeps_number=2,
+            rooms_number=1,
+            main_picture='../hotel/static/vendors/images/general/background.png'
+        )
+        self.booking = RoomBooking.objects.create(
+            room=self.room,
+            renter=self.renter,
+            check_in_date=datetime.date(2019, 4, 21),
+            check_out_date=datetime.date(2019, 4, 23)
+        )
+
+    def test_room_unavailable(self):
+        with freeze_time("2019-04-21"):
+            room_status = self.room.room_status(
+                datetime.date(2019, 4, 21),
+                datetime.date(2019, 4, 23)
+            )
+        self.assertTrue(room_status == self.room.BOOKED_STATUS)
+
+    def test_room_available(self):
+        with freeze_time("2019-04-21"):
+            room_status = self.room.room_status(
+                datetime.date(2019, 4, 24),
+                datetime.date(2019, 4, 25)
+            )
+        self.assertTrue(room_status == self.room.AVAILABLE_STATUS)
