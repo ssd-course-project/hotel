@@ -215,3 +215,38 @@ class RoomBookingViewTest(TestCase):
                 datetime.date(2019, 4, 25)
             )
         self.assertTrue(room_status == self.room.AVAILABLE_STATUS)
+
+    def test_room_unavailable1(self):
+        with freeze_time("2019-04-21"):
+            room_status = self.room.room_status(
+                datetime.date(2019, 4, 20),
+                datetime.date(2019, 4, 24)
+            )
+        self.assertTrue(room_status == self.room.BOOKED_STATUS)
+
+    def test_room_unavailable2(self):
+        with freeze_time("2019-04-21"):
+            room_status = self.room.room_status(
+                datetime.date(2019, 4, 20),
+                datetime.date(2019, 4, 22)
+            )
+        self.assertTrue(room_status == self.room.BOOKED_STATUS)
+
+    def test_room_unavailable3(self):
+        with freeze_time("2019-04-21"):
+            room_status = self.room.room_status(
+                datetime.date(2019, 4, 22),
+                datetime.date(2019, 4, 24)
+            )
+        self.assertTrue(room_status == self.room.BOOKED_STATUS)
+
+    def test_room_available2(self):
+        with freeze_time("2019-04-21"):
+            room_status = self.room.room_status(
+                datetime.date(2019, 4, 19),
+                datetime.date(2019, 4, 20)
+            )
+        self.assertTrue(room_status == self.room.AVAILABLE_STATUS)
+
+
+
