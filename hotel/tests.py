@@ -247,6 +247,3 @@ class RoomBookingViewTest(TestCase):
                 datetime.date(2019, 5, 20)
             )
         self.assertTrue(room_status == self.room.AVAILABLE_STATUS)
-
-
-
