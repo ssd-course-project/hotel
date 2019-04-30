@@ -196,55 +196,55 @@ class RoomBookingViewTest(TestCase):
         self.booking = RoomBooking.objects.create(
             room=self.room,
             renter=self.renter,
-            check_in_date=datetime.date(2019, 4, 21),
-            check_out_date=datetime.date(2019, 4, 23)
+            check_in_date=datetime.date(2019, 5, 21),
+            check_out_date=datetime.date(2019, 5, 23)
         )
 
-    def test_room_unavailable(self):
-        with freeze_time("2019-04-21"):
+    def test_room_status_with_same_as_existing_booking_date(self):
+        with freeze_time("2019-05-11"):
             room_status = self.room.room_status(
-                datetime.date(2019, 4, 21),
-                datetime.date(2019, 4, 23)
+                datetime.date(2019, 5, 21),
+                datetime.date(2019, 5, 23)
             )
         self.assertTrue(room_status == self.room.BOOKED_STATUS)
 
-    def test_room_available(self):
-        with freeze_time("2019-04-21"):
+    def test_room_status_after_booking_dates(self):
+        with freeze_time("2019-05-11"):
             room_status = self.room.room_status(
-                datetime.date(2019, 4, 24),
-                datetime.date(2019, 4, 25)
+                datetime.date(2019, 5, 24),
+                datetime.date(2019, 5, 25)
             )
         self.assertTrue(room_status == self.room.AVAILABLE_STATUS)
 
-    def test_room_unavailable1(self):
-        with freeze_time("2019-04-21"):
+    def test_room_status_outside_booking_dates(self):
+        with freeze_time("2019-05-11"):
             room_status = self.room.room_status(
-                datetime.date(2019, 4, 20),
-                datetime.date(2019, 4, 24)
+                datetime.date(2019, 5, 20),
+                datetime.date(2019, 5, 24)
             )
         self.assertTrue(room_status == self.room.BOOKED_STATUS)
 
-    def test_room_unavailable2(self):
-        with freeze_time("2019-04-21"):
+    def test_room_status_between_the_first_booking_date(self):
+        with freeze_time("2019-05-11"):
             room_status = self.room.room_status(
-                datetime.date(2019, 4, 20),
-                datetime.date(2019, 4, 22)
+                datetime.date(2019, 5, 20),
+                datetime.date(2019, 5, 22)
             )
         self.assertTrue(room_status == self.room.BOOKED_STATUS)
 
-    def test_room_unavailable3(self):
-        with freeze_time("2019-04-21"):
+    def test_room_status_between_the_second_booking_date(self):
+        with freeze_time("2019-05-11"):
             room_status = self.room.room_status(
-                datetime.date(2019, 4, 22),
-                datetime.date(2019, 4, 24)
+                datetime.date(2019, 5, 22),
+                datetime.date(2019, 5, 24)
             )
         self.assertTrue(room_status == self.room.BOOKED_STATUS)
 
-    def test_room_available2(self):
-        with freeze_time("2019-04-21"):
+    def test_room_status_before_booking_dates(self):
+        with freeze_time("2019-05-11"):
             room_status = self.room.room_status(
-                datetime.date(2019, 4, 19),
-                datetime.date(2019, 4, 20)
+                datetime.date(2019, 5, 19),
+                datetime.date(2019, 5, 20)
             )
         self.assertTrue(room_status == self.room.AVAILABLE_STATUS)
 
