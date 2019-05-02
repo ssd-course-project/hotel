@@ -18,7 +18,8 @@
                 <p class="label">Email</p>
                 <p class="value">{{ client.email }}</p>
             </div>
-            {% else %}
+            {% endif %}
+            {% if admin %}
             <div class="content__block">
                 <p class="value">Вы администратор</p>
             </div>
