@@ -8,20 +8,19 @@
             <li>личные данные</li>
             <li>бронирования</li>
         </ul>
-        <div class="content tabs__body">
+         <div class="content tabs__body">
             {% if client %}
             <div class="content__list">
+                {% if user.is_superuser %}
+                    <p class="label">Роль</p>
+                    <p class="value">Администратор</p>
+                {% endif %}
                 <p class="label">Имя</p>
                 <p class="value">{{ client.name }}</p>
                 <p class="label">Телефон</p>
                 <p class="value">{{ client.phone }}</p>
                 <p class="label">Email</p>
                 <p class="value">{{ client.email }}</p>
-            </div>
-            {% endif %}
-            {% if admin %}
-            <div class="content__block">
-                <p class="value">Вы администратор</p>
             </div>
             {% endif %}
             <div class="content__list"></div>

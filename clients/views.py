@@ -22,12 +22,6 @@ class ProfileView(generic.TemplateView):
         context = super().get_context_data(**kwargs)
         user = self.request.user
 
-        if user and not any((user.is_superuser, user.is_staff)):
-            try:
-                context['client'] = Client.objects.get(user=user)
-            except Client.DoesNotExist:
-                raise ValidationError("You are not our client!")
-
         if user:
             try:
                 client = Client.objects.get(user=user)
