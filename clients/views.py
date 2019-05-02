@@ -30,7 +30,7 @@ class ProfileView(generic.TemplateView):
                     client = Client.objects.create(
                         user=user,
                         name="Admin {}".format(user.username),
-                        phone=+71111111111,
+                        phone="+71111111111",
                         email=user.email
                     )
                 else:
