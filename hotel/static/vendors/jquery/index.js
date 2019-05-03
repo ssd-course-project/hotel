@@ -1,5 +1,8 @@
 $(function(){
     $("body").fadeIn(1000);
+
+    $(".header").fadeIn().css({top:-52, position:'relative'}).animate({top:0}, 500, function() {});
+
     $(".container").fadeIn().css({top:100, position:'relative'}).animate({top:0}, 500, function() {});
 
     $(window).scroll( function(){

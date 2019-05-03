@@ -214,15 +214,19 @@ p.value {
     top: 65%; }
     .photo__search [class^='photo__search-'] {
       display: inline-block; }
-    .photo__search-visitors, .photo__search-input {
+    .photo__search-input {
+      width: 17.5rem;
+      margin-right: 1rem;
+      top: 0.625rem; }
+    .photo__search-visitors {
       width: 17.5rem;
       margin-right: 1rem; }
     .photo__search-button {
       margin-left: 1rem; }
-  .photo .select2-container {
-    top: -0.625rem; }
-    .photo .select2-container .select2-selection--single {
-      height: 29px !important; }
+  .photo .container {
+    margin: 0 auto; }
+  .photo .select2-selection--single {
+    height: 29px !important; }
 
 .description {
   background-color: #e5e5e5; }
@@ -277,7 +281,7 @@ p.value {
     .map #map .map-balloon__title {
       padding-right: 3rem; }
 
-.photo__container, .description__container, .rooms, .map #map .map-balloon__container {
+.description__container, .rooms, .map #map .map-balloon__container {
   margin: 0 auto;
   max-width: 73rem; }
 
