@@ -118,7 +118,7 @@ class RoomBookingView(generic.FormView):
         try:
             return Room.objects.get(id=self.kwargs.get('pk'))
         except Room.DoesNotExist:
-            raise Http404("Room does not exist")
+            raise Http404
 
 
 def about(request):
@@ -133,7 +133,7 @@ def error(request):
     error_message = "" \
         "Вы не являетесь клиентом отеля. Пожалуйста, " \
         "авторизируйтесь или зарегистрируйтесь как клиент"
-    return render(request, 'general/error.html', {'error_message': error_message})
+    return render(request, 'general/templates/404.html', {'error_message': error_message})
 
 
 def components(request):
