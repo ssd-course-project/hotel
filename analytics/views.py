@@ -12,6 +12,12 @@ class FeedbackNew(generic.CreateView):
     fields = ('rating', 'text')
     success_url = '/'
 
+    def dispatch(self, *args, **kwargs):
+        client = Client.objects.get(user=self.request.user)
+        if not client.booking.all().exists():
+            return redirect('feedback_list')
+        return super().dispatch(*args, **kwargs)
+
     def form_valid(self, form):
         feedback = form.save(commit=False)
         user = self.request.user
@@ -24,7 +30,18 @@ class FeedbackNew(generic.CreateView):
         return super().form_valid(form)
 
 
-class FeedbackList(generic.ListView):
-    model = Feedback
+class FeedbackList(generic.TemplateView):
     template_name = "feedbacks/feedback_list.html"
-    context_object_name = 'feedbacks'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+
+        if user and not any((user.is_superuser, user.is_staff)):
+            client = Client.objects.get(user=user)
+            bookings = client.booking.all()
+            context['client_has_made_booking'] = bookings.exists()
+
+        context['feedbacks'] = Feedback.objects.all()
+        return context
+

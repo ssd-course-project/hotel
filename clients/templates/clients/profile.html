@@ -6,7 +6,8 @@
     <div class="tabs">
         <ul class="tabs__head">
             <li>личные данные</li>
-            <li>бронирования</li>
+            <li>текущие бронирования</li>
+            <li>история бронирования</li>
         </ul>
         <div class="content tabs__body">
             {% if client %}
@@ -23,7 +24,39 @@
                 <p class="value">{{ client.email }}</p>
             </div>
             {% endif %}
-            <div class="content__list"></div>
+            <div>
+                {% for booking in current_bookings %}
+                    <div class="content__list content__booking_item">
+                        <p class="label">Номер</p>
+                        <p class="value">{{ booking.room.title }}</p>
+                        <p class="label">Дата начала бронирования</p>
+                        <p class="value">{{ booking.check_in_date }}</p>
+                        <p class="label">Дата окончания бронирования</p>
+                        <p class="value">{{ booking.check_out_date }}</p>
+                    </div>
+                {% empty %}
+                    <div class="content__block">
+                        <p class="value">Отсутствуют текущие бронирования</p>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div>
+                {% for booking in bookings_archive %}
+                    <div class="content__list">
+                        <p class="label">Номер</p>
+                        <p class="value">{{ booking.room.title }}</p>
+                        <p class="label">Дата начала бронирования</p>
+                        <p class="value">{{ booking.check_in_date }}</p>
+                        <p class="label">Дата окончания бронирования</p>
+                        <p class="value">{{ booking.check_out_date }}</p>
+                    </div>
+                {% empty %}
+                    <div class="content__block">
+                        <p class="value">История бронирований пуста</p>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>

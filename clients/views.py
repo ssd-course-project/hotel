@@ -1,9 +1,12 @@
 from django.core.exceptions import ValidationError
 from django.views import generic
+from django.db.models import Q
 
 from clients.forms import RegistrationForm
 from clients.models import Client
 from django.shortcuts import redirect
+
+import datetime
 
 
 class RegisterView(generic.FormView):
@@ -22,6 +25,23 @@ class ProfileView(generic.TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
+
+        if user and not any((user.is_superuser, user.is_staff)):
+            try:
+                client = Client.objects.get(user=user)
+                now = datetime.date.today()
+                current_bookings = client.booking.filter(Q(is_cancelled=False)
+                                                         & Q(check_out_date__gte=now))
+                bookings_archive = client.booking.filter(Q(is_cancelled=True)
+                                                         | Q(check_out_date__lt=now))
+
+                context['client'] = client
+                context['current_bookings'] = current_bookings
+                context['bookings_archive'] = bookings_archive
+            except:
+                pass
+
+            return context
 
         if user:
             try:
