@@ -103,7 +103,10 @@ class RoomBookingView(generic.FormView):
         try:
             client = Client.objects.get(user=user)
         except Client.DoesNotExist:
-            raise forms.ValidationError("You are not our client!")
+            error_message = "" \
+                            "Вы не являетесь клиентом отеля. Пожалуйста, " \
+                            "авторизируйтесь или зарегистрируйтесь как клиент"
+            return render('general/error.html', error_message)
 
         RoomBooking.objects.create(
             room=room,
@@ -127,6 +130,13 @@ def about(request):
 
 def contacts(request):
     return render(request, 'general/contacts.html')
+
+
+def error(request):
+    error_message = "" \
+        "Вы не являетесь клиентом отеля. Пожалуйста, " \
+        "авторизируйтесь или зарегистрируйтесь как клиент"
+    return render(request, 'general/error.html', {'error_message': error_message})
 
 
 def components(request):

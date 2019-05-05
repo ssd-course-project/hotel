@@ -34,7 +34,10 @@ class ProfileView(generic.TemplateView):
                         email=user.email
                     )
                 else:
-                    raise ValidationError("You are not our client!")
+                    error_message = "" \
+                                    "Вы не являетесь клиентом отеля. Пожалуйста, " \
+                                    "авторизируйтесь или зарегистрируйтесь как клиент"
+                    return render('general/error.html', error_message)
             context['client'] = client
 
         return context

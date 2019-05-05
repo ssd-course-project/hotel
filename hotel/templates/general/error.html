@@ -1,0 +1,10 @@
+{% extends 'general/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 class="container__title">ошибка</h2>
+    <div class="content error__content">
+         <p class="validation-error">{{ error_message }}</p>
+    </div>
+</div>
+{% endblock %}
