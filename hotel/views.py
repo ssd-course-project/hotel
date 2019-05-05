@@ -4,6 +4,7 @@ from django import forms
 from django.http import Http404
 from django.shortcuts import render
 from django.views import generic
+from django.shortcuts import redirect
 
 from analytics.models import RoomBooking
 from clients.models import Client
