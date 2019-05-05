@@ -3,6 +3,7 @@ from django.views import generic
 from analytics.models import Feedback
 from clients.models import Client
 from hotel import forms
+from django.shortcuts import redirect
 
 
 class FeedbackNew(generic.CreateView):
@@ -17,7 +18,7 @@ class FeedbackNew(generic.CreateView):
         try:
             client = Client.objects.get(user=user)
         except Client.DoesNotExist:
-            raise forms.ValidationError("You are not our client!")
+            return redirect('error')
         feedback.author = client
         feedback.save()
         return super().form_valid(form)

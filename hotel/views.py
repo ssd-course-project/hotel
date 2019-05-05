@@ -4,6 +4,7 @@ from django import forms
 from django.http import Http404
 from django.shortcuts import render
 from django.views import generic
+from django.shortcuts import redirect
 
 from analytics.models import RoomBooking
 from clients.models import Client
@@ -103,7 +104,7 @@ class RoomBookingView(generic.FormView):
         try:
             client = Client.objects.get(user=user)
         except Client.DoesNotExist:
-            raise forms.ValidationError("You are not our client!")
+            return redirect('error')
 
         RoomBooking.objects.create(
             room=room,
@@ -118,7 +119,7 @@ class RoomBookingView(generic.FormView):
         try:
             return Room.objects.get(id=self.kwargs.get('pk'))
         except Room.DoesNotExist:
-            raise Http404("Room does not exist")
+            raise Http404
 
 
 def about(request):
