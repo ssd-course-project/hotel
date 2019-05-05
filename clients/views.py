@@ -3,6 +3,7 @@ from django.views import generic
 
 from clients.forms import RegistrationForm
 from clients.models import Client
+from django.shortcuts import redirect
 
 
 class RegisterView(generic.FormView):
@@ -34,10 +35,13 @@ class ProfileView(generic.TemplateView):
                         email=user.email
                     )
                 else:
-                    error_message = "" \
-                                    "Вы не являетесь клиентом отеля. Пожалуйста, " \
-                                    "авторизируйтесь или зарегистрируйтесь как клиент"
-                    return render('general/error.html', error_message)
+                    return None
+
             context['client'] = client
 
         return context
+
+    def render_to_response(self, context, **response_kwargs):
+        if context is None:
+            return redirect('error')
+        return super().render_to_response(context, **response_kwargs)

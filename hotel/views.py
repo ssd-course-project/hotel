@@ -103,10 +103,7 @@ class RoomBookingView(generic.FormView):
         try:
             client = Client.objects.get(user=user)
         except Client.DoesNotExist:
-            error_message = "" \
-                            "Вы не являетесь клиентом отеля. Пожалуйста, " \
-                            "авторизируйтесь или зарегистрируйтесь как клиент"
-            return render('general/error.html', error_message)
+            return redirect('error')
 
         RoomBooking.objects.create(
             room=room,
