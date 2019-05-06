@@ -12,11 +12,17 @@ class FeedbackNew(generic.CreateView):
     fields = ('rating', 'text')
     success_url = '/'
 
-    def dispatch(self, *args, **kwargs):
-        client = Client.objects.get(user=self.request.user)
-        if not client.booking.all().exists():
+    def user_is_permitted_to_leave_feedback(self):
+        try:
+            client = Client.objects.get(user=self.request.user)
+        except Client.DoesNotExist:
+            return False
+        return client.booking.all().exists()
+
+    def get(self, request, *args, **kwargs):
+        if not self.user_is_permitted_to_leave_feedback():
             return redirect('feedback_list')
-        return super().dispatch(*args, **kwargs)
+        return super().get(request, *args, **kwargs)
 
     def form_valid(self, form):
         feedback = form.save(commit=False)
@@ -37,10 +43,12 @@ class FeedbackList(generic.TemplateView):
         context = super().get_context_data(**kwargs)
         user = self.request.user
 
-        if user and not any((user.is_superuser, user.is_staff)):
-            client = Client.objects.get(user=user)
-            bookings = client.booking.all()
-            context['client_has_made_booking'] = bookings.exists()
+        if user and not any((user.is_superuser, user.is_staff, user.is_anonymous)):
+            try:
+                client = Client.objects.get(user=user)
+                context['client_has_made_booking'] = client.booking.all().exists()
+            except Client.DoesNotExists:
+                context['client_has_made_booking'] = False
 
         context['feedbacks'] = Feedback.objects.all()
         return context

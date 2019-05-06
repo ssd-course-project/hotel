@@ -26,21 +26,20 @@ class ProfileView(generic.TemplateView):
         context = super().get_context_data(**kwargs)
         user = self.request.user
 
-        if user and not any((user.is_superuser, user.is_staff)):
+        if user and not any((user.is_superuser, user.is_staff, user.is_anonymous)):
             try:
                 client = Client.objects.get(user=user)
+            except Client.DoesNotExst:
+                client = None
+
+            if client:
                 now = datetime.date.today()
-                current_bookings = client.booking.filter(Q(is_cancelled=False)
-                                                         & Q(check_out_date__gte=now))
-                bookings_archive = client.booking.filter(Q(is_cancelled=True)
-                                                         | Q(check_out_date__lt=now))
+                current_bookings = client.booking.filter(check_out_date__gte=now)
+                current_archive = client.booking.filter(check_out_date__lt=now)
 
                 context['client'] = client
                 context['current_bookings'] = current_bookings
-                context['bookings_archive'] = bookings_archive
-            except:
-                pass
-
+                context['current_archive'] = current_archive
             return context
 
         if user:

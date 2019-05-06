@@ -57,10 +57,6 @@ class RoomBooking(models.Model):
         auto_now_add=True,
         verbose_name='Время бронирования'
     )
-    is_cancelled = models.BooleanField(
-        default=False,
-        verbose_name='Отменен'
-    )
 
     class Meta:
         verbose_name = 'Бронирование номера'
