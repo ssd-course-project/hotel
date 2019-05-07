@@ -57,7 +57,6 @@ class RoomBooking(models.Model):
         auto_now_add=True,
         verbose_name='Время бронирования'
     )
-
     class Meta:
         verbose_name = 'Бронирование номера'
         verbose_name_plural = 'Бронирования номеров'

@@ -12,13 +12,6 @@ class FeedbackNew(generic.CreateView):
     fields = ('rating', 'text')
     success_url = '/'
 
-    def user_is_permitted_to_leave_feedback(self):
-        try:
-            client = Client.objects.get(user=self.request.user)
-        except Client.DoesNotExist:
-            return False
-        return client.booking.all().exists()
-
     def get(self, request, *args, **kwargs):
         if not self.user_is_permitted_to_leave_feedback():
             return redirect('feedback_list')
@@ -35,6 +28,18 @@ class FeedbackNew(generic.CreateView):
         feedback.save()
         return super().form_valid(form)
 
+    def is_user_permitted_to_leave_feedback(self):
+        user = self.request.user
+        try:
+            client = Client.objects.get(user=user)
+        except Client.DoesNotExist:
+            return None
+
+        if any((not client, user.is_superuser, user.is_staff)):
+            return False
+        else:
+            client.booking.all().exists()
+
 
 class FeedbackList(generic.TemplateView):
     template_name = "feedbacks/feedback_list.html"
@@ -43,13 +48,13 @@ class FeedbackList(generic.TemplateView):
         context = super().get_context_data(**kwargs)
         user = self.request.user
 
-        if user and not any((user.is_superuser, user.is_staff, user.is_anonymous)):
+        if not any((user.is_superuser, user.is_staff, user.is_anonymous)):
             try:
                 client = Client.objects.get(user=user)
-                context['client_has_made_booking'] = client.booking.all().exists()
             except Client.DoesNotExists:
-                context['client_has_made_booking'] = False
+                client = None
 
-        context['feedbacks'] = Feedback.objects.all()
+            context['client_has_made_booking'] = client.booking.all().exists() if client else False
+            context['feedbacks'] = Feedback.objects.all()
+
         return context
-
