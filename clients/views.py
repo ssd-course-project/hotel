@@ -25,27 +25,26 @@ class ProfileView(generic.TemplateView):
         context = super().get_context_data(**kwargs)
         user = self.request.user
 
-        if user:
-            try:
-                client = Client.objects.get(user=user)
-            except Client.DoesNotExist:
-                if any((user.is_superuser, user.is_staff, user.is_anonymous)):
-                    client = Client.objects.create(
-                        user=user,
-                        name="Admin {}".format(user.username),
-                        phone="+71111111111",
-                        email=user.email
-                    )
-                else:
-                    return context
+        try:
+            client = Client.objects.get(user=user)
+        except Client.DoesNotExist:
+            if any((user.is_superuser, user.is_staff)):
+                client = Client.objects.create(
+                    user=user,
+                    name="Admin {}".format(user.username),
+                    phone="+71111111111",
+                    email=user.email
+                )
+            else:
+                return None
 
-            now = date.today()
-            current_bookings = client.booking.filter(check_out_date__gte=now)
-            current_archive = client.booking.filter(check_out_date__lt=now)
+        now = date.today()
+        current_bookings = client.booking.filter(check_out_date__gte=now)
+        current_archive = client.booking.filter(check_out_date__lt=now)
 
-            context['client'] = client
-            context['current_bookings'] = current_bookings
-            context['current_archive'] = current_archive
+        context['client'] = client
+        context['current_bookings'] = current_bookings
+        context['current_archive'] = current_archive
 
         return context
 
