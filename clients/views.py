@@ -5,6 +5,8 @@ from clients.forms import RegistrationForm
 from clients.models import Client
 from django.shortcuts import redirect
 
+from datetime import date
+
 
 class RegisterView(generic.FormView):
     template_name = 'registration/register.html'
@@ -23,21 +25,26 @@ class ProfileView(generic.TemplateView):
         context = super().get_context_data(**kwargs)
         user = self.request.user
 
-        if user:
-            try:
-                client = Client.objects.get(user=user)
-            except Client.DoesNotExist:
-                if any((user.is_superuser, user.is_staff)):
-                    client = Client.objects.create(
-                        user=user,
-                        name="Admin {}".format(user.username),
-                        phone="+71111111111",
-                        email=user.email
-                    )
-                else:
-                    return None
+        try:
+            client = Client.objects.get(user=user)
+        except Client.DoesNotExist:
+            if any((user.is_superuser, user.is_staff)):
+                client = Client.objects.create(
+                    user=user,
+                    name="Admin {}".format(user.username),
+                    phone="+71111111111",
+                    email=user.email
+                )
+            else:
+                return None
 
-            context['client'] = client
+        now = date.today()
+        current_bookings = client.booking.filter(check_out_date__gte=now).order_by('-created_at')
+        bookings_archive = client.booking.filter(check_out_date__lt=now).order_by('-created_at')
+
+        context['client'] = client
+        context['current_bookings'] = current_bookings
+        context['bookings_archive'] = bookings_archive
 
         return context
 

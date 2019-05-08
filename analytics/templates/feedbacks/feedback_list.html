@@ -25,9 +25,13 @@
     </div>
     {% endfor %}
     {% if user.is_authenticated and not user.is_superuser and not user.is_staff %}
-    <div class="user-feedback__button">
-        <a class="btn btn-green" href="{% url 'feedback_new' %}">добавить отзыв</a>
-    </div>
+        {% if client_has_made_booking %}
+            <div class="user-feedback__button">
+                <a class="btn btn-green" href="{% url 'feedback_new' %}">добавить отзыв</a>
+            </div>
+        {% else %}
+            <p>Вы не можете оставлять отзывы, пока не осуществите хотя бы одно бронирование</p>
+        {% endif %}
     {% endif %}
 </div>
 {% endblock %}
