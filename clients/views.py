@@ -39,12 +39,12 @@ class ProfileView(generic.TemplateView):
                 return None
 
         now = date.today()
-        current_bookings = client.booking.filter(check_out_date__gte=now)
-        current_archive = client.booking.filter(check_out_date__lt=now)
+        current_bookings = client.booking.filter(check_out_date__gte=now).order_by('-created_at')
+        bookings_archive = client.booking.filter(check_out_date__lt=now).order_by('-created_at')
 
         context['client'] = client
         context['current_bookings'] = current_bookings
-        context['current_archive'] = current_archive
+        context['bookings_archive'] = bookings_archive
 
         return context
 
