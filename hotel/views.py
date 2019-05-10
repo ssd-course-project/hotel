@@ -1,9 +1,10 @@
 from datetime import datetime
 
+from django.core.exceptions import PermissionDenied
 from django import forms
 from django.http import Http404
 from django.shortcuts import render
-from django.views import generic
+from django.views import generic, View
 from django.shortcuts import redirect
 
 from analytics.models import RoomBooking
@@ -139,3 +140,21 @@ def error(request):
 
 def components(request):
     return render(request, 'general/components.html')
+
+
+class CancelBookingView(View):
+    def post(self, request, booking_id, *args, **kwargs):
+        try:
+            booking = RoomBooking.objects.get(id=booking_id)
+        except RoomBooking.DoesNotExist:
+            raise Http404
+        try:
+            client = Client.objects.get(user=request.user)
+        except Client.DoesNotExist:
+            client = None
+        if booking.renter == client:
+            booking.is_cancelled = True
+            booking.save()
+            return redirect('base_profile')
+        else:
+            raise PermissionDenied()

@@ -10,9 +10,4 @@ urlpatterns = [
         login_required(views.ProfileView.as_view()),
         name='base_profile'
     ),
-    path(
-        'accounts/cancel_booking/<int:booking_id>',
-        login_required(views.CancelBooking.as_view()),
-        name='cancel_booking'
-    )
 ]

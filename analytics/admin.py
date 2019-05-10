@@ -13,7 +13,8 @@ class RoomBookingAdmin(admin.ModelAdmin):
         'renter',
         'check_in_date',
         'check_out_date',
-        'created_at'
+        'created_at',
+        'is_cancelled'
     )
     readonly_fields = (
         'room',
@@ -26,4 +27,3 @@ class RoomBookingAdmin(admin.ModelAdmin):
 
 admin.site.register(Feedback, FeedbackAdmin)
 admin.site.register(RoomBooking, RoomBookingAdmin)
-
