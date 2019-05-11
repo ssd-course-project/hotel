@@ -1,5 +1,5 @@
-from django.core.exceptions import ValidationError
 from django.views import generic
+from django.db.models import Q
 
 from clients.forms import RegistrationForm
 from clients.models import Client
@@ -39,8 +39,10 @@ class ProfileView(generic.TemplateView):
                 return None
 
         now = date.today()
-        current_bookings = client.booking.filter(check_out_date__gte=now).order_by('-created_at')
-        bookings_archive = client.booking.filter(check_out_date__lt=now).order_by('-created_at')
+        current_bookings = client.booking.filter(Q(is_cancelled=False) &
+                                                 Q(check_out_date__gte=now)).order_by('-created_at')
+        bookings_archive = client.booking.filter(Q(is_cancelled=True) |
+                                                 Q(check_out_date__lt=now)).order_by('-created_at')
 
         context['client'] = client
         context['current_bookings'] = current_bookings

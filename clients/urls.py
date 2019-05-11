@@ -9,5 +9,5 @@ urlpatterns = [
         'accounts/profile/',
         login_required(views.ProfileView.as_view()),
         name='base_profile'
-    )
+    ),
 ]
