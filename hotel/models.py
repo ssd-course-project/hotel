@@ -3,6 +3,7 @@ from datetime import datetime
 from django.db import models
 
 from clients.models import Client
+from django.db.models import Q
 
 
 class Room(models.Model):
@@ -55,7 +56,7 @@ class Room(models.Model):
     )
 
     def actual_room_booking(self):
-        return self.booking.filter(check_out_date__gte=datetime.now())
+        return self.booking.filter(Q(check_out_date__gte=datetime.now()) & Q(is_cancelled=False))
 
     def room_status(self, desired_check_in, desired_check_out):
         bookings = self.actual_room_booking()

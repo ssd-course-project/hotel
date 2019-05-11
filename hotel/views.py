@@ -144,14 +144,17 @@ def components(request):
 
 class CancelBookingView(View):
     def post(self, request, booking_id, *args, **kwargs):
+
         try:
             booking = RoomBooking.objects.get(id=booking_id)
         except RoomBooking.DoesNotExist:
             raise Http404
+
         try:
             client = Client.objects.get(user=request.user)
         except Client.DoesNotExist:
             client = None
+
         if booking.renter == client:
             booking.is_cancelled = True
             booking.save()
