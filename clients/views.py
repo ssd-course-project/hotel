@@ -30,22 +30,24 @@ class ProfileView(generic.TemplateView):
             client = Client.objects.get(user=user)
         except Client.DoesNotExist:
             if any((user.is_superuser, user.is_staff)):
-                client = Client(
+                client = Client.objects.create(
                     user=user,
                     name="Admin {}".format(user.username),
                     phone="+71111111111",
                     email=user.email
                 )
-                all_bookings = RoomBooking.objects.all().order_by('-created_at')
-                context['all_bookings'] = all_bookings
             else:
-                return context
+                return None
 
         now = date.today()
         current_bookings = client.booking.filter(Q(is_cancelled=False) &
                                                  Q(check_out_date__gte=now)).order_by('-created_at')
         bookings_archive = client.booking.filter(Q(is_cancelled=True) |
                                                  Q(check_out_date__lt=now)).order_by('-created_at')
+
+        if any((user.is_superuser, user.is_staff)):
+            all_bookings = RoomBooking.objects.all().order_by('-created_at')
+            context['all_bookings'] = all_bookings
 
         context['client'] = client
         context['current_bookings'] = current_bookings
