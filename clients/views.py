@@ -3,6 +3,7 @@ from django.db.models import Q
 
 from clients.forms import RegistrationForm
 from clients.models import Client
+from analytics.models import RoomBooking
 from django.shortcuts import redirect
 
 from datetime import date
@@ -43,6 +44,10 @@ class ProfileView(generic.TemplateView):
                                                  Q(check_out_date__gte=now)).order_by('-created_at')
         bookings_archive = client.booking.filter(Q(is_cancelled=True) |
                                                  Q(check_out_date__lt=now)).order_by('-created_at')
+
+        if any((user.is_superuser, user.is_staff)):
+            all_bookings = RoomBooking.objects.all().order_by('-created_at')
+            context['all_bookings'] = all_bookings
 
         context['client'] = client
         context['current_bookings'] = current_bookings
