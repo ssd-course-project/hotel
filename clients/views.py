@@ -3,6 +3,7 @@ from django.db.models import Q
 
 from clients.forms import RegistrationForm
 from clients.models import Client
+from analytics.models import RoomBooking
 from django.shortcuts import redirect
 
 from datetime import date
@@ -29,14 +30,16 @@ class ProfileView(generic.TemplateView):
             client = Client.objects.get(user=user)
         except Client.DoesNotExist:
             if any((user.is_superuser, user.is_staff)):
-                client = Client.objects.create(
+                client = Client(
                     user=user,
                     name="Admin {}".format(user.username),
                     phone="+71111111111",
                     email=user.email
                 )
+                all_bookings = RoomBooking.objects.all().order_by('-created_at')
+                context['all_bookings'] = all_bookings
             else:
-                return None
+                return context
 
         now = date.today()
         current_bookings = client.booking.filter(Q(is_cancelled=False) &
