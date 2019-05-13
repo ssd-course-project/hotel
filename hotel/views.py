@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from django.core.exceptions import PermissionDenied
-from django import forms
 from django.http import Http404
 from django.shortcuts import render
 from django.views import generic, View

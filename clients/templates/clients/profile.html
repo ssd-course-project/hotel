@@ -7,12 +7,13 @@
         <ul class="tabs__head">
             <li>текущие бронирования</li>
             <li>история бронирования</li>
-            {% if all_bookings %}
+            {% if user.is_superuser or user.is_staff %}
                 <li>История бронирований клиентов</li>
             {% endif %}
             <li>личные данные</li>
         </ul>
         <div class="content tabs__body">
+            {% if current_bookings %}
             <div class="content__table">
                 <table>
                     <thead>
@@ -28,22 +29,23 @@
                             <td>{{ booking.room.title }}</td>
                             <td>{{ booking.check_in_date }} – {{ booking.check_out_date }}</td>
                             <td>
-                                <form class="content__cancel_booking_btn"
-                                      action="{% url "cancel_booking" booking_id=booking.id %}"
+                                <form action="{% url "cancel_booking" booking_id=booking.id %}"
                                       method="post">
                                     {% csrf_token %}
-                                    <input class="btn btn-sm btn-red" type="submit" value="отменить бронирование">
+                                    <input class="btn btn-red" type="submit" value="отменить">
                                 </form>
                             </td>
                         </tr>
-                    {% empty %}
-                        <tr>
-                            <td colspan="3">Отсутствуют текущие бронирования</td>
-                        </tr>
-                {% endfor %}
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>
+            {% else %}
+            <div class="content__block">
+                <p class="value">Отсутствуют текущие бронирования</p>
+            </div>
+            {% endif %}
+            {% if bookings_archive %}
             <div class="content__table">
                 <table>
                     <thead>
@@ -58,14 +60,15 @@
                             <td>{{ booking.room.title }}</td>
                             <td>{{ booking.check_in_date }} – {{ booking.check_out_date }}</td>
                         </tr>
-                    {% empty %}
-                        <tr>
-                            <td colspan="2">История бронирований пуста</td>
-                        </tr>
-                {% endfor %}
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>
+            {% else %}
+            <div class="content__block">
+                <p class="value">История бронирований пуста</p>
+            </div>
+            {% endif %}
             {% if all_bookings %}
             <div class="content__table">
                 <table>
@@ -83,13 +86,13 @@
                             <td>{{ booking.renter.name }}</td>
                             <td>{{ booking.check_in_date }} – {{ booking.check_out_date }}</td>
                         </tr>
-                    {% empty %}
-                        <tr>
-                            <td colspan="3">История бронирований клиентов пуста</td>
-                        </tr>
-                {% endfor %}
+                    {% endfor %}
                     </tbody>
                 </table>
+            </div>
+            {% else %}
+            <div class="content__block">
+                <p class="value">История бронирований клиентов пуста</p>
             </div>
             {% endif %}
             {% if client %}

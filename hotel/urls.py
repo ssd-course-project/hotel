@@ -15,9 +15,5 @@ urlpatterns = [
         'booking/<int:booking_id>/cancel',
         login_required(views.CancelBookingView.as_view()),
         name='cancel_booking'
-    ),
-    path('about/', views.about, name='about'),
-    path('contacts/', views.contacts, name='contacts'),
-    path('error/', views.error, name='error'),
-    path('success/', views.success, name='success')
+    )
 ]

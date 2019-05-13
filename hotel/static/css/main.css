@@ -348,7 +348,7 @@ p.value {
     grid-row-gap: 1rem; }
     .content__list .label {
       grid-column: 1 / 2; }
-    .content__list .value, .content__list .content__error {
+    .content__list .value, .content__list .content__error, .content__list .content__help {
       grid-column: 2 / 3; }
   .content__button {
     margin: 2rem 0 0 calc(35% + 1rem); }
@@ -524,7 +524,8 @@ p.value {
   position: relative;
   text-align: center;
   text-decoration: none;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  margin-bottom: 0.25rem; }
   .btn.disabled, .btn:disabled {
     background-color: #fff;
     color: #e5e5e5;
