@@ -141,26 +141,3 @@ class CancelBookingView(View):
             return redirect('base_profile')
         else:
             raise PermissionDenied()
-
-
-def about(request):
-    return render(request, 'general/about.html')
-
-
-def contacts(request):
-    return render(request, 'general/contacts.html')
-
-
-def error(request):
-    error_message = "" \
-        "Вы не являетесь клиентом отеля. Пожалуйста, " \
-        "авторизируйтесь или зарегистрируйтесь как клиент"
-    return render(request, 'general/error.html', {'error_message': error_message})
-
-
-def success(request):
-    return render(request, 'general/booking_success.html')
-
-
-def components(request):
-    return render(request, 'general/components.html')
