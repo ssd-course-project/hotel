@@ -69,31 +69,33 @@
                 <p class="value">История бронирований пуста</p>
             </div>
             {% endif %}
-            {% if all_bookings %}
-            <div class="content__table">
-                <table>
-                    <thead>
-                        <tr>
-                            <td class="width-50">Номер</td>
-                            <td class="width-20">Клиент</td>
-                            <td class="width-30">Период</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for booking in all_bookings %}
-                        <tr>
-                            <td>{{ booking.room.title }}</td>
-                            <td>{{ booking.renter.name }}</td>
-                            <td>{{ booking.check_in_date }} – {{ booking.check_out_date }}</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            {% else %}
-            <div class="content__block">
-                <p class="value">История бронирований клиентов пуста</p>
-            </div>
+            {% if user.is_superuser or user.is_staff %}
+                {% if all_bookings %}
+                <div class="content__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td class="width-50">Номер</td>
+                                <td class="width-20">Клиент</td>
+                                <td class="width-30">Период</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for booking in all_bookings %}
+                            <tr>
+                                <td>{{ booking.room.title }}</td>
+                                <td>{{ booking.renter.name }}</td>
+                                <td>{{ booking.check_in_date }} – {{ booking.check_out_date }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="content__block">
+                    <p class="value">История бронирований клиентов пуста</p>
+                </div>
+                {% endif %}
             {% endif %}
             {% if client %}
             <div class="content__list">
