@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from django.core.exceptions import PermissionDenied
-from django import forms
 from django.http import Http404
 from django.shortcuts import render
 from django.views import generic, View
@@ -76,7 +75,7 @@ class RoomDetailView(generic.DetailView):
 
 class RoomBookingView(generic.FormView):
     template_name = 'hotel/room_booking.html'
-    success_url = '/'
+    success_url = '/success'
     form_class = RoomBookingForm
 
     def get_context_data(self, **kwargs):
@@ -121,25 +120,6 @@ class RoomBookingView(generic.FormView):
             return Room.objects.get(id=self.kwargs.get('pk'))
         except Room.DoesNotExist:
             raise Http404
-
-
-def about(request):
-    return render(request, 'general/about.html')
-
-
-def contacts(request):
-    return render(request, 'general/contacts.html')
-
-
-def error(request):
-    error_message = "" \
-        "Вы не являетесь клиентом отеля. Пожалуйста, " \
-        "авторизируйтесь или зарегистрируйтесь как клиент"
-    return render(request, 'general/error.html', {'error_message': error_message})
-
-
-def components(request):
-    return render(request, 'general/components.html')
 
 
 class CancelBookingView(View):
