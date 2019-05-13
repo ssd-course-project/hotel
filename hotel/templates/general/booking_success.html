@@ -1,0 +1,16 @@
+{% extends 'general/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 class="container__title">подтверждение бронирования</h2>
+    <div class="content success__content">
+        <p class="validation-success">Номер успешно забронирован!</p>
+        <div class="validation-links">
+            Перейти
+            <a href="/"> на главную страницу </a>
+            или
+            <a href="{% url 'base_profile' %}"> в личный кабинет</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

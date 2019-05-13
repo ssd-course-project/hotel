@@ -76,7 +76,7 @@ class RoomDetailView(generic.DetailView):
 
 class RoomBookingView(generic.FormView):
     template_name = 'hotel/room_booking.html'
-    success_url = '/'
+    success_url = '/success'
     form_class = RoomBookingForm
 
     def get_context_data(self, **kwargs):
@@ -123,25 +123,6 @@ class RoomBookingView(generic.FormView):
             raise Http404
 
 
-def about(request):
-    return render(request, 'general/about.html')
-
-
-def contacts(request):
-    return render(request, 'general/contacts.html')
-
-
-def error(request):
-    error_message = "" \
-        "Вы не являетесь клиентом отеля. Пожалуйста, " \
-        "авторизируйтесь или зарегистрируйтесь как клиент"
-    return render(request, 'general/error.html', {'error_message': error_message})
-
-
-def components(request):
-    return render(request, 'general/components.html')
-
-
 class CancelBookingView(View):
     def post(self, request, booking_id, *args, **kwargs):
 
@@ -161,3 +142,26 @@ class CancelBookingView(View):
             return redirect('base_profile')
         else:
             raise PermissionDenied()
+
+
+def about(request):
+    return render(request, 'general/about.html')
+
+
+def contacts(request):
+    return render(request, 'general/contacts.html')
+
+
+def error(request):
+    error_message = "" \
+        "Вы не являетесь клиентом отеля. Пожалуйста, " \
+        "авторизируйтесь или зарегистрируйтесь как клиент"
+    return render(request, 'general/error.html', {'error_message': error_message})
+
+
+def success(request):
+    return render(request, 'general/booking_success.html')
+
+
+def components(request):
+    return render(request, 'general/components.html')
