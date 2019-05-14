@@ -117,30 +117,24 @@ class RoomSearchViewTest(TestCase):
         )
 
     def test_get_request_without_date(self):
-        error_message = "" \
-                        "Введите дату заезда и выезда, чтобы мы могли " \
-                        "показать Вам доступные в это время номера"
+        error_message = "Недостаточно данных для поиска или они некорректные"
         with freeze_time("2019-04-21"):
             response = self.client.get(
                 self.url,
-                {"check_in": "22.04.2019"}
+                {"check_in_date": "22.04.2019"}
             )
+
         self.assertEqual(
             error_message,
-            response.context_data.get('error_message')
-        )
-        self.assertQuerysetEqual(
-            response.context.get('object_list'),
-            map(repr, [self.room1, self.room2]),
-            ordered=False
+            response.context.get("error_message")
         )
 
     def test_get_request_with_dates(self):
         with freeze_time("2019-04-21"):
             response = self.client.get(
                 self.url, {
-                    "check_in": "22.04.2019",
-                    "check_out": "24.04.2019"
+                    "check_in_date": "22.04.2019",
+                    "check_out_date": "24.04.2019"
                 }
             )
         self.assertEqual(response.status_code, 200)
@@ -150,10 +144,15 @@ class RoomSearchViewTest(TestCase):
         )
 
     def test_get_request_with_visitors(self):
-        response = self.client.get(
-            self.url,
-            {"visitors": "2"}
-        )
+        with freeze_time("2019-04-21"):
+            response = self.client.get(
+                self.url,
+                {
+                    "check_in_date": "25.04.2019",
+                    "check_out_date": "28.04.2019",
+                    "visitors": "2"
+                }
+            )
         self.assertEqual(response.status_code, 200)
         self.assertQuerysetEqual(
             response.context.get('object_list'),
@@ -161,10 +160,15 @@ class RoomSearchViewTest(TestCase):
         )
 
     def test_get_request_with_price(self):
-        response = self.client.get(
-            self.url,
-            {"price": "10000"}
-        )
+        with freeze_time("2019-04-21"):
+            response = self.client.get(
+                self.url,
+                {
+                    "check_in_date": "22.04.2019",
+                    "check_out_date": "24.04.2019",
+                    "price": "10000"
+                }
+            )
         self.assertEqual(response.status_code, 200)
         self.assertQuerysetEqual(
             response.context.get('object_list'),

@@ -8,26 +8,20 @@
             <div class="content__list">
                 <p class="label">Дата заезда</p>
                 <div class="search__check-in-date value datepicker__input">
-                    <input class="search__check-in datepicker" type="text" id="check-in" name="check_in" placeholder="Укажите дату въезда">
+                    <input class="search__check-in datepicker" placeholder="Укажите дату въезда" {{ form.check_in_date }}
                     <button class="datepicker__button enable-ripple" id="search-check-in" type="button"><i class="far fa-fw fa-calendar-alt"></i></button>
                 </div>
                 <p class="label">Дата выезда</p>
                 <div class="search__check-out-date value datepicker__input">
-                    <input class="search__check-out datepicker" type="text" id="check-out" name="check_out" placeholder="Укажите дату выезда">
+                    <input class="search__check-out datepicker" placeholder="Укажите дату выезда" {{ form.check_out_date }}
                     <button class="datepicker__button enable-ripple" id="search-check-out" type="button"><i class="far fa-fw fa-calendar-alt"></i></button>
                 </div>
-                <p class="label">Максимальная цена за ночь, рублей</p>
+                <p class="label">{{ form.price.label }}</p>
                 <div class="search__price value">
-                    <input type="text" id="price" name="price" placeholder="Укажите цену">
+                    <input placeholder="Укажите цену" {{ form.price }}
                 </div>
-                <p class="label">Количество гостей</p>
-                <select class="search__visitors visitors value" name="visitors">
-                    <option value=""></option>
-                    <option value="1">1 гость</option>
-                    <option value="2">2 гостя</option>
-                    <option value="3">3 гостя</option>
-                    <option value="4">4 гостя</option>
-                </select>
+                <p class="label">{{ form.visitors.label }}</p>
+                <select class="search__visitors visitors value" {{ form.visitors }}
                 {% if error_message %}<div class="content__error">{{ error_message }}</div>{% endif %}
             </div>
             <div class="content__button">
@@ -37,7 +31,7 @@
     </form>
     <div class="search-result">
         {% for room in rooms %}
-        <div class="news-card fadein">
+        <div class="news-card">
             <div class="news-card__photo">
                 <a href="{% url 'room_detail' room.id %}">
                     <img src="{{ room.main_picture.url }}">
