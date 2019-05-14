@@ -12,15 +12,9 @@ urlpatterns = [
     path('', include('analytics.urls')),
     path(
         'error/',
-        TemplateView.as_view(
-            template_name="general/error.html",
-            extra_context={
-                'error_message':
-                    "Вы не являетесь клиентом отеля. Пожалуйста, "
-                    "авторизируйтесь или зарегистрируйтесь как клиент"
-            }),
+        TemplateView.as_view(template_name="general/error.html"),
         name='error'
-        ),
+    ),
     path(
         'contacts/',
         TemplateView.as_view(template_name="general/contacts.html"),
