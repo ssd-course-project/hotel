@@ -1,11 +1,10 @@
 from datetime import date
 
+from django.shortcuts import redirect
 from django.views import generic
 
 from analytics.models import Feedback
 from clients.models import Client
-from hotel import forms
-from django.shortcuts import redirect
 
 
 class FeedbackNew(generic.CreateView):
@@ -27,6 +26,7 @@ class FeedbackNew(generic.CreateView):
         except Client.DoesNotExist:
             return redirect('error')
         feedback.author = client
+        feedback.save()
         return super().form_valid(form)
 
     def is_user_permitted_to_leave_feedback(self):
