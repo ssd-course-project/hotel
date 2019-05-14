@@ -1,9 +1,10 @@
+from datetime import date
+
+from django.shortcuts import redirect
 from django.views import generic
 
 from analytics.models import Feedback
 from clients.models import Client
-from hotel import forms
-from django.shortcuts import redirect
 
 
 class FeedbackNew(generic.CreateView):
@@ -38,7 +39,9 @@ class FeedbackNew(generic.CreateView):
         if any((not client, user.is_superuser, user.is_staff)):
             return False
         else:
-            return client.booking.all().exists()
+            return client.booking.filter(
+                is_cancelled=False, check_out_date__lt=date.today()
+            ).exists()
 
 
 class FeedbackList(generic.ListView):
@@ -59,8 +62,8 @@ class FeedbackList(generic.ListView):
             except Client.DoesNotExist:
                 client = None
 
-            if client:
-                booking = client.booking.all()
-                context['client_has_made_booking'] = booking.exists()
+            context['client_has_made_booking'] = client.booking.filter(
+                is_cancelled=False, check_out_date__lt=date.today()
+            ).exists() if client else False
 
         return context

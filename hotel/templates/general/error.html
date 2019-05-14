@@ -4,7 +4,11 @@
 <div class="container">
     <h2 class="container__title">ошибка</h2>
     <div class="content error__content">
-         <p class="validation-error">{{ error_message }}</p>
+        {% if error_message %}
+            <p class="validation-error">{{ error_message }}</p>
+        {% else %}
+            <p class="validation-error">Вы не являетесь клиентом отеля. Пожалуйста, авторизируйтесь или зарегистрируйтесь как клиент</p>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
