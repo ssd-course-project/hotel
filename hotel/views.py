@@ -8,7 +8,7 @@ from django.shortcuts import redirect
 
 from analytics.models import RoomBooking
 from clients.models import Client
-from hotel.forms import RoomBookingForm
+from hotel.forms import RoomBookingForm, RoomSearchForm
 from .models import Room
 
 
@@ -18,22 +18,30 @@ class RoomListView(generic.ListView):
     context_object_name = 'rooms'
 
 
-class RoomSearchView(generic.ListView):
+class RoomSearchView(generic.edit.FormMixin, generic.ListView):
     model = Room
     template_name = "hotel/room_search.html"
+    form_class = RoomSearchForm
     context_object_name = 'rooms'
+    ERROR_MESSAGE = "Недостаточно данных для поиска или они некорректные"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    def get(self, request, *args, **kwargs):
+        if self.request.GET:
+            form = self.form_class(self.request.GET)
 
-        check_in = self.request.GET.get('check_in')
-        check_out = self.request.GET.get('check_out')
-        if not all((check_in, check_out)):
-            error_message = "" \
-                "Введите дату заезда и выезда, чтобы мы могли показать Вам " \
-                "доступные в это время номера"
-            context['error_message'] = error_message
-        return context
+            if not form.is_valid():
+                return render(
+                    request,
+                    self.template_name,
+                    {'form': form, 'error_message': self.ERROR_MESSAGE}
+                )
+
+            self.object_list = self.get_queryset()
+            context = self.get_context_data()
+            context['form'] = form
+            return self.render_to_response(context)
+        else:
+            return super().get(self, request, *args, **kwargs)
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -41,9 +49,8 @@ class RoomSearchView(generic.ListView):
         if not self.request.GET:
             return queryset
 
-        # TODO: validate check_in/checkout date
-        check_in = self.request.GET.get('check_in')
-        check_out = self.request.GET.get('check_out')
+        check_in = self.request.GET.get('check_in_date')
+        check_out = self.request.GET.get('check_out_date')
         visitors = self.request.GET.get('visitors')
         price = self.request.GET.get('price')
 
